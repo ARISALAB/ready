@@ -27,17 +27,19 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
     }
 
-    header .video-container {
-      flex: 1;
-      max-width: 400px;
-    }
+    header .image-container img {
+  width: 100px; /* Ακόμα μικρότερο μέγεθος λογοτύπου */
+  height: auto;
+  border-radius: 0px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+}
 
-    header .video-container video {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
-    }
+.hero img {
+  width: 100%; /* Κάλυψη όλης της οθόνης */
+  height: auto;
+  object-fit: cover; /* Εξασφαλίζει ότι η εικόνα προσαρμόζεται σωστά */
+}
+
 
     nav ul {
       list-style: none;
@@ -60,32 +62,17 @@
     }
 
     .hero {
-      position: relative;
       text-align: center;
     }
 
-    .hero video {
+    .hero img {
       width: 100%;
-      height: 100%;
-      object-fit: cover; /* Το βίντεο καλύπτει πλήρως την περιοχή χωρίς να παραμορφώνεται */
+      height: 400px;
+      object-fit: cover; /* Το GIF καλύπτει πλήρως την περιοχή χωρίς να παραμορφώνεται */
     }
 
-    .hero .overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      z-index: 1; /* Διασφαλίζει ότι το κείμενο θα εμφανίζεται πάνω από το βίντεο */
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Προσθήκη σκιάς για καλύτερη αναγνωσιμότητα */
-    }
-
-    .hero h2 {
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-
-    button {
+    .hero button {
+      margin-top: 20px;
       padding: 10px 20px;
       background-color: #343a40;
       color: white;
@@ -95,7 +82,7 @@
       transition: background-color 0.3s ease;
     }
 
-    button:hover {
+    .hero button:hover {
       background-color: #218838;
     }
 
@@ -154,11 +141,8 @@
 </head>
 <body>
   <header>
-    <div class="video-container">
-      <video autoplay loop muted>
-        <source src="1.mp4" type="video/mp4">
-        Το πρόγραμμα περιήγησής σας δεν υποστηρίζει αναπαραγωγή βίντεο.
-      </video>
+    <div class="image-container">
+      <img src="1.jpg" alt="Header Animation">
     </div>
     <nav>
       <ul>
@@ -172,16 +156,9 @@
 
   <section id="home">
     <div class="hero">
-      <video autoplay loop muted>
-        <source src="1.mp4" type="video/mp4">
-        Το πρόγραμμα περιήγησής σας δεν υποστηρίζει αναπαραγωγή βίντεο.
-      </video>
-      <div class="overlay">
-        <h2>Καλώς ήρθατε στην AR Akron Services</h2>
-        <p>Οι καλύτερες λύσεις για τις ανάγκες της επιχείρησής σας.</p>
-        <button onclick="scrollToServices()">Δείτε Υπηρεσίες</button>
-      </div>
-    </div>
+        <div class="hero">
+            <img src="2.gif" alt="Hero Animation">
+            <div class="overlay">
   </section>
 
   <section id="services">
