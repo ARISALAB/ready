@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR Akron Services</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212; /* Μαύρο φόντο */
+      color: white; /* Λευκό κείμενο για αντίθεση */
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #1a1a1a; /* Σκούρο μαύρο με ελαφριά γυαλάδα */
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
+    }
+
+    header .video-container {
+      flex: 1;
+      max-width: 400px;
+    }
+
+    header .video-container video {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    .hero {
+      position: relative;
+      text-align: center;
+    }
+
+    .hero video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Το βίντεο καλύπτει πλήρως την περιοχή χωρίς να παραμορφώνεται */
+    }
+
+    .hero .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      z-index: 1; /* Διασφαλίζει ότι το κείμενο θα εμφανίζεται πάνω από το βίντεο */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Προσθήκη σκιάς για καλύτερη αναγνωσιμότητα */
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #343a40;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .service-cards {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .service-card {
+      width: 30%;
+      background-color: #1e1e1e;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
+      text-align: center;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: scale(1.05); /* Αύξηση μεγέθους για εφέ hover */
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.8); /* Σκιά στο κάτω μέρος */
+    }
+
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #333;
+      border: 1px solid #555;
+      color: white;
+      border-radius: 5px;
+    }
+
+    form input, form textarea {
+      font-size: 16px;
+    }
+
+    form button {
+      background-color: #28a745;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="video-container">
+      <video autoplay loop muted>
+        <source src="1.mp4" type="video/mp4">
+        Το πρόγραμμα περιήγησής σας δεν υποστηρίζει αναπαραγωγή βίντεο.
+      </video>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Αρχική</a></li>
+        <li><a href="#services">Υπηρεσίες</a></li>
+        <li><a href="#about">Σχετικά</a></li>
+        <li><a href="#contact">Επικοινωνία</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home">
+    <div class="hero">
+      <video autoplay loop muted>
+        <source src="1.mp4" type="video/mp4">
+        Το πρόγραμμα περιήγησής σας δεν υποστηρίζει αναπαραγωγή βίντεο.
+      </video>
+      <div class="overlay">
+        <h2>Καλώς ήρθατε στην AR Akron Services</h2>
+        <p>Οι καλύτερες λύσεις για τις ανάγκες της επιχείρησής σας.</p>
+        <button onclick="scrollToServices()">Δείτε Υπηρεσίες</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Οι Υπηρεσίες μας</h2>
+    <div class="service-cards">
+      <div class="service-card">
+        <h3>Υπηρεσία 1</h3>
+        <p>Περιγραφή της υπηρεσίας 1</p>
+      </div>
+      <div class="service-card">
+        <h3>Υπηρεσία 2</h3>
+        <p>Περιγραφή της υπηρεσίας 2</p>
+      </div>
+      <div class="service-card">
+        <h3>Υπηρεσία 3</h3>
+        <p>Περιγραφή της υπηρεσίας 3</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>Σχετικά με Εμάς</h2>
+    <p>Η AR Akron Services παρέχει καινοτόμες λύσεις για την ανάπτυξη και την υποστήριξη των επιχειρήσεων σας.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Επικοινωνία</h2>
+    <p>Στείλτε μας ένα μήνυμα και θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατό.</p>
+    <form action="#" method="POST">
+      <input type="text" name="name" placeholder="Όνομα" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Μήνυμα" required></textarea>
+      <button type="submit">Αποστολή</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 AR Akron Services. Όλα τα δικαιώματα διατηρούνται.</p>
+  </footer>
+
+  <script>
+    function scrollToServices() {
+      document.getElementById("services").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
