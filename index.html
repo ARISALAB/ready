@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <title>AR Akron Services</title>
   <style>
    * {
@@ -15,6 +17,51 @@ body {
   font-family: Arial, sans-serif;
   background-color: #121212; /* Μαύρο φόντο */
   color: white; /* Λευκό κείμενο για αντίθεση */
+}
+.service-cards {
+  display: flex; /* Εξασφαλίζει ότι οι κάρτες είναι δίπλα-δίπλα */
+  flex-wrap: wrap; /* Επιτρέπει στις κάρτες να μετακινούνται σε νέες γραμμές αν δεν χωράνε στην οθόνη */
+  gap: 20px; /* Δημιουργεί απόσταση ανάμεσα στις κάρτες */
+}
+
+.service-card {
+  background-color: #f8f9fa; /* Χρώμα φόντου της κάρτας */
+  padding: 20px;
+  border-radius: 10px; /* Στρογγυλές γωνίες για την κάρτα */
+  width: 30%; /* Κάθε κάρτα καταλαμβάνει το 30% του διαθέσιμου πλάτους */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Σκιά γύρω από τις κάρτες */
+}
+
+.service-card h3 {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem; /* Μέγεθος γραμματοσειράς */
+  color: #800080; /* Μωβ χρώμα στους τίτλους */
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8); /* Λευκή σκιά */
+}
+
+.service-card h3 .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #800080; /* Μωβ χρώμα για το εικονίδιο */
+  border-radius: 50%; /* Στρογγυλό περίγραμμα για το εικονίδιο */
+  margin-right: 10px;
+  border: 2px solid #fff; /* Λευκό περίγραμμα γύρω από το εικονίδιο */
+}
+
+.service-card h3 i {
+  color: white; /* Λευκό χρώμα για το εικονίδιο */
+  font-size: 18px;
+}
+
+
+@media (max-width: 768px) {
+  .service-card {
+    width: 100%; /* Οι κάρτες να καταλαμβάνουν όλο το πλάτος στην οθόνη κινητού */
+  }
 }
 
 header {
@@ -367,18 +414,24 @@ nav ul li {
   <section id="services">
     <h2>Οι Υπηρεσίες μας</h2>
     <div class="service-cards">
-      <div class="service-card">
-        <h3>Υπηρεσία 1</h3>
-        <p>Περιγραφή της υπηρεσίας 1</p>
+        <div class="service-card">
+          <h3><span class="icon"><i class="fas fa-utensils"></i></span> Συμβουλευτική Εστιατορίων</h3>
+          <p>Ως σύμβουλοι εστιατορίων και φιλοξενίας, προσφέρουμε την εξειδίκευσή μας και παρέχουμε καθοδήγηση για τη βελτίωση της εξυπηρέτησης πελατών και την εφαρμογή βέλτιστων πρακτικών για την αύξηση της αποδοτικότητας και της κερδοφορίας.</p>
+        </div>
+      
+        <div class="service-card">
+          <h3><span class="icon"><i class="fas fa-chalkboard-teacher"></i></span> Στρατηγικός Σχεδιασμός</h3>
+          <p>Ως ειδικοί στους κλάδους εστίασης και τουρισμού, βοηθάμε ξενοδοχεία και εστιατόρια να αναπτύξουν στρατηγικές για την αύξηση των εσόδων τους.</p>
+        </div>
+      
+        <div class="service-card">
+          <h3><span class="icon"><i class="fas fa-briefcase"></i></span> Ανάπτυξη Επιχειρήσεων</h3>
+          <p>Στην AR Akron εστιάζουμε στην παροχή εξαιρετικής αξίας στους πελάτες μας, εξασφαλίζοντας ταυτόχρονα βιώσιμη ανάπτυξη και κερδοφορία, καθορίζοντας την αγορά-στόχο των πελατών μας.</p>
+        </div>
       </div>
-      <div class="service-card">
-        <h3>Υπηρεσία 2</h3>
-        <p>Περιγραφή της υπηρεσίας 2</p>
-      </div>
-      <div class="service-card">
-        <h3>Υπηρεσία 3</h3>
-        <p>Περιγραφή της υπηρεσίας 3</p>
-      </div>
+      
+      
+          
     </div>
   </section>
 
