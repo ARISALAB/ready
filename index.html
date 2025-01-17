@@ -302,6 +302,21 @@ nav ul li {
 }
 }
 
+@media (max-width: 768px) {
+  /* Ρυθμίσεις για την εικόνα */
+  #about img {
+    width: 100%; /* Η εικόνα να καλύπτει όλο το πλάτος της οθόνης */
+    height: auto; /* Αυτόματο ύψος για να διατηρείται η αναλογία */
+    object-fit: cover; /* Η εικόνα να καλύπτει τον διαθέσιμο χώρο χωρίς παραμόρφωση */
+  }
+}
+@media (max-width: 768px) {
+    #about img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+}
 
 
   </style>
@@ -354,8 +369,9 @@ nav ul li {
   <section id="about">
     <h2>Σχετικά με Εμάς</h2>
     <p>Στην AR Akron Services, πιστεύουμε στην παροχή απαράμιλλης εξειδίκευσης και καινοτόμων λύσεων στους πελάτες μας στους τομείς της εστίασης, του τουρισμού και της φιλοξενίας. Στόχος μας είναι να βοηθήσουμε τους πελάτες μας να επιτύχουν βιώσιμη ανάπτυξη και επιτυχία, προσφέροντας εξατομικευμένες στρατηγικές που βασίζονται σε έρευνα, ανάλυση και βέλτιστες πρακτικές του κλάδου.</p>
-    <img src="2.jpg" alt="About Us Image" style="width: 100%; height: 500px; object-fit: cover; margin-top: 20px;">
+    <img src="2.jpg" alt="About Us Image" style="width: 100%; height: auto; object-fit: cover; margin-top: 20px;">
 </section>
+
 
 
   <section id="contact">
