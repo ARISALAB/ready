@@ -161,6 +161,74 @@
     form button:hover {
       background-color: #218838;
     }
+    @media (max-width: 768px) {
+  header {
+    flex-direction: column; /* Κάθετη διάταξη για κινητές συσκευές */
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column; /* Κάθετη λίστα */
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+
+  .hero {
+    height: auto; /* Αυτόματο ύψος */
+  }
+
+  .hero-video {
+    height: auto; /* Το βίντεο να προσαρμόζεται */
+  }
+
+  .service-cards {
+    flex-direction: column; /* Οι κάρτες να εμφανίζονται κάθετα */
+    gap: 20px;
+  }
+
+  .service-card {
+    width: 100%; /* Οι κάρτες να καλύπτουν όλο το πλάτος */
+  }
+
+  section {
+    padding: 30px 10px; /* Μειωμένο padding */
+  }
+
+  form input, form textarea, form button {
+    font-size: 14px; /* Μικρότερο μέγεθος γραμματοσειράς */
+  }
+
+  footer {
+    font-size: 14px; /* Μικρότερο κείμενο στο footer */
+  }
+}
+
+@media (max-width: 480px) {
+  header .image-container img {
+    width: 80px; /* Μικρότερο λογότυπο */
+  }
+
+  .hero button {
+    padding: 8px 16px; /* Μικρότερο κουμπί */
+  }
+
+  .overlay {
+    font-size: 16px; /* Μικρότερο κείμενο overlay */
+  }
+
+  form input, form textarea {
+    font-size: 12px; /* Ακόμη μικρότερη γραμματοσειρά */
+  }
+
+  footer {
+    font-size: 12px; /* Μικρότερο footer */
+  }
+}
+
   </style>
 </head>
 <body>
