@@ -235,15 +235,68 @@
     font-size: 12px; /* Μικρότερο footer */
   }
 }
+header {
+  position: relative;
+}
+
+.menu-toggle {
+  display: none;
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  transition: transform 0.3s ease;
+}
+
+nav ul.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #1a1a1a;
+    width: 100%;
+    display: none;
+  }
+
+  nav ul.visible {
+    display: flex;
+  }
+
+  nav ul li {
+    text-align: center;
+    margin: 10px 0;
+  }
+}
 
 
   </style>
 </head>
 <body>
   <header>
+   
+  
     <div class="image-container">
       <img src="1.jpg" alt="Header Animation">
     </div>
+    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav>
       <ul>
         <li><a href="#home">Αρχική</a></li>
@@ -253,7 +306,7 @@
       </ul>
     </nav>
   </header>
-
+  
   <section id="home">
     <div class="hero">
         <video autoplay muted loop playsinline class="hero-video">
@@ -305,6 +358,18 @@
     function scrollToServices() {
       document.getElementById("services").scrollIntoView({ behavior: "smooth" });
     }
+    
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('nav ul');
+  
+      menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('visible');
+      });
+    });
+  </script>
+  
 </body>
 </html>
