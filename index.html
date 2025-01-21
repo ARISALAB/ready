@@ -115,14 +115,33 @@ section {
 .hero {
   position: relative;
   width: 100%;
-  height: 400px;
+  aspect-ratio: 16/9; /* Αναλογία διαστάσεων 16:9 */
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000; /* Εφεδρικό χρώμα σε περίπτωση που το βίντεο δεν φορτώσει */
 }
 
 .hero-video {
   width: 100%;
-  height: 400px;
-  object-fit: cover; /* Το βίντεο καλύπτει πλήρως την περιοχή χωρίς παραμόρφωση */
+  height: 100%;
+  object-fit: cover; /* Προσαρμογή χωρίς παραμόρφωση */
+}
+@media (min-width: 1024px) {
+  .hero {
+    aspect-ratio: 21/9; /* Ευρύτερη αναλογία για μεγαλύτερες οθόνες */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 100vh; /* Καταλαμβάνει όλο το ύψος της οθόνης */
+  }
+
+  .hero-video {
+    object-fit: contain; /* Πλήρης προβολή με μαύρες γραμμές όπου χρειάζεται */
+  }
 }
 
 .hero button {
