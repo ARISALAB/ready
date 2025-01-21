@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> <!-- Το CSS από την index.html -->
 
   <title>AR Akron Services</title>
   <style>
@@ -36,7 +37,7 @@ body {
   display: flex;
   align-items: center;
   font-size: 1.2rem; /* Μέγεθος γραμματοσειράς */
-  color: #a200a2; /* Μωβ χρώμα στους τίτλους */
+  color: #800080; /* Μωβ χρώμα στους τίτλους */
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8); /* Λευκή σκιά */
 }
 
@@ -46,7 +47,7 @@ body {
   align-items: center;
   width: 40px;
   height: 40px;
-  background-color: #a200a2; /* Μωβ χρώμα για το εικονίδιο */
+  background-color: #800080; /* Μωβ χρώμα για το εικονίδιο */
   border-radius: 50%; /* Στρογγυλό περίγραμμα για το εικονίδιο */
   margin-right: 10px;
   border: 2px solid #fff; /* Λευκό περίγραμμα γύρω από το εικονίδιο */
@@ -128,21 +129,7 @@ section {
   height: 100%;
   object-fit: cover; /* Προσαρμογή χωρίς παραμόρφωση */
 }
-@media (min-width: 1024px) {
-  .hero {
-    aspect-ratio: 21/9; /* Ευρύτερη αναλογία για μεγαλύτερες οθόνες */
-  }
-}
 
-@media (max-width: 480px) {
-  .hero {
-    height: 100vh; /* Καταλαμβάνει όλο το ύψος της οθόνης */
-  }
-
-  .hero-video {
-    object-fit: contain; /* Πλήρης προβολή με μαύρες γραμμές όπου χρειάζεται */
-  }
-}
 
 .hero button {
   position: relative;
@@ -179,6 +166,22 @@ h2 {
   color: white;
   text-align: center;
 }
+@media (min-width: 1024px) {
+  .hero {
+    aspect-ratio: 21/9; /* Ευρύτερη αναλογία για μεγαλύτερες οθόνες */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 100vh; /* Καταλαμβάνει όλο το ύψος της οθόνης */
+  }
+
+  .hero-video {
+    object-fit: contain; /* Πλήρης προβολή με μαύρες γραμμές όπου χρειάζεται */
+  }
+}
+
 #services {
   background-image: url('4.jpg'); /* Εισάγετε το μονοπάτι της εικόνας */
   background-size: cover; /* Εξασφαλίζει ότι η εικόνα καλύπτει όλο το section */
@@ -421,12 +424,13 @@ nav ul li {
     <button class="menu-toggle" aria-label="Toggle menu">☰</button>
     <nav>
       <ul>
-        <li><a href="#home">Αρχική</a></li>
-        <li><a href="#about">Σχετικά</a></li>
+        <li><a href="index.html">Αρχική</a></li>
+                <li><a href="about.html" class="active">Σχετικά</a></li>
+                <li><a href="services.html">Υπηρεσίες</a></li>
+                <li><a href="1.html">Εγγραφα</a></li>
 
-        <li><a href="#services">Υπηρεσίες</a></li>
-        <li><a href="#contact">Επικοινωνία</a></li>
-      </ul>
+                <li><a href="contact.html">Επικοινωνία</a></li>
+    </ul>
     </nav>
   </header>
   
@@ -446,7 +450,7 @@ nav ul li {
 </section>
 
 
-  <section id="services">
+<section id="services">
     <h2>Οι Υπηρεσίες μας</h2>
     <div class="service-cards">
         <div class="service-card">
