@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <title>Επικοινωνία</title>
+    <link rel="stylesheet" href="style.css"> <!-- Το CSS από την index.html -->
+    <style>
+#contact {
+    display: flex;
+    justify-content: space-between; /* Χώρος ανάμεσα στα δύο στοιχεία */
+    width: 100%;
+    max-width: 800px; /* Ρυθμίζει το μέγιστο πλάτος του section */
+    margin: 0 auto;
+    padding: 60px;
+    background-color: #000000;
+    color: #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.social-links a {
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.1);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px; /* Έως 400px πλάτος για τη φόρμα */
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px; /* Έως 300px πλάτος για τις πληροφορίες επικοινωνίας */
+}
+
+.contact-info ul {
+    display: flex;
+    gap: 10px;
+}
+
+.contact-info img {
+    width: 32px;
+    height: 32px;
+}
+@media (max-width: 767px) {
+    #contact {
+        flex-direction: column; /* Στοιχίζουμε τα στοιχεία κάθετα σε κινητές συσκευές */
+        padding: 15px; /* Μειώνουμε το padding για κινητές συσκευές */
+    }
+
+    .contact-form {
+        max-width: 100%; /* Η φόρμα καλύπτει όλο το πλάτος */
+    }
+
+    .contact-info {
+        max-width: 100%; /* Οι πληροφορίες επικοινωνίας καλύπτουν όλο το πλάτος */
+        margin-top: 20px; /* Δίνουμε λίγο διάστημα πάνω από την περιοχή πληροφοριών */
+    }
+
+    .contact-info ul {
+        justify-content: center; /* Κεντράρουμε τα social icons */
+    }
+}
+
+.contact-form button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #800080; /* Μωβ χρώμα για το κουμπί */
+    border: none;
+    border-radius: 5px; /* Στρογγυλεμένες γωνίες για το κουμπί */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #6a006a; /* Σκούρο μωβ χρώμα όταν ο χρήστης περάσει από πάνω */
+}
+
+/* Προσαρμογή για Κινητές Συσκευές */
+@media (max-width: 767px) {
+    #contact {
+        padding: 15px; /* Μειώνουμε το padding για κινητές συσκευές */
+        max-width: 100%; /* Εξασφαλίζουμε ότι η φόρμα καταλαμβάνει όλο το πλάτος της οθόνης */
+    }
+
+    /* Για να αφήσουμε περιθώρια δεξιά και αριστερά στις μικρές οθόνες */
+    .contact-form input,
+    .contact-form textarea {
+        width: calc(100% - 30px); /* Μειώνουμε το πλάτος για να αφήσουμε περιθώρια */
+        margin-left: 15px; /* Περιθώριο αριστερά */
+        margin-right: 15px; /* Περιθώριο δεξιά */
+    }
+
+    .contact-form label {
+        font-size: 0.9rem; /* Μικρότερο μέγεθος γραμματοσειράς για τις οθόνες κινητών */
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 0.9rem; /* Μικρότερο μέγεθος γραμματοσειράς για τα πεδία */
+    }
+
+    .contact-form button {
+        font-size: 0.9rem; /* Μικρότερο μέγεθος γραμματοσειράς για το κουμπί */
+        padding: 8px 16px; /* Μειώνουμε το padding του κουμπιού */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="image-container">
+            <img src="1.jpg" alt="Header Animation">
+          </div>
+          <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+          <nav>
+            <ul>
+                <li><a href="index.html">Αρχική</a></li>
+                <li><a href="about.html" class="active">Σχετικά</a></li>
+                <li><a href="services.html">Υπηρεσίες</a></li>
+                <li><a href="1.html">Εγγραφα</a></li>
+
+                <li><a href="contact.html">Επικοινωνία</a></li>
+            </ul>
+          </nav>
+    </header>
+    <br>
+    <main>
+       
+            <h2>Επικοινωνία</h2>
+
+            
+            <p>Αν επιθυμείτε να μιλήσετε με κάποιον από τους ειδικούς μας στον τομέα της εστίασης, του τουρισμού ή της φιλοξενίας, καλέστε μας στο 6983661460. Θα χαρούμε πολύ να σας βοηθήσουμε με οτιδήποτε χρειάζεστε.</p>
+         <br>
+            <section id="contact">
+            <form class="contact-form" action="mailto:ar.akron.services@gmail.com" method="post" enctype="text/plain">
+                <label for="name">Το Όνομά σας</label>
+                <input type="text" id="name" name="name" placeholder="Το Όνομά σας" required style="width: 100%; max-width: 250px;">
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="name@example.com" required style="width: 100%; max-width: 250px;">
+                
+                <label for="message">Μήνυμα</label>
+                <textarea id="message" name="message" placeholder="Το μήνυμά σας..." required style="width: 100%; max-width: 250px; height: 100px;"></textarea>
+                
+                <button type="submit" style="padding: 8px 16px; font-size: 14px; margin-top: 10px;">Υποβολή</button>
+            </form>
+        
+            <div class="contact-info">
+                <h3>AR Akron Services</h3>
+                <p>
+                    <i class="fas fa-map-marker-alt" style="color: #FF5733; margin-right: 10px;"></i>
+                    Λουκάρεως 3, Αθήνα, 11471
+                </p>
+                <p>
+                    <i class="fas fa-phone-alt" style="color: #28A745; margin-right: 10px;"></i>
+                    <strong>Τηλέφωνο:</strong><br>
+                    6983661460
+                </p>
+                <p>
+                    <i class="fas fa-envelope" style="color: #007BFF; margin-right: 10px;"></i>
+                    <strong>Email:</strong><br>
+                    <a href="mailto:ar.akron.services@gmail.com" style="color: #007BFF; text-decoration: none;">ar.akron.services@gmail.com</a>
+                </p>
+                <h4>Ακολουθήστε μας:</h4>
+                <ul class="social-links" style="list-style: none; padding: 0; display: flex; gap: 10px;">
+                    <li>
+                        <a href="https://www.facebook.com" target="_blank" style="text-decoration: none; color: inherit;">
+                            <i class="fab fa-facebook-square" style="font-size: 32px; color: #3b5998;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com" target="_blank" style="text-decoration: none; color: inherit;">
+                            <i class="fab fa-instagram" style="font-size: 32px; color: #C13584;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.google.com" target="_blank" style="text-decoration: none; color: inherit;">
+                            <i class="fab fa-google" style="font-size: 32px; color: #DB4437;"></i>
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Font Awesome Link -->
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+                
+            </div>
+        </section>
+        
+    </main>
+    <br>
+    <br>
+
+    <footer>
+        <p>&copy; 2025 AR Akron Services. Όλα τα δικαιώματα διατηρούνται.</p>
+      </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const menuToggle = document.querySelector('.menu-toggle');
+          const menu = document.querySelector('nav ul');
+      
+          menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('visible');
+          });
+        });
+      </script>
+</body>
+</html>
