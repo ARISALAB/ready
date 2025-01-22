@@ -267,7 +267,7 @@ paypal.Buttons({
 // Συνάρτηση για τη λήψη του PDF
 function downloadPDF(filename) {
   const link = document.createElement('a');
-  link.href = '/path/to/pame.pdf'; // Αλλάξτε το /path/to/ με τη σωστή διαδρομή του αρχείου
+  link.href = 'pame.pdf'; // Αλλάξτε το /path/to/ με τη σωστή διαδρομή του αρχείου
   link.download = filename;
   document.body.appendChild(link); // Προσθήκη του συνδέσμου στο DOM
   link.click(); // Κλικ στο σύνδεσμο
