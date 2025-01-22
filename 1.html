@@ -237,9 +237,7 @@
       });
     }
 
-    // Εμφάνιση preview για το Αρχείο 1 και 2
-    renderPDFPreview('pame.pdf', 'pdf-preview-file1');
-    renderPDFPreview('file2.pdf', 'pdf-preview-file2');
+   
 
     // PayPal Button για το Αρχείο 1
     paypal.Buttons({
@@ -247,7 +245,7 @@
         return actions.order.create({
           purchase_units: [{
             amount: {
-              value: '4.00' // Τιμή σε EUR
+              value: '6.90' // Τιμή σε EUR
             },
             description: "Αγορά Αρχείου 1"
           }]
