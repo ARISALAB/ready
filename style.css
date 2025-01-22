@@ -27,21 +27,34 @@ body {
   display: flex;
   align-items: center;
   font-size: 1.2rem; /* Μέγεθος γραμματοσειράς */
-  color: #800080; /* Μωβ χρώμα στους τίτλους */
+  color: goldenrod; /* Μωβ χρώμα στους τίτλους */
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8); /* Λευκή σκιά */
 }
 
 .service-card h3 .icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  background-color: #800080; /* Μωβ χρώμα για το εικονίδιο */
-  border-radius: 50%; /* Στρογγυλό περίγραμμα για το εικονίδιο */
-  margin-right: 10px;
-  border: 2px solid #fff; /* Λευκό περίγραμμα γύρω από το εικονίδιο */
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(to bottom, goldenrod, white);
+    border-radius: 50%; /* Στρογγυλό σχήμα */
+    margin-right: 10px;
+    position: relative; /* Απαραίτητο για το pseudo-element */
+  }
+  
+  .service-card h3 .icon::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, goldenrod, black); /* Διαβαθμισμένο χρώμα */
+    z-index: -1; /* Τοποθέτηση πίσω από το εικονίδιο */
+  }
+  
 
 .service-card h3 i {
   color: white; /* Λευκό χρώμα για το εικονίδιο */
