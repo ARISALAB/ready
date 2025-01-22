@@ -240,26 +240,22 @@ function renderPDFPreview(pdfUrl, previewElementId) {
 
    
 
-    // PayPal Button για το Αρχείο 1
     paypal.Buttons({
-      createOrder: function(data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '6.90' // Τιμή σε EUR
-            },
-            description: "Αγορά Αρχείου 1"
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          alert('Η πληρωμή ολοκληρώθηκε από τον ' + details.payer.name.given_name + ' για το Αρχείο 1.');
-          // Μετά την πληρωμή, γίνεται λήψη του αρχείου
-          window.location.href = 'pame.pdf';
-        });
-      }
-    }).render('#paypal-button-file1');
+  createOrder: function(data, actions) {
+    return actions.order.create({
+      purchase_units: [{
+        amount: {
+          value: '6.90' // Η τιμή του αρχείου
+        }
+      }]
+    });
+  },
+  onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
+      alert('Η αγορά ολοκληρώθηκε με επιτυχία από τον χρήστη: ' + details.payer.name.given_name);
+    });
+  }
+}).render('#paypal-button-file1');
 
  
   </script>
