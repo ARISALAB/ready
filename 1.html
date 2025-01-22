@@ -240,25 +240,28 @@ function renderPDFPreview(pdfUrl, previewElementId) {
 
    
 
-      paypal.Buttons({
-      createOrder: function(data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '4.00' // Τιμή σε EUR
-            },
-            description: "Αγορά Αρχείου 1"
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          alert('Η πληρωμή ολοκληρώθηκε από τον ' + details.payer.name.given_name + ' για το Αρχείο 1.');
-          // Μετά την πληρωμή, γίνεται λήψη του αρχείου
-          window.location.href = 'pame.pdf';
-        });
-      }
-    }).render('#paypal-button-file1');
+  paypal.Buttons({
+  createOrder: function(data, actions) {
+    return actions.order.create({
+      purchase_units: [{
+        amount: {
+          value: '6.90'  // Αντικατέστησε με το σωστό ποσό
+        }
+      }]
+    });
+  },
+  onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
+      alert('Η πληρωμή ολοκληρώθηκε με επιτυχία από τον χρήστη ' + details.payer.name.given_name);
+
+      // Παροχή του φακέλου pame.pdf μετά την επιτυχή πληρωμή
+      window.location.href = 'pame.pdf'; // Εδώ βάζεις τον σωστό σύνδεσμο προς το pame.pdf
+    });
+  },
+  onError: function(err) {
+    console.log('Σφάλμα κατά την επεξεργασία της πληρωμής', err);
+  }
+}).render('#paypal-button-file1'); // Εδώ διασφαλίζουμε ότι το κουμπί εμφανίζεται στη σωστή θέση
 
  
   </script>
