@@ -246,7 +246,7 @@ paypal.Buttons({
     return actions.order.create({
       purchase_units: [{
         amount: {
-          value: '10.00' // Τιμή του προϊόντος σε EUR
+          value: '6,90' // Τιμή του προϊόντος σε EUR
         }
       }]
     });
@@ -267,10 +267,13 @@ paypal.Buttons({
 // Συνάρτηση για τη λήψη του PDF
 function downloadPDF(filename) {
   const link = document.createElement('a');
-  link.href = pame.pdf; // URL του αρχείου PDF
+  link.href = '/path/to/pame.pdf'; // Αλλάξτε το /path/to/ με τη σωστή διαδρομή του αρχείου
   link.download = filename;
-  link.click();
+  document.body.appendChild(link); // Προσθήκη του συνδέσμου στο DOM
+  link.click(); // Κλικ στο σύνδεσμο
+  document.body.removeChild(link); // Αφαίρεση του συνδέσμου από το DOM
 }
+
 
 
  
