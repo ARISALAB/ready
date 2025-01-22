@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> <!-- Το CSS από την index.html -->
 
   <title>AR Akron Services</title>
   <style>
@@ -18,26 +19,38 @@ body {
   background-color: #121212; /* Μαύρο φόντο */
   color: white; /* Λευκό κείμενο για αντίθεση */
 }
-.service-cards {
-  display: flex; /* Εξασφαλίζει ότι οι κάρτες είναι δίπλα-δίπλα */
-  flex-wrap: wrap; /* Επιτρέπει στις κάρτες να μετακινούνται σε νέες γραμμές αν δεν χωράνε στην οθόνη */
-  gap: 20px; /* Δημιουργεί απόσταση ανάμεσα στις κάρτες */
+.service-card {
+  width: 30%;
+  background-color: #1e1e1e;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  position: relative; /* Για να λειτουργεί το pseudo-element */
+  z-index: 1; /* Τοποθέτηση μπροστά από το pseudo-element */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
+  transition: transform 0.3s ease;
 }
 
-.service-card {
-  background-color: #f8f9fa; /* Χρώμα φόντου της κάρτας */
-  padding: 20px;
-  border-radius: 10px; /* Στρογγυλές γωνίες για την κάρτα */
-  width: 30%; /* Κάθε κάρτα καταλαμβάνει το 30% του διαθέσιμου πλάτους */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Σκιά γύρω από τις κάρτες */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 15px; /* Ίδιο ή μεγαλύτερο από το border-radius της κάρτας */
+  z-index: -1; /* Τοποθέτηση πίσω από την κάρτα */
+}
+
+.service-card:hover {
+  transform: scale(1.05); /* Αύξηση μεγέθους για εφέ hover */
 }
 
 .service-card h3 {
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem; /* Μέγεθος γραμματοσειράς */
-  color: #800080; /* Μωβ χρώμα στους τίτλους */
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8); /* Λευκή σκιά */
+  font-size: 1.2rem;
+  color: goldenrod;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
 }
 
 .service-card h3 .icon {
@@ -46,16 +59,36 @@ body {
   align-items: center;
   width: 40px;
   height: 40px;
-  background-color: #800080; /* Μωβ χρώμα για το εικονίδιο */
-  border-radius: 50%; /* Στρογγυλό περίγραμμα για το εικονίδιο */
-  margin-right: 10px;
-  border: 2px solid #fff; /* Λευκό περίγραμμα γύρω από το εικονίδιο */
+  background: linear-gradient(to bottom, goldenrod, white);
+  border-radius: 50%; /* Στρογγυλό σχήμα */
+  position: relative;
+}
+
+.service-card h3 .icon::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, goldenrod, black); /* Διαβαθμισμένο χρώμα */
+  z-index: -1;
 }
 
 .service-card h3 i {
-  color: white; /* Λευκό χρώμα για το εικονίδιο */
+  color: black;
   font-size: 18px;
 }
+
+.service-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+
 
 
 @media (max-width: 768px) {
@@ -408,8 +441,97 @@ nav ul li {
         object-fit: cover;
     }
 }
+/* Το Section */
+#contact-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Ύψος πλήρους οθόνης */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+/* Εικόνα */
+.contact-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
+.contact-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Διατηρεί τις αναλογίες και δείχνει ολόκληρη την εικόνα */
+  object-position: center; /* Κεντράρει την εικόνα */
+}
+
+/* Overlay */
+.contact-overlay {
+  position: absolute;
+  top: 74%;
+  left: 50%;
+  transform: translate(-18%, -50%);
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5); /* Ημιδιαφανές μαύρο */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.contact-overlay h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.contact-overlay p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Κουμπί */
+.contact-button {
+  display: inline-block;
+  padding: 10px 25px;
+  font-size: 1.2rem;
+  background-color: goldenrod;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #d4a017;
+  transform: scale(1.1);
+}
+
+/* Media Query για κινητά */
+@media (max-width: 768px) {
+  #contact-section {
+    height: 50vh; /* Ύψος ίσο με την οθόνη */
+  }
+
+  .contact-overlay h2,
+  .contact-overlay p {
+    display: none; /* Απόκρυψη κειμένου σε κινητά */
+  }
+
+  .contact-overlay {
+    top: auto; /* Ευθυγράμμιση κουμπιού στο κάτω μέρος */
+    bottom: 10%;
+    transform: translate(-50%, 0);
+    padding: 10px;
+  }
+
+  .contact-button {
+    padding: 15px 30px;
+    font-size: 1rem;
+  }
+}
 
   </style>
 </head>
@@ -424,9 +546,11 @@ nav ul li {
     <nav>
       <ul>
         <li><a href="index.html">Αρχική</a></li>
-        <li><a href="about.html" class="active">Σχετικά</a></li>
-        <li><a href="services.html">Υπηρεσίες</a></li>
-        <li><a href="contact.html">Επικοινωνία</a></li>
+                <li><a href="about.html" class="active">Σχετικά</a></li>
+                <li><a href="services.html">Υπηρεσίες</a></li>
+                <li><a href="1.html">Εγγραφα</a></li>
+
+                <li><a href="contact.html">Επικοινωνία</a></li>
     </ul>
     </nav>
   </header>
@@ -434,7 +558,7 @@ nav ul li {
   <section id="home">
     <div class="hero">
         <video autoplay muted loop playsinline class="hero-video">
-            <source src="2.mp4" type="video/mp4">
+            <source src="6.mp4" type="video/mp4">
             Το πρόγραμμα περιήγησής σας δεν υποστηρίζει την αναπαραγωγή βίντεο.
         </video>
         <div class="overlay">
@@ -447,7 +571,7 @@ nav ul li {
 </section>
 
 
-  <section id="services">
+<section id="services">
     <h2>Οι Υπηρεσίες μας</h2>
     <div class="service-cards">
         <div class="service-card">
@@ -490,16 +614,18 @@ nav ul li {
 
 
 
-  <section id="contact">
-    <h2>Επικοινωνία</h2>
-    <p>Στείλτε μας ένα μήνυμα και θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατό.</p>
-    <form action="#" method="POST">
-      <input type="text" name="name" placeholder="Όνομα" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <textarea name="message" placeholder="Μήνυμα" required></textarea>
-      <button type="submit">Αποστολή</button>
-    </form>
+  <section id="contact-section">
+    <div class="contact-image">
+      <img src="8.jpg" alt="Επικοινωνία με την εταιρεία μας" />
+      <div class="contact-overlay">
+        <h2>Ελάτε σε Επαφή Μαζί μας</h2>
+        <p>Θέλετε να μάθετε περισσότερα για τις υπηρεσίες μας ή να συνεργαστούμε; Επικοινωνήστε μαζί μας σήμερα και θα χαρούμε να σας βοηθήσουμε!</p>
+        <a href="contact.html" class="contact-button">Επικοινωνία</a>
+      </div>
+    </div>
   </section>
+  
+  
 
   <footer>
     <p>&copy; 2025 AR Akron Services. Όλα τα δικαιώματα διατηρούνται.</p>
