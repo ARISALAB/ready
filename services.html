@@ -9,30 +9,38 @@
     <link rel="stylesheet" href="style.css"> <!-- Το CSS από την index.html -->
     <style>
   
-  .service-cards {
-  display: flex; /* Εξασφαλίζει ότι οι κάρτες είναι δίπλα-δίπλα */
-  flex-wrap: wrap; /* Επιτρέπει στις κάρτες να μετακινούνται σε νέες γραμμές αν δεν χωράνε στην οθόνη */
-  gap: 20px; /* Δημιουργεί απόσταση ανάμεσα στις κάρτες */
+  .service-card {
+  width: 30%;
+  background-color: #1e1e1e;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  position: relative; /* Για να λειτουργεί το pseudo-element */
+  z-index: 1; /* Τοποθέτηση μπροστά από το pseudo-element */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
+  transition: transform 0.3s ease;
 }
 
-.service-card {
-  background-color: #000000; /* Χρώμα φόντου της κάρτας */
-  padding: 20px;
-  border-radius: 10px; /* Στρογγυλές γωνίες για την κάρτα */
-  width: 30%; /* Κάθε κάρτα καταλαμβάνει το 30% του διαθέσιμου πλάτους */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Σκιά γύρω από τις κάρτες */
-  text-align: justify; /* Πλήρης στοίχιση του κειμένου */
-  display: flex;
-  flex-direction: column; /* Εξασφαλίζει κάθετη ευθυγράμμιση των στοιχείων */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 15px; /* Ίδιο ή μεγαλύτερο από το border-radius της κάρτας */
+  z-index: -1; /* Τοποθέτηση πίσω από την κάρτα */
+}
+
+.service-card:hover {
+  transform: scale(1.05); /* Αύξηση μεγέθους για εφέ hover */
 }
 
 .service-card h3 {
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem; /* Μέγεθος γραμματοσειράς */
-  color: #800080; /* Μωβ χρώμα στους τίτλους */
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8); /* Λευκή σκιά */
-  margin-bottom: 10px; /* Διάστημα κάτω από τον τίτλο */
+  font-size: 1.2rem;
+  color: goldenrod;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
 }
 
 .service-card h3 .icon {
@@ -41,27 +49,35 @@
   align-items: center;
   width: 40px;
   height: 40px;
-  background-color: #800080; /* Μωβ χρώμα για το εικονίδιο */
-  border-radius: 50%; /* Στρογγυλό περίγραμμα για το εικονίδιο */
-  margin-right: 10px;
-  border: 2px solid #fff; /* Λευκό περίγραμμα γύρω από το εικονίδιο */
+  background: linear-gradient(to bottom, goldenrod, white);
+  border-radius: 50%; /* Στρογγυλό σχήμα */
+  position: relative;
+}
+
+.service-card h3 .icon::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, goldenrod, black); /* Διαβαθμισμένο χρώμα */
+  z-index: -1;
 }
 
 .service-card h3 i {
-  color: white; /* Λευκό χρώμα για το εικονίδιο */
+  color: black;
   font-size: 18px;
 }
 
 .service-card p {
-  font-size: 1rem; /* Μέγεθος γραμματοσειράς για την περιγραφή */
-  line-height: 1.5; /* Διάστημα μεταξύ των γραμμών */
-  color: #ffffff; /* Σκούρο γκρι για καλύτερη αναγνωσιμότητα */
-  text-align: justify; /* Πλήρης στοίχιση του κειμένου */
-  margin-top: 10px; /* Απόσταση πάνω από το κείμενο */
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ffffff;
+  margin-top: 10px;
 }
-.centered-title {
-    font-size: 1rem; /* Ρύθμισε το μέγεθος όπως επιθυμείς */
-}
+
 
 
 /* Responsive Σχεδιασμός για Κινητά */
