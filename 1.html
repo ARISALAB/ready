@@ -222,20 +222,21 @@
 
   <script>
     // Φόρτωση και εμφάνιση preview του PDF (απαιτεί τον σωστό URL του PDF)
-    function renderPDFPreview(pdfUrl, previewElementId) {
-      pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
-        pdf.getPage(1).then(function(page) {
-          var canvas = document.createElement('canvas');
-          var context = canvas.getContext('2d');
-          var viewport = page.getViewport({ scale: 0.5 });
-          canvas.width = viewport.width;
-          canvas.height = viewport.height;
-          page.render({ canvasContext: context, viewport: viewport }).promise.then(function() {
-            document.getElementById(previewElementId).appendChild(canvas);
-          });
-        });
+function renderPDFPreview(pdfUrl, previewElementId) {
+  pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+    pdf.getPage(1).then(function(page) {
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+      var viewport = page.getViewport({ scale: 0.5 });
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      page.render({ canvasContext: context, viewport: viewport }).promise.then(function() {
+        document.getElementById(previewElementId).appendChild(canvas);
       });
-    }
+    });
+  });
+}
 
    
 
