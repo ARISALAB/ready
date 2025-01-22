@@ -76,7 +76,7 @@
     padding: 10px 20px;
     font-size: 1rem;
     color: white;
-    background-color: #800080; /* Μωβ χρώμα για το κουμπί */
+    background-color: goldenrod; /* Μωβ χρώμα για το κουμπί */
     border: none;
     border-radius: 5px; /* Στρογγυλεμένες γωνίες για το κουμπί */
     cursor: pointer;
@@ -84,7 +84,7 @@
 }
 
 .contact-form button:hover {
-    background-color: #6a006a; /* Σκούρο μωβ χρώμα όταν ο χρήστης περάσει από πάνω */
+    background-color: gold; /* Σκούρο μωβ χρώμα όταν ο χρήστης περάσει από πάνω */
 }
 
 /* Προσαρμογή για Κινητές Συσκευές */
@@ -116,6 +116,11 @@
         padding: 8px 16px; /* Μειώνουμε το padding του κουμπιού */
     }
 }
+.contact-paragraph {
+  margin: 0 20px; /* Περιθώριο 20px δεξιά και αριστερά */
+  text-align: justify; /* Προαιρετικό: Δικαιολόγηση κειμένου */
+  line-height: 1.6; /* Βελτίωση απόστασης μεταξύ γραμμών */
+}
 
     </style>
 </head>
@@ -139,11 +144,13 @@
     <br>
     <main>
        
-            <h2>Επικοινωνία</h2>
+        <h2>Επικοινωνία</h2>
 
-            
-            <p>Αν επιθυμείτε να μιλήσετε με κάποιον από τους ειδικούς μας στον τομέα της εστίασης, του τουρισμού ή της φιλοξενίας, καλέστε μας στο 6983661460. Θα χαρούμε πολύ να σας βοηθήσουμε με οτιδήποτε χρειάζεστε.</p>
-         <br>
+        <p class="contact-paragraph">
+          Αν επιθυμείτε να μιλήσετε με κάποιον από τους ειδικούς μας στον τομέα της εστίασης, του τουρισμού ή της φιλοξενίας, καλέστε μας στο 6983661460. Θα χαρούμε πολύ να σας βοηθήσουμε με οτιδήποτε χρειάζεστε.
+        </p>
+        <br>
+        
             <section id="contact">
             <form class="contact-form" action="mailto:ar.akron.services@gmail.com" method="post" enctype="text/plain">
                 <label for="name">Το Όνομά σας</label>
@@ -161,34 +168,34 @@
             <div class="contact-info">
                 <h3>AR Akron Services</h3>
                 <p>
-                    <i class="fas fa-map-marker-alt" style="color: #FF5733; margin-right: 10px;"></i>
+                    <i class="fas fa-map-marker-alt" style="color: goldenrod; margin-right: 10px;"></i>
                     Λουκάρεως 3, Αθήνα, 11471
                 </p>
                 <p>
-                    <i class="fas fa-phone-alt" style="color: #28A745; margin-right: 10px;"></i>
+                    <i class="fas fa-phone-alt" style="color: goldenrod; margin-right: 10px;"></i>
                     <strong>Τηλέφωνο:</strong><br>
                     6983661460
                 </p>
                 <p>
-                    <i class="fas fa-envelope" style="color: #007BFF; margin-right: 10px;"></i>
+                    <i class="fas fa-envelope" style="color: goldenrod; margin-right: 10px;"></i>
                     <strong>Email:</strong><br>
-                    <a href="mailto:ar.akron.services@gmail.com" style="color: #007BFF; text-decoration: none;">ar.akron.services@gmail.com</a>
+                    <a href="mailto:ar.akron.services@gmail.com" style="color: goldenrod; text-decoration: none;">ar.akron.services@gmail.com</a>
                 </p>
                 <h4>Ακολουθήστε μας:</h4>
                 <ul class="social-links" style="list-style: none; padding: 0; display: flex; gap: 10px;">
                     <li>
-                        <a href="https://www.facebook.com/profile.php?id=100094224334969" target="_blank" style="text-decoration: none; color: inherit;">
-                            <i class="fab fa-facebook-square" style="font-size: 32px; color: #3b5998;"></i>
+                        <a href="https://www.facebook.com" target="_blank" style="text-decoration: none; color: inherit;">
+                            <i class="fab fa-facebook-square" style="font-size: 32px; color: goldenrod;"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/arakronservices/" target="_blank" style="text-decoration: none; color: inherit;">
-                            <i class="fab fa-instagram" style="font-size: 32px; color: #C13584;"></i>
+                        <a href="https://www.instagram.com" target="_blank" style="text-decoration: none; color: inherit;">
+                            <i class="fab fa-instagram" style="font-size: 32px; color: goldenrod;"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://g.co/kgs/CY3MVfm" target="_blank" style="text-decoration: none; color: inherit;">
-                            <i class="fab fa-google" style="font-size: 32px; color: #DB4437;"></i>
+                        <a href="https://www.google.com" target="_blank" style="text-decoration: none; color: inherit;">
+                            <i class="fab fa-google" style="font-size: 32px; color: goldenrod;"></i>
                         </a>
                     </li>
                 </ul>
