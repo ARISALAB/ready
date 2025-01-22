@@ -260,26 +260,7 @@
       }
     }).render('#paypal-button-file1');
 
-    // PayPal Button για το Αρχείο 2
-    paypal.Buttons({
-      createOrder: function(data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '4.00' // Τιμή σε EUR
-            },
-            description: "Αγορά Αρχείου 2"
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          alert('Η πληρωμή ολοκληρώθηκε από τον ' + details.payer.name.given_name + ' για το Αρχείο 2.');
-          // Μετά την πληρωμή, γίνεται λήψη του αρχείου
-          window.location.href = 'file2.pdf';
-        });
-      }
-    }).render('#paypal-button-file2');
+ 
   </script>
       <script>
         document.addEventListener('DOMContentLoaded', () => {
