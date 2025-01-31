@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <link rel="stylesheet" href="style.css"> <!-- Το CSS από την index.html -->
 
   <title>AR Akron Services</title>
@@ -23,7 +25,7 @@ body {
   width: 30%;
   background-color: #1e1e1e;
   padding: 20px;
-  text-align: center;
+  text-align: left;
   border-radius: 10px;
   position: relative; /* Για να λειτουργεί το pseudo-element */
   z-index: 1; /* Τοποθέτηση μπροστά από το pseudo-element */
@@ -87,6 +89,7 @@ body {
   color: #ffffff;
   margin-top: 10px;
 }
+
 
 
 
@@ -241,7 +244,7 @@ h2 {
   background-color: #1e1e1e;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
-  text-align: center;
+  text-align: left;
   border-radius: 10px;
   transition: transform 0.3s ease;
 }
@@ -532,6 +535,22 @@ nav ul li {
     font-size: 1rem;
   }
 }
+.icon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #B2DBE7; /* Απαλό μπλε */
+  color: #343A40; /* Σκούρο γκρι */
+  margin-right: 10px;
+}
+
+
+
+
 
   </style>
 </head>
@@ -540,113 +559,122 @@ nav ul li {
    
   
     <div class="image-container">
-      <img src="1.jpg" alt="Header Animation">
-    </div>
-    <button class="menu-toggle" aria-label="Toggle menu">☰</button>
-    <nav>
-      <ul>
-        <li><a href="index.html">Αρχική</a></li>
-                <li><a href="about.html" class="active">Σχετικά</a></li>
-                <li><a href="services.html">Υπηρεσίες</a></li>
-                <li><a href="1.html">Εγγραφα</a></li>
-
-                <li><a href="contact.html">Επικοινωνία</a></li>
-    </ul>
-    </nav>
-  </header>
-  
-  <section id="home">
-    <div class="hero">
-        <video autoplay muted loop playsinline class="hero-video">
+        <img src="1.jpg" alt="Header Animation">
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <ul>
+          <li><a href="index.html" id="menu-home">Αρχική</a></li>
+          <li><a href="about.html" class="active" id="menu-about">Σχετικά</a></li>
+          <li><a href="services.html" id="menu-services">Υπηρεσίες</a></li>
+          <li><a href="1.html" id="menu-documents">Έγγραφα</a></li>
+          <li><a href="contact.html" id="menu-contact">Επικοινωνία</a></li>
+        </ul>
+      </nav>
+      <div class="language-selector">
+        <select id="language-select">
+          <option value="el">Ελληνικά</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </div>
+      </header>
+      
+      <section id="home">
+        <div class="hero">
+          <video autoplay muted loop playsinline class="hero-video">
             <source src="6.mp4" type="video/mp4">
             Το πρόγραμμα περιήγησής σας δεν υποστηρίζει την αναπαραγωγή βίντεο.
-        </video>
-        <div class="overlay">
-  </section>
-
-  <section id="about">
-    <h2>Σχετικά με Εμάς</h2>
-    <p>Στην AR Akron Services, πιστεύουμε στην παροχή απαράμιλλης εξειδίκευσης και καινοτόμων λύσεων στους πελάτες μας στους τομείς της εστίασης, του τουρισμού και της φιλοξενίας. Στόχος μας είναι να βοηθήσουμε τους πελάτες μας να επιτύχουν βιώσιμη ανάπτυξη και επιτυχία, προσφέροντας εξατομικευμένες στρατηγικές που βασίζονται σε έρευνα, ανάλυση και βέλτιστες πρακτικές του κλάδου.</p>
-    <img src="2.jpg" alt="About Us Image" class="about-img">
-</section>
-
-
-<section id="services">
-    <h2>Οι Υπηρεσίες μας</h2>
-    <div class="service-cards">
-        <div class="service-card">
-          <h3><span class="icon"><i class="fas fa-utensils"></i></span> Συμβουλευτική Εστιατορίων</h3>
-          <p>Ως σύμβουλοι εστιατορίων και φιλοξενίας, προσφέρουμε την εξειδίκευσή μας και παρέχουμε καθοδήγηση για τη βελτίωση της εξυπηρέτησης πελατών και την εφαρμογή βέλτιστων πρακτικών για την αύξηση της αποδοτικότητας και της κερδοφορίας.</p>
+          </video>
+          <div class="overlay"></div>
         </div>
+      </section>
       
-        <div class="service-card">
-          <h3><span class="icon"><i class="fas fa-chalkboard-teacher"></i></span> Στρατηγικός Σχεδιασμός</h3>
-          <p>Ως ειδικοί στους κλάδους εστίασης και τουρισμού, βοηθάμε ξενοδοχεία και εστιατόρια να αναπτύξουν στρατηγικές για την αύξηση των εσόδων τους.</p>
+      <section id="about">
+        <h2 id="about-title">Σχετικά με Εμάς</h2>
+        <p id="about-description">
+          Στην AR Akron Services, πιστεύουμε στην παροχή απαράμιλλης εξειδίκευσης και καινοτόμων λύσεων στους πελάτες μας στους τομείς της εστίασης, του τουρισμού και της φιλοξενίας. Στόχος μας είναι να βοηθήσουμε τους πελάτες μας να επιτύχουν βιώσιμη ανάπτυξη και επιτυχία, προσφέροντας εξατομικευμένες στρατηγικές που βασίζονται σε έρευνα, ανάλυση και βέλτιστες πρακτικές του κλάδου.
+        </p>
+        <img src="2.jpg" alt="About Us Image" class="about-img">
+      </section>
+      
+      <section id="services">
+        <h2 id="services-title">Οι Υπηρεσίες μας</h2>
+        <div class="service-cards">
+            <div class="service-card">
+              <h3 id="restaurant-consulting-title"><span class="icon"><i class="fas fa-utensils"></i></span> Συμβουλευτική Εστιατορίων</h3>
+              <p id="restaurant-consulting-description">Ως σύμβουλοι εστιατορίων και φιλοξενίας, προσφέρουμε την εξειδίκευσή μας και παρέχουμε καθοδήγηση για τη βελτίωση της εξυπηρέτησης πελατών και την εφαρμογή βέλτιστων πρακτικών για την αύξηση της αποδοτικότητας και της κερδοφορίας.</p>
+            </div>
+          
+            <div class="service-card">
+              <h3 id="strategic-planning-title"><span class="icon"><i class="fas fa-chalkboard-teacher"></i></span> Στρατηγικός Σχεδιασμός</h3>
+              <p id="strategic-planning-description">Ως ειδικοί στους κλάδους εστίασης και τουρισμού, βοηθάμε ξενοδοχεία και εστιατόρια να αναπτύξουν στρατηγικές για την αύξηση των εσόδων τους.</p>
+            </div>
+          
+            <div class="service-card">
+              <h3 id="business-development-title"><span class="icon"><i class="fas fa-briefcase"></i></span> Ανάπτυξη Επιχειρήσεων</h3>
+              <p id="business-development-description">Στην AR Akron εστιάζουμε στην παροχή εξαιρετικής αξίας στους πελάτες μας, εξασφαλίζοντας ταυτόχρονα βιώσιμη ανάπτυξη και κερδοφορία, καθορίζοντας την αγορά-στόχο των πελατών μας.</p>
+            </div>
+            <div class="service-card">
+                <h3 id="specialized-services-title"><span class="icon"><i class="fas fa-concierge-bell"></i></span> Εξειδικευμένες Υπηρεσίες</h3>
+                <p id="specialized-services-description">Οι εξειδικευμένες υπηρεσίες μας μπορούν να ωφελήσουν σημαντικά επιχειρήσεις στους τομείς της γαστρονομίας, του τουρισμού και της φιλοξενίας, βελτιώνοντας τις προσφορές και τις λειτουργίες τους, προσελκύοντας πελάτες και αυξάνοντας την κερδοφορία.</p>
+            </div>
+              
+            <div class="service-card">
+                <h3 id="training-seminars-title"><span class="icon"><i class="fas fa-users"></i></span> Εκπαιδευτικά Σεμινάρια</h3>
+                <p id="training-seminars-description">Βοηθάμε τους πελάτες μας να αναπτύξουν μια ισχυρή ομάδα, ενισχύοντας ένα συνεργατικό και υποστηρικτικό περιβάλλον εργασίας που προάγει την επαγγελματική ανάπτυξη και τη συνεχή μάθηση.</p>
+            </div>
+              
+            <div class="service-card">
+                <h3 id="financial-management-title"><span class="icon"><i class="fas fa-chart-line"></i></span> Διαχείριση Οικονομικών</h3>
+                <p id="financial-management-description">Προσφέρουμε και εφαρμόζουμε αξιόπιστες πρακτικές διαχείρισης οικονομικών, εξασφαλίζοντας την κερδοφορία και τη βιωσιμότητα των επιχειρήσεων των πελατών μας.</p>
+            </div>
         </div>
-      
-        <div class="service-card">
-          <h3><span class="icon"><i class="fas fa-briefcase"></i></span> Ανάπτυξη Επιχειρήσεων</h3>
-          <p>Στην AR Akron εστιάζουμε στην παροχή εξαιρετικής αξίας στους πελάτες μας, εξασφαλίζοντας ταυτόχρονα βιώσιμη ανάπτυξη και κερδοφορία, καθορίζοντας την αγορά-στόχο των πελατών μας.</p>
-        </div>
-        <div class="service-card">
-            <h3><span class="icon"><i class="fas fa-concierge-bell"></i></span> Εξειδικευμένες Υπηρεσίες</h3>
-            <p>Οι εξειδικευμένες υπηρεσίες μας μπορούν να ωφελήσουν σημαντικά επιχειρήσεις στους τομείς της γαστρονομίας, του τουρισμού και της φιλοξενίας, βελτιώνοντας τις προσφορές και τις λειτουργίες τους, προσελκύοντας πελάτες και αυξάνοντας την κερδοφορία.</p>
-          </div>
-          
-          <div class="service-card">
-            <h3><span class="icon"><i class="fas fa-users"></i></span> Εκπαιδευτικά Σεμινάρια</h3>
-            <p>Βοηθάμε τους πελάτες μας να αναπτύξουν μια ισχυρή ομάδα, ενισχύοντας ένα συνεργατικό και υποστηρικτικό περιβάλλον εργασίας που προάγει την επαγγελματική ανάπτυξη και τη συνεχή μάθηση.</p>
-          </div>
-          
-          <div class="service-card">
-            <h3><span class="icon"><i class="fas fa-chart-line"></i></span> Διαχείριση Οικονομικών</h3>
-            <p>Προσφέρουμε και εφαρμόζουμε αξιόπιστες πρακτικές διαχείρισης οικονομικών, εξασφαλίζοντας την κερδοφορία και τη βιωσιμότητα των επιχειρήσεων των πελατών μας.</p>
-          </div>
-          
-      </div>
-      
-      
-          
-    </div>
-  </section>
-
-
-
-
-
-  <section id="contact-section">
-    <div class="contact-image">
-      <img src="8.jpg" alt="Επικοινωνία με την εταιρεία μας" />
-      <div class="contact-overlay">
-        <h2>Ελάτε σε Επαφή Μαζί μας</h2>
-        <p>Θέλετε να μάθετε περισσότερα για τις υπηρεσίες μας ή να συνεργαστούμε; Επικοινωνήστε μαζί μας σήμερα και θα χαρούμε να σας βοηθήσουμε!</p>
-        <a href="contact.html" class="contact-button">Επικοινωνία</a>
-      </div>
-    </div>
-  </section>
-  
-  
-
-  <footer>
-    <p>&copy; 2025 AR Akron Services. Όλα τα δικαιώματα διατηρούνται.</p>
-  </footer>
-
-  <script>
-    function scrollToServices() {
-      document.getElementById("services").scrollIntoView({ behavior: "smooth" });
-    }
+    </section>
     
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuToggle = document.querySelector('.menu-toggle');
-      const menu = document.querySelector('nav ul');
-  
-      menuToggle.addEventListener('click', () => {
-        menu.classList.toggle('visible');
+    <section id="contact-section">
+        <div class="contact-image">
+          <img src="8.jpg" alt="Επικοινωνία με την εταιρεία μας" />
+          <div class="contact-overlay">
+            <h2 id="contact-title">Ελάτε σε Επαφή Μαζί μας</h2>
+            <p id="contact-description">Θέλετε να μάθετε περισσότερα για τις υπηρεσίες μας ή να συνεργαστούμε; Επικοινωνήστε μαζί μας σήμερα και θα χαρούμε να σας βοηθήσουμε!</p>
+            <a id="contact-button" href="contact.html" class="contact-button">Επικοινωνία</a>
+          </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p id="footer-text">&copy; 2025 AR Akron Services. Όλα τα δικαιώματα διατηρούνται.</p>
+    </footer>
+    
+    <script>
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabButtons.forEach(button => {
+          button.addEventListener('click', () => {
+              document.querySelector('.tab-button.active').classList.remove('active');
+              button.classList.add('active');
+      
+              document.querySelector('.tab-content.active').classList.remove('active');
+              document.getElementById(button.dataset.tab).classList.add('active');
+          });
       });
-    });
-  </script>
+      
+      
+          </script>
+           <script>
+              document.addEventListener('DOMContentLoaded', () => {
+                const menuToggle = document.querySelector('.menu-toggle');
+                const menu = document.querySelector('nav ul');
+            
+                menuToggle.addEventListener('click', () => {
+                  menu.classList.toggle('visible');
+                });
+              });
+            </script>
   
+    <script src="script.js"></script>
+
 </body>
 </html>
