@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="script.js"></script>
 
   <title>Αρχεία προς Λήψη</title>
   <link rel="stylesheet" href="style.css">
@@ -104,22 +105,30 @@
   <script src="https://www.paypal.com/sdk/js?client-id=AbP8aGEBpUSbe7x2frrXYzb502UdR7uL3CjpNb-Sp6lk7hy0j9sYRAJORgfzT01owV39NlnKlycB1mcj&currency=EUR"></script>
 </head>
 <body>
-    <header>
-        <div class="image-container">
-            <img src="1.jpg" alt="Header Animation">
-          </div>
-          <button class="menu-toggle" aria-label="Toggle menu">☰</button>
-          <nav>
-            <ul>
-                <li><a href="index.html">Αρχική</a></li>
-                <li><a href="about.html" class="active">Σχετικά</a></li>
-                <li><a href="services.html">Υπηρεσίες</a></li>
-                <li><a href="1.html">Εγγραφα</a></li>
-
-                <li><a href="contact.html">Επικοινωνία</a></li>
-            </ul>
-          </nav>
-        </header>
+  <header>
+   
+  
+    <div class="image-container">
+        <img src="1.jpg" alt="Header Animation">
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <ul>
+          <li><a href="index.html" id="menu-home">Αρχική</a></li>
+          <li><a href="about.html" class="active" id="menu-about">Σχετικά</a></li>
+          <li><a href="services.html" id="menu-services">Υπηρεσίες</a></li>
+          <li><a href="1.html" id="menu-documents">Έγγραφα</a></li>
+          <li><a href="contact.html" id="menu-contact">Επικοινωνία</a></li>
+        </ul>
+      </nav>
+      <div class="language-selector">
+        <select id="language-select">
+          <option value="el">Ελληνικά</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </div>
+      </header>
         <BR>
             <h2>Αρχεία προς Λήψη</h2>
             <br>
@@ -215,68 +224,72 @@
         <div class="folder-container">
             <i class="fas fa-folder" style="font-size: 200px; color: goldenrod;"></i>
           </div>    </div><br>
-<div id="paypal-button-container"></div>
+          <div id="paypal-button-file1"></div>
     </div>
    
   </div>
+  
 
   <script>
     // Φόρτωση και εμφάνιση preview του PDF (απαιτεί τον σωστό URL του PDF)
-function renderPDFPreview(pdfUrl, previewElementId) {
-  pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
-    pdf.getPage(1).then(function(page) {
-      var canvas = document.createElement('canvas');
-      var context = canvas.getContext('2d');
-      var viewport = page.getViewport({ scale: 0.5 });
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      page.render({ canvasContext: context, viewport: viewport }).promise.then(function() {
-        document.getElementById(previewElementId).appendChild(canvas);
+    function renderPDFPreview(pdfUrl, previewElementId) {
+      pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+        pdf.getPage(1).then(function(page) {
+          var canvas = document.createElement('canvas');
+          var context = canvas.getContext('2d');
+          var viewport = page.getViewport({ scale: 0.5 });
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          page.render({ canvasContext: context, viewport: viewport }).promise.then(function() {
+            document.getElementById(previewElementId).appendChild(canvas);
+          });
+        });
       });
-    });
-  });
-}
+    }
 
    
 
-// PayPal SDK: Δημιουργία κουμπιού πληρωμής
-paypal.Buttons({
-  createOrder: function (data, actions) {
-    return actions.order.create({
-      purchase_units: [{
-        amount: {
-          value: '6.90' // Τιμή του προϊόντος σε EUR
-        }
-      }]
-    });
-  },
-  onApprove: function (data, actions) {
-    return actions.order.capture().then(function (details) {
-      alert('Η πληρωμή ολοκληρώθηκε επιτυχώς από ' + details.payer.name.given_name);
-      // Λήψη του αρχείου PDF
-      downloadPDF('pame.pdf');
-    });
-  },
-  onError: function (err) {
-    console.error('Σφάλμα πληρωμής:', err);
-    alert('Η πληρωμή απέτυχε. Προσπαθήστε ξανά.');
-  }
-}).render('#paypal-button-container');
+    // PayPal Button για το Αρχείο 1
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '4.00' // Τιμή σε EUR
+            },
+            description: "Αγορά Αρχείου 1"
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Η πληρωμή ολοκληρώθηκε από τον ' + details.payer.name.given_name + ' για το Αρχείο 1.');
+          // Μετά την πληρωμή, γίνεται λήψη του αρχείου
+          window.location.href = 'pame.pdf';
+        });
+      }
+    }).render('#paypal-button-file1');
 
-// Συνάρτηση για τη λήψη του PDF
-function downloadPDF(filename) {
-  const link = document.createElement('a');
-  link.href = 'pame.pdf'; // Αλλάξτε το /path/to/ με τη σωστή διαδρομή του αρχείου
-  link.download = filename;
-  document.body.appendChild(link); // Προσθήκη του συνδέσμου στο DOM
-  link.click(); // Κλικ στο σύνδεσμο
-  document.body.removeChild(link); // Αφαίρεση του συνδέσμου από το DOM
-}
-
-
-
- 
+    // PayPal Button για το Αρχείο 2
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '4.00' // Τιμή σε EUR
+            },
+            description: "Αγορά Αρχείου 2"
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Η πληρωμή ολοκληρώθηκε από τον ' + details.payer.name.given_name + ' για το Αρχείο 2.');
+          // Μετά την πληρωμή, γίνεται λήψη του αρχείου
+          window.location.href = 'file2.pdf';
+        });
+      }
+    }).render('#paypal-button-file2');
   </script>
       <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -288,5 +301,7 @@ function downloadPDF(filename) {
           });
         });
       </script>
+    <script src="script.js"></script>
+
 </body>
 </html>
