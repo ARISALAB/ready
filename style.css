@@ -184,7 +184,20 @@ h2 {
     object-fit: contain; /* Πλήρης προβολή με μαύρες γραμμές όπου χρειάζεται */
   }
 }
-
+.language-selector {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .language-selector select {
+    background-color: #1a1a1a;
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: 5px;
+  }
 #services {
     position: relative; /* Δημιουργεί ένα κοντέινερ για το overlay */
     background-image: url('4.jpg');
@@ -228,7 +241,7 @@ h2 {
   background-color: #1e1e1e;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
-  text-align: center;
+  text-align: left;
   border-radius: 10px;
   transition: transform 0.3s ease;
 }
