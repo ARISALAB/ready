@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <title>Αρχεία προς Λήψη</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+ 
+    .file-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .file-card {
+      background-color: #000000;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 600px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      color: #ddd;
+    }
+
+    .buy-button {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .buy-button:hover {
+      background-color: goldenrod;
+    }
+
+    .pdf-preview {
+    text-align: center;
+    padding: 20px 0;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pdf-preview i {
+    color: goldenrod;
+    font-size: 10px;
+}
+
+
+
+    p, ul {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+  .background-container {
+    position: relative; /* Δημιουργεί ένα κοντέινερ για το overlay */
+    background-image: url('4.jpg'); /* Βάζει την εικόνα ως φόντο */
+    background-size: cover; /* Εξασφαλίζει ότι η εικόνα καλύπτει όλη την περιοχή */
+    background-position: center; /* Τοποθετεί την εικόνα στο κέντρο */
+    background-repeat: no-repeat; /* Αποτρέπει την επανάληψη της εικόνας */
+    color: #fff; /* Λευκό κείμενο */
+    padding: 50px 20px; /* Προσθέτει padding γύρω από το περιεχόμενο */
+    z-index: 2; /* Βάζει το κείμενο πάνω από το overlay */
+}
+
+.background-container::before {
+    content: ''; /* Δημιουργεί ένα άδειο στοιχείο */
+    position: absolute; /* Τοποθετεί το overlay από πάνω της εικόνας */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Μαύρο overlay με 40% αδιαφάνεια */
+    z-index: 1; /* Βάζει το overlay κάτω από το κείμενο */
+}
+
+.background-container h3, .background-container p, .background-container ul {
+    position: relative; /* Αφήνει το κείμενο να εμφανίζεται πάνω από το overlay */
+    z-index: 2; /* Βάζει το κείμενο πάνω από το overlay */
+}
+
+
+.folder-container {
+  text-align: center; /* Κεντράρει το περιεχόμενο οριζόντια */
+  display: flex; /* Μετατρέπουμε το div σε flex container */
+  justify-content: center; /* Κεντράρει το περιεχόμενο κατακόρυφα */
+  align-items: center; /* Κεντράρει το περιεχόμενο κατά μήκος του άξονα κύλισης */
+  height: 200px; /* Προσαρμόστε το ύψος ανάλογα */
+  width: 200px; /* Προσαρμόστε το πλάτος ανάλογα */
+  border: 2px solid black; /* Προαιρετικό: Περίγραμμα για να δείτε τα όρια */
+}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AbP8aGEBpUSbe7x2frrXYzb502UdR7uL3CjpNb-Sp6lk7hy0j9sYRAJORgfzT01owV39NlnKlycB1mcj&currency=EUR"></script>
+</head>
+<body>
+  <header>
+   
+  
+    <div class="image-container">
+        <img src="1.jpg" alt="Header Animation">
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <nav>
+        <ul>
+          <li><a href="index.html" id="menu-home">Αρχική</a></li>
+          <li><a href="about.html" class="active" id="menu-about">Σχετικά</a></li>
+          <li><a href="services.html" id="menu-services">Υπηρεσίες</a></li>
+          <li><a href="1.html" id="menu-documents">Έγγραφα</a></li>
+          <li><a href="contact.html" id="menu-contact">Επικοινωνία</a></li>
+        </ul>
+      </nav>
+      <div class="language-selector">
+        <select id="language-select">
+          <option value="el">Ελληνικά</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </div>
+      </header>
+        <BR>
+            <h2>Αρχεία προς Λήψη</h2>
+            <br>
+            
+           
+<div class="background-container">
+    <h3 style="text-align: center;">Η σημασία της τεκμηρίωσης στην κουζίνα</h3>
+    <br>
+    <p>
+      Η διατήρηση ενός οργανωμένου φακέλου με τα απαραίτητα έγγραφα είναι ζωτικής σημασίας για κάθε επιχείρηση εστίασης. Αυτά τα έγγραφα όχι μόνο εξασφαλίζουν την ποιότητα και την ασφάλεια των τροφίμων αλλά λειτουργούν και ως αποδεικτικά στοιχεία σε περίπτωση ελέγχου.
+    </p>
+    <br>
+    
+    <h3 style="text-align: center;">Ποια είναι τα βασικά έγγραφα που πρέπει να έχει ένα εστιατόριο;</h3>
+    <br>
+    <p>
+      <strong>Φύλλο εργασίας HACCP:</strong> Ένα ολοκληρωμένο σχέδιο που αναλύει τους πιθανούς κινδύνους για την ασφάλεια των τροφίμων και καθορίζει τα μέτρα που πρέπει να ληφθούν για την πρόληψή τους.
+    </p>
+    <br>
+    <p>
+      <strong>Φύλλα καταγραφής θερμοκρασιών:</strong> Καταγράφουν τις θερμοκρασίες των ψυγείων και των καταψυκτών σε τακτά χρονικά διαστήματα, εξασφαλίζοντας ότι τα τρόφιμα διατηρούνται στις σωστές θερμοκρασίες.
+    </p>
+    <br>
+    <p>
+      <strong>Φύλλα καταγραφής καθαρισμού και απολύμανσης:</strong> Καταγράφουν τις εργασίες καθαρισμού και απολύμανσης που πραγματοποιούνται στις εγκαταστάσεις, διασφαλίζοντας την υγιεινή του χώρου.
+    </p>
+    <br>
+    <p>
+      <strong>Φύλλα καταγραφής ατυχημάτων:</strong> Καταγράφουν τυχόν ατυχήματα που συμβαίνουν στο χώρο εργασίας, βοηθώντας στην πρόληψη μελλοντικών περιστατικών.
+    </p>
+    <br>
+    <p>
+      <strong>Έντυπα παραγγελίας:</strong> Καταγράφουν τις παραγγελίες των πρώτων υλών και των υλικών.
+    </p>
+    <br>
+    <p>
+      <strong>Έντυπα απογραφής:</strong> Καταγράφουν τα αποθέματα των τροφίμων και των υλικών.
+    </p>
+    <br>
+    <p>
+      <strong>Έντυπα πωλήσεων:</strong> Καταγράφουν τις ημερήσιες πωλήσεις.
+    </p>
+    <br>
+    <p>
+      <strong>Εγχειρίδια υγιεινής και ασφάλειας:</strong> Περιέχουν οδηγίες για τους υπαλλήλους σχετικά με τις διαδικασίες υγιεινής και ασφάλειας.
+    </p>
+    <br>
+    <p>
+      <strong>Πιστοποιητικά:</strong> Πιστοποιητικά ποιότητας των πρώτων υλών, άδειες λειτουργίας, κ.λπ.
+    </p>
+    <br>
+    
+    <h3 style="text-align: center;">Γιατί είναι σημαντική η οργάνωση των εγγράφων;</h3>
+    <br>
+    <ul>
+      <li><strong>Εύκολη πρόσβαση:</strong> Τα έγγραφα πρέπει να είναι εύκολα προσβάσιμα σε όλους τους υπαλλήλους που τα χρειάζονται.</li>
+      <li><strong>Συμμόρφωση με τους κανονισμούς:</strong> Η οργάνωση των εγγράφων διευκολύνει τους ελέγχους από τις αρμόδιες αρχές.</li>
+      <li><strong>Βελτίωση της διαχείρισης:</strong> Ένας καλά οργανωμένος φάκελος βοηθά στην αποτελεσματική διαχείριση της επιχείρησης.</li>
+      <li><strong>Προστασία από κινδύνους:</strong> Η διατήρηση των εγγράφων βοηθά στην προστασία της επιχείρησης από πιθανές νομικές διεκδικήσεις.</li>
+    </ul>
+    <br>
+    
+    <h3 style="text-align: center;">Πώς μπορώ να οργανώσω τα έγγραφά μου;</h3>
+    <br>
+    <ul>
+      <li><strong>Χρησιμοποίηση φακέλων:</strong> Διαχωρίστε τα έγγραφα σε φακέλους με βάση το είδος τους.</li>
+      <li><strong>Ηλεκτρονική αρχειοθέτηση:</strong> Χρησιμοποιήστε λογισμικό για να αποθηκεύσετε τα έγγραφα σε ηλεκτρονική μορφή.</li>
+      <li><strong>Τακτική αναθεώρηση:</strong> Αναθεωρείτε τακτικά τα έγγραφα και καταστρέφετε αυτά που δεν χρειάζονται πλέον.</li>
+    </ul>
+    <br>
+    
+    <h3 style="text-align: center;">Συμπέρασμα</h3>
+    <br>
+    <p>
+      Η διατήρηση ενός οργανωμένου φακέλου με τα απαραίτητα έγγραφα είναι απαραίτητη για κάθε επιχείρηση εστίασης. Αυτά τα έγγραφα όχι μόνο εξασφαλίζουν την ποιότητα και την ασφάλεια των τροφίμων αλλά προστατεύουν και την επιχείρηση από πιθανές νομικές επιπλοκές.
+    </p>
+  </div>
+            <br>
+  <div class="file-container">
+    <!-- Αρχείο 1 -->
+    <div class="file-card">
+        <h2>Η σημασία της διατήρησης υγειονομικών εγγράφων:</h2>
+              <p>
+        <br>
+                Η διατήρηση ενός ολοκληρωμένου φακέλου με τα απαραίτητα υγειονομικά έγγραφα είναι ζωτικής σημασίας για κάθε επιχείρηση εστίασης. Αυτά τα έγγραφα αποδεικνύουν τη δέσμευσή σας για την παροχή ασφαλών τροφίμων και την τήρηση των υγειονομικών κανονισμών.</p>
+        <br>
+        <h3 style="text-align: center;color: goldenrod;"> Μην περιμένετε άλλο! Αποκτήστε τον πλήρη φάκελό σας τώρα και εξασφαλίστε την επιχείρησή σας με μόλις 6,90€!</h3>
+               
+               </p>
+       
+       <br>
+       <div class="pdf-preview" id="pdf-preview-file1">
+        <div class="folder-container">
+            <i class="fas fa-folder" style="font-size: 200px; color: goldenrod;"></i>
+          </div>    </div><br>
+          <div id="paypal-button-file1"></div>
+    </div>
+   
+  </div>
+  
+
+  <script>
+    // Φόρτωση και εμφάνιση preview του PDF (απαιτεί τον σωστό URL του PDF)
+    function renderPDFPreview(pdfUrl, previewElementId) {
+      pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+        pdf.getPage(1).then(function(page) {
+          var canvas = document.createElement('canvas');
+          var context = canvas.getContext('2d');
+          var viewport = page.getViewport({ scale: 0.5 });
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          page.render({ canvasContext: context, viewport: viewport }).promise.then(function() {
+            document.getElementById(previewElementId).appendChild(canvas);
+          });
+        });
+      });
+    }
+
+   
+
+    // PayPal Button για το Αρχείο 1
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '4.00' // Τιμή σε EUR
+            },
+            description: "Αγορά Αρχείου 1"
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Η πληρωμή ολοκληρώθηκε από τον ' + details.payer.name.given_name + ' για το Αρχείο 1.');
+          // Μετά την πληρωμή, γίνεται λήψη του αρχείου
+          window.location.href = 'pame.pdf';
+        });
+      }
+    }).render('#paypal-button-file1');
+
+    // PayPal Button για το Αρχείο 2
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '4.00' // Τιμή σε EUR
+            },
+            description: "Αγορά Αρχείου 2"
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Η πληρωμή ολοκληρώθηκε από τον ' + details.payer.name.given_name + ' για το Αρχείο 2.');
+          // Μετά την πληρωμή, γίνεται λήψη του αρχείου
+          window.location.href = 'file2.pdf';
+        });
+      }
+    }).render('#paypal-button-file2');
+  </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const menuToggle = document.querySelector('.menu-toggle');
+          const menu = document.querySelector('nav ul');
+      
+          menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('visible');
+          });
+        });
+      </script>
+  <script src="script.js"></script>
+
+</body>
+</html>
