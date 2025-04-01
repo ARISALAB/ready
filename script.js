@@ -168,7 +168,7 @@ const translations = {
 "message-label": "Μήνυμα",
 "submit-button": "Υποβολή",
 "company-name": "AR Akron Services",
-"address": "Λουκάρεως 3, Αθήνα, 11471",
+"address": "ΓΡΙΒΑ ΔΙΓΕΝΗ 2, 17342 ΑΓΙΟΥ ΔΗΜΗΤΡΙΟΥ, ΑΤΤΙΚΗΣ",
 "phone-label": "Τηλέφωνο:",
 "phone-number": "6983661460",
 "follow-us": "Ακολουθήστε μας:"
