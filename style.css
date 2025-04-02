@@ -392,7 +392,15 @@ nav ul.hidden {
     top: 50%; /* Κεντράρισμα του κουμπιού στο ύψος του header */
     right: 20px; /* Τοποθέτηση του toggle menu δεξιά */
   }
-
+ nav ul {
+        position: absolute;
+        top: 90px; /* Ρύθμισε το ανάλογα με το ύψος του header */
+        right: 0; /* Αν θέλουμε το nav να καλύπτει όλο το πλάτος, ξεκινάει από την αριστερή πλευρά */
+        width: 40%;
+        background-color: #1a1a1a;
+        z-index: 1000; /* Εξασφαλίζει ότι θα εμφανίζεται πάνω από άλλα στοιχεία */
+        display: none; /* Απόκρυψη μέχρι να ανοίξει το menu */
+    }
   nav ul {
   flex-direction: column;
   position: absolute;
@@ -401,7 +409,6 @@ nav ul.hidden {
   width: 40%; /* Κάλυψη όλου του πλάτους */
   background-color: #1a1a1a;
   display: none;
-  z-index: 2; /* Τοποθετεί το nav πάνω από το βίντεο */
 }
 
 nav ul.visible {
