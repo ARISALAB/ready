@@ -1,398 +1,398 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #121212; /* Μαύρο φόντο */
-  color: white; /* Λευκό κείμενο για αντίθεση */
-}
-.service-cards {
-  display: flex; /* Εξασφαλίζει ότι οι κάρτες είναι δίπλα-δίπλα */
-  flex-wrap: wrap; /* Επιτρέπει στις κάρτες να μετακινούνται σε νέες γραμμές αν δεν χωράνε στην οθόνη */
-  gap: 20px; /* Δημιουργεί απόσταση ανάμεσα στις κάρτες */
-}
-
-.service-card {
-  background-color: #f8f9fa; /* Χρώμα φόντου της κάρτας */
-  padding: 20px;
-  border-radius: 10px; /* Στρογγυλές γωνίες για την κάρτα */
-  width: 30%; /* Κάθε κάρτα καταλαμβάνει το 30% του διαθέσιμου πλάτους */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Σκιά γύρω από τις κάρτες */
-}
-
-.service-card h3 {
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem; /* Μέγεθος γραμματοσειράς */
-  color: goldenrod; /* Μωβ χρώμα στους τίτλους */
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8); /* Λευκή σκιά */
-}
-
-.service-card h3 .icon {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Μαύρο φόντο */
+    color: white; /* Λευκό κείμενο για αντίθεση */
+  }
+  .service-cards {
+    display: flex; /* Εξασφαλίζει ότι οι κάρτες είναι δίπλα-δίπλα */
+    flex-wrap: wrap; /* Επιτρέπει στις κάρτες να μετακινούνται σε νέες γραμμές αν δεν χωράνε στην οθόνη */
+    gap: 20px; /* Δημιουργεί απόσταση ανάμεσα στις κάρτες */
+  }
+  
+  .service-card {
+    background-color: #f8f9fa; /* Χρώμα φόντου της κάρτας */
+    padding: 20px;
+    border-radius: 10px; /* Στρογγυλές γωνίες για την κάρτα */
+    width: 30%; /* Κάθε κάρτα καταλαμβάνει το 30% του διαθέσιμου πλάτους */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Σκιά γύρω από τις κάρτες */
+  }
+  
+  .service-card h3 {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem; /* Μέγεθος γραμματοσειράς */
+    color: goldenrod; /* Μωβ χρώμα στους τίτλους */
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8); /* Λευκή σκιά */
+  }
+  
+  .service-card h3 .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(to bottom, goldenrod, white);
+      border-radius: 50%; /* Στρογγυλό σχήμα */
+      margin-right: 10px;
+      position: relative; /* Απαραίτητο για το pseudo-element */
+    }
+    
+    .service-card h3 .icon::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      background: linear-gradient(to bottom, goldenrod, black); /* Διαβαθμισμένο χρώμα */
+      z-index: -1; /* Τοποθέτηση πίσω από το εικονίδιο */
+    }
+    
+  
+  .service-card h3 i {
+    color: white; /* Λευκό χρώμα για το εικονίδιο */
+    font-size: 18px;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .service-card {
+      width: 100%; /* Οι κάρτες να καταλαμβάνουν όλο το πλάτος στην οθόνη κινητού */
+    }
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between; /* Χώρο μεταξύ λογοτύπου και menu toggle */
+    align-items: center;
+    padding: 20px;
+    background-color: #1a1a1a; /* Σκούρο μαύρο με ελαφριά γυαλάδα */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
+    position: relative;
+  }
+  
+  header .image-container img {
+    width: 100px; /* Ακόμα μικρότερο μέγεθος λογοτύπου */
+    height: auto;
+    border-radius: 0px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+  }
+  
+  .hero img {
+    width: 100%; /* Κάλυψη όλης της οθόνης */
+    height: auto;
+    object-fit: cover; /* Εξασφαλίζει ότι η εικόνα προσαρμόζεται σωστά */
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  section {
+    padding: 60px 20px;
+  }
+  
+  .hero {
+    text-align: center;
+  }
+  
+  .hero {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9; /* Αναλογία διαστάσεων 16:9 */
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(to bottom, goldenrod, white);
-    border-radius: 50%; /* Στρογγυλό σχήμα */
-    margin-right: 10px;
-    position: relative; /* Απαραίτητο για το pseudo-element */
+    background: #000; /* Εφεδρικό χρώμα σε περίπτωση που το βίντεο δεν φορτώσει */
   }
   
-  .service-card h3 .icon::after {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    border-radius: 50%;
-    background: linear-gradient(to bottom, goldenrod, black); /* Διαβαθμισμένο χρώμα */
-    z-index: -1; /* Τοποθέτηση πίσω από το εικονίδιο */
-  }
-  
-
-.service-card h3 i {
-  color: white; /* Λευκό χρώμα για το εικονίδιο */
-  font-size: 18px;
-}
-
-
-@media (max-width: 768px) {
-  .service-card {
-    width: 100%; /* Οι κάρτες να καταλαμβάνουν όλο το πλάτος στην οθόνη κινητού */
-  }
-}
-
-header {
-  display: flex;
-  justify-content: space-between; /* Χώρο μεταξύ λογοτύπου και menu toggle */
-  align-items: center;
-  padding: 20px;
-  background-color: #1a1a1a; /* Σκούρο μαύρο με ελαφριά γυαλάδα */
-  color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
-  position: relative;
-}
-
-header .image-container img {
-  width: 100px; /* Ακόμα μικρότερο μέγεθος λογοτύπου */
-  height: auto;
-  border-radius: 0px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
-}
-
-.hero img {
-  width: 100%; /* Κάλυψη όλης της οθόνης */
-  height: auto;
-  object-fit: cover; /* Εξασφαλίζει ότι η εικόνα προσαρμόζεται σωστά */
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-}
-
-nav ul li {
-  margin-left: 20px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-section {
-  padding: 60px 20px;
-}
-
-.hero {
-  text-align: center;
-}
-
-.hero {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/9; /* Αναλογία διαστάσεων 16:9 */
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #000; /* Εφεδρικό χρώμα σε περίπτωση που το βίντεο δεν φορτώσει */
-}
-
-.hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Προσαρμογή χωρίς παραμόρφωση */
-}
-
-
-.hero button {
-  position: relative;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #343a40;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  z-index: 1; /* Διασφαλίζει ότι το κουμπί εμφανίζεται πάνω από το βίντεο */
-}
-
-.hero button:hover {
-  background-color: #218838;
-}
-h2 {
-  text-align: center; /* Κεντράρισμα του κειμένου */
-  width: 100%; /* Για να καλύπτει όλο το πλάτος */
-  margin: 0 auto; /* Κεντράρισμα με αυτόματη περιθώρια */
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1; /* Περιεχόμενο overlay πάνω από το βίντεο */
-  color: white;
-  text-align: center;
-}
-@media (min-width: 1024px) {
-  .hero {
-    aspect-ratio: 21/9; /* Ευρύτερη αναλογία για μεγαλύτερες οθόνες */
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    height: 100vh; /* Καταλαμβάνει όλο το ύψος της οθόνης */
-  }
-
   .hero-video {
-    object-fit: contain; /* Πλήρης προβολή με μαύρες γραμμές όπου χρειάζεται */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Προσαρμογή χωρίς παραμόρφωση */
   }
-}
-.language-selector {
+  
+  
+  .hero button {
+    position: relative;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #343a40;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    z-index: 1; /* Διασφαλίζει ότι το κουμπί εμφανίζεται πάνω από το βίντεο */
+  }
+  
+  .hero button:hover {
+    background-color: #218838;
+  }
+  h2 {
+    text-align: center; /* Κεντράρισμα του κειμένου */
+    width: 100%; /* Για να καλύπτει όλο το πλάτος */
+    margin: 0 auto; /* Κεντράρισμα με αυτόματη περιθώρια */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1; /* Περιεχόμενο overlay πάνω από το βίντεο */
+    color: white;
+    text-align: center;
+  }
+  @media (min-width: 1024px) {
+    .hero {
+      aspect-ratio: 21/9; /* Ευρύτερη αναλογία για μεγαλύτερες οθόνες */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero {
+      height: 100vh; /* Καταλαμβάνει όλο το ύψος της οθόνης */
+    }
+  
+    .hero-video {
+      object-fit: contain; /* Πλήρης προβολή με μαύρες γραμμές όπου χρειάζεται */
+    }
+  }
+  .language-selector {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .language-selector select {
+      background-color: #1a1a1a;
+      color: white;
+      border: none;
+      font-size: 16px;
+      padding: 5px;
+    }
+  #services {
+      position: relative; /* Δημιουργεί ένα κοντέινερ για το overlay */
+      background-image: url('4.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #fff;
+      padding: 50px 20px;
+    }
+    
+    #services::before {
+      content: ''; /* Δημιουργεί ένα άδειο στοιχείο */
+      position: absolute; /* Τοποθετεί το overlay από πάνω της εικόνας */
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6); /* Μαύρο overlay με 40% αδιαφάνεια */
+      z-index: 1; /* Βάζει το overlay πάνω από την εικόνα */
+    }
+    
+    #services > * {
+      position: relative; /* Διασφαλίζει ότι το περιεχόμενο είναι πάνω από το overlay */
+      z-index: 2; /* Διασφαλίζει ότι το περιεχόμενο είναι πάνω από το overlay */
+    }
+    
+  #services h2 {
+    text-align: center; /* Κεντράρει τον τίτλο */
+    margin-bottom: 40px; /* Προσθέτει κενό κάτω από τον τίτλο */
+    color: #fff; /* Λευκός τίτλος */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Μαύρη σκιά για καλύτερη ορατότητα */
+  }
+  
+  .service-cards {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .service-card {
+    width: 30%;
+    background-color: #1e1e1e;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
+    text-align: left;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .service-card:hover {
+    transform: scale(1.05); /* Αύξηση μεγέθους για εφέ hover */
+  }
+  
+  footer {
     background-color: #1a1a1a;
     color: white;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.8); /* Σκιά στο κάτω μέρος */
   }
-  .language-selector select {
+  
+  form input, form textarea, form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #333;
+    border: 1px solid #555;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  form input, form textarea {
+    font-size: 16px;
+  }
+  
+  form button {
+    background-color: #800080;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #343a40;
+  }
+  
+  @media (max-width: 768px) {
+    header {
+      flex-direction: row; /* Οριζόντια διάταξη */
+      justify-content: space-between; /* Χώρος μεταξύ λογοτύπου και menu toggle */
+      align-items: center;
+    }
+  
+    nav ul {
+      flex-direction: column; /* Κάθετη λίστα */
+      align-items: center;
+      margin-top: 10px;
+    }
+  
+    nav ul li {
+      margin: 10px 0;
+    }
+  
+    .hero {
+      height: 100vw; /* Ύψος ίσο με το πλάτος της οθόνης για να είναι τετράγωνο */
+      overflow: hidden; /* Κόβει ό,τι περισσεύει */
+    }
+  
+    .hero-video {
+      width: 100%; /* Το βίντεο να καλύπτει όλο το πλάτος */
+      height: 100%; /* Ύψος που να καλύπτει όλη την περιοχή */
+      object-fit: cover; /* Εξασφαλίζει ότι το βίντεο προσαρμόζεται σωστά χωρίς παραμόρφωση */
+    }
+  
+    .service-cards {
+      flex-direction: column; /* Οι κάρτες να εμφανίζονται κάθετα */
+      gap: 20px;
+    }
+  
+    .service-card {
+      width: 100%; /* Οι κάρτες να καλύπτουν όλο το πλάτος */
+    }
+  
+    section {
+      padding: 30px 10px; /* Μειωμένο padding */
+    }
+  
+    form input, form textarea, form button {
+      font-size: 14px; /* Μικρότερο μέγεθος γραμματοσειράς */
+    }
+  
+    footer {
+      font-size: 14px; /* Μικρότερο κείμενο στο footer */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header .image-container img {
+      width: 80px; /* Μικρότερο λογότυπο */
+    }
+  
+    .hero {
+      height: 100vw; /* Ύψος ίσο με το πλάτος της οθόνης για τετράγωνη εμφάνιση */
+    }
+  
+    .hero button {
+      padding: 8px 16px; /* Μικρότερο κουμπί */
+    }
+  
+    .overlay {
+      font-size: 16px; /* Μικρότερο κείμενο overlay */
+    }
+  
+    form input, form textarea {
+      font-size: 12px; /* Ακόμη μικρότερη γραμματοσειρά */
+    }
+  
+    footer {
+      font-size: 12px; /* Μικρότερο footer */
+    }
+  }
+  
+  header {
+    position: relative;
+  }
+  
+  .menu-toggle {
+    display: none;
     background-color: #1a1a1a;
     color: white;
     border: none;
-    font-size: 16px;
-    padding: 5px;
-  }
-#services {
-    position: relative; /* Δημιουργεί ένα κοντέινερ για το overlay */
-    background-image: url('4.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #fff;
-    padding: 50px 20px;
-  }
-  
-  #services::before {
-    content: ''; /* Δημιουργεί ένα άδειο στοιχείο */
-    position: absolute; /* Τοποθετεί το overlay από πάνω της εικόνας */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Μαύρο overlay με 40% αδιαφάνεια */
-    z-index: 1; /* Βάζει το overlay πάνω από την εικόνα */
-  }
-  
-  #services > * {
-    position: relative; /* Διασφαλίζει ότι το περιεχόμενο είναι πάνω από το overlay */
-    z-index: 2; /* Διασφαλίζει ότι το περιεχόμενο είναι πάνω από το overlay */
-  }
-  
-#services h2 {
-  text-align: center; /* Κεντράρει τον τίτλο */
-  margin-bottom: 40px; /* Προσθέτει κενό κάτω από τον τίτλο */
-  color: #fff; /* Λευκός τίτλος */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Μαύρη σκιά για καλύτερη ορατότητα */
-}
-
-.service-cards {
-  display: flex;
-  justify-content: space-around;
-}
-
-.service-card {
-  width: 30%;
-  background-color: #1e1e1e;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
-  text-align: left;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover {
-  transform: scale(1.05); /* Αύξηση μεγέθους για εφέ hover */
-}
-
-footer {
-  background-color: #1a1a1a;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.8); /* Σκιά στο κάτω μέρος */
-}
-
-form input, form textarea, form button {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #333;
-  border: 1px solid #555;
-  color: white;
-  border-radius: 5px;
-}
-
-form input, form textarea {
-  font-size: 16px;
-}
-
-form button {
-  background-color: #800080;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-form button:hover {
-  background-color: #343a40;
-}
-
-@media (max-width: 768px) {
-  header {
-    flex-direction: row; /* Οριζόντια διάταξη */
-    justify-content: space-between; /* Χώρος μεταξύ λογοτύπου και menu toggle */
-    align-items: center;
-  }
-
-  nav ul {
-    flex-direction: column; /* Κάθετη λίστα */
-    align-items: center;
-    margin-top: 10px;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
-
-  .hero {
-    height: 100vw; /* Ύψος ίσο με το πλάτος της οθόνης για να είναι τετράγωνο */
-    overflow: hidden; /* Κόβει ό,τι περισσεύει */
-  }
-
-  .hero-video {
-    width: 100%; /* Το βίντεο να καλύπτει όλο το πλάτος */
-    height: 100%; /* Ύψος που να καλύπτει όλη την περιοχή */
-    object-fit: cover; /* Εξασφαλίζει ότι το βίντεο προσαρμόζεται σωστά χωρίς παραμόρφωση */
-  }
-
-  .service-cards {
-    flex-direction: column; /* Οι κάρτες να εμφανίζονται κάθετα */
-    gap: 20px;
-  }
-
-  .service-card {
-    width: 100%; /* Οι κάρτες να καλύπτουν όλο το πλάτος */
-  }
-
-  section {
-    padding: 30px 10px; /* Μειωμένο padding */
-  }
-
-  form input, form textarea, form button {
-    font-size: 14px; /* Μικρότερο μέγεθος γραμματοσειράς */
-  }
-
-  footer {
-    font-size: 14px; /* Μικρότερο κείμενο στο footer */
-  }
-}
-
-@media (max-width: 480px) {
-  header .image-container img {
-    width: 80px; /* Μικρότερο λογότυπο */
-  }
-
-  .hero {
-    height: 100vw; /* Ύψος ίσο με το πλάτος της οθόνης για τετράγωνη εμφάνιση */
-  }
-
-  .hero button {
-    padding: 8px 16px; /* Μικρότερο κουμπί */
-  }
-
-  .overlay {
-    font-size: 16px; /* Μικρότερο κείμενο overlay */
-  }
-
-  form input, form textarea {
-    font-size: 12px; /* Ακόμη μικρότερη γραμματοσειρά */
-  }
-
-  footer {
-    font-size: 12px; /* Μικρότερο footer */
-  }
-}
-
-header {
-  position: relative;
-}
-
-.menu-toggle {
-  display: none;
-  background-color: #1a1a1a;
-  color: white;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  position: absolute;
-  top: 50%; /* Κεντράρισμα του menu toggle στο ύψος του header */
-  transform: translateY(-50%);
-  right: 20px; /* Τοποθέτηση του toggle menu δεξιά */
-}
-
-nav ul {
-  display: flex;
-  flex-direction: row;
-  transition: transform 0.3s ease;
-}
-
-nav ul.hidden {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-    top: 50%; /* Κεντράρισμα του κουμπιού στο ύψος του header */
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%; /* Κεντράρισμα του menu toggle στο ύψος του header */
+    transform: translateY(-50%);
     right: 20px; /* Τοποθέτηση του toggle menu δεξιά */
   }
- nav ul {
+  
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    transition: transform 0.3s ease;
+  }
+  
+  nav ul.hidden {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+      top: 50%; /* Κεντράρισμα του κουμπιού στο ύψος του header */
+      right: 20px; /* Τοποθέτηση του toggle menu δεξιά */
+    }
+    nav ul {
         position: absolute;
         top: 90px; /* Ρύθμισε το ανάλογα με το ύψος του header */
         right: 0; /* Αν θέλουμε το nav να καλύπτει όλο το πλάτος, ξεκινάει από την αριστερή πλευρά */
@@ -401,51 +401,55 @@ nav ul.hidden {
         z-index: 1000; /* Εξασφαλίζει ότι θα εμφανίζεται πάνω από άλλα στοιχεία */
         display: none; /* Απόκρυψη μέχρι να ανοίξει το menu */
     }
-  nav ul {
-  flex-direction: column;
-  position: absolute;
-  top: 90px; /* Ρυθμίστε το ώστε να είναι ακριβώς κάτω από το header */
-  right: 0; /* Αν θέλουμε το nav να καλύπτει όλο το πλάτος, ξεκινάει από την αριστερή πλευρά */
-  width: 40%; /* Κάλυψη όλου του πλάτους */
-  background-color: #1a1a1a;
-  display: none;
-}
-
-nav ul.visible {
-  display: flex;
-}
-
-nav ul li {
-  text-align: center;
-  margin: 10px 0;
-}
-
-.hero-video {
-  position: relative;
-  z-index: 1; /* Το βίντεο βρίσκεται πίσω από το nav */
-}
-}
-
-@media (max-width: 768px) {
-  /* Ρυθμίσεις για την εικόνα */
-  #about img {
-    width: 100%; /* Η εικόνα να καλύπτει όλο το πλάτος της οθόνης */
-    height: auto; /* Αυτόματο ύψος για να διατηρείται η αναλογία */
-    object-fit: cover; /* Η εικόνα να καλύπτει τον διαθέσιμο χώρο χωρίς παραμόρφωση */
-  }
-}
-.about-img {
-    width: 100%;
-    height: 500px;  /* Διαστάσεις για μεγάλες οθόνες */
-    object-fit: cover;
-    margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-    .about-img {
-        width: 100%;
-        height: auto;  /* Αυτόματο ύψος για κινητές συσκευές */
-        object-fit: cover;
+    
+    nav ul.active {
+        display: block;
     }
-}
-
+    nav ul {
+    flex-direction: column;
+    position: absolute;
+    top: 90px; /* Ρυθμίστε το ώστε να είναι ακριβώς κάτω από το header */
+    right: 0; /* Αν θέλουμε το nav να καλύπτει όλο το πλάτος, ξεκινάει από την αριστερή πλευρά */
+    width: 40%; /* Κάλυψη όλου του πλάτους */
+    background-color: #1a1a1a;
+    display: none;
+  }
+  
+  nav ul.visible {
+    display: flex;
+  }
+  
+  nav ul li {
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .hero-video {
+    position: relative;
+    z-index: 1; /* Το βίντεο βρίσκεται πίσω από το nav */
+  }
+  }
+  
+  @media (max-width: 768px) {
+    /* Ρυθμίσεις για την εικόνα */
+    #about img {
+      width: 100%; /* Η εικόνα να καλύπτει όλο το πλάτος της οθόνης */
+      height: auto; /* Αυτόματο ύψος για να διατηρείται η αναλογία */
+      object-fit: cover; /* Η εικόνα να καλύπτει τον διαθέσιμο χώρο χωρίς παραμόρφωση */
+    }
+  }
+  .about-img {
+      width: 100%;
+      height: 500px;  /* Διαστάσεις για μεγάλες οθόνες */
+      object-fit: cover;
+      margin-top: 20px;
+  }
+  
+  @media (max-width: 768px) {
+      .about-img {
+          width: 100%;
+          height: auto;  /* Αυτόματο ύψος για κινητές συσκευές */
+          object-fit: cover;
+      }
+  }
+  
