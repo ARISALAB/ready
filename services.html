@@ -8,7 +8,19 @@
 
     <link rel="stylesheet" href="style.css"> <!-- Το CSS από την index.html -->
     <style>
-  
+    nav ul {
+    position: absolute;
+    top: 60px; /* Ρύθμισε το ανάλογα με το ύψος του header */
+    right: 0; /* Αν θέλουμε το nav να καλύπτει όλο το πλάτος, ξεκινάει από την αριστερή πλευρά */
+    width: 40%;
+    background-color: #000; /* Ίδιο χρώμα με το header */
+    z-index: 1000; /* Εξασφαλίζει ότι θα εμφανίζεται πάνω από άλλα στοιχεία */
+    display: none; /* Απόκρυψη μέχρι να ανοίξει το menu */
+}
+
+nav ul.active {
+    display: block;
+}
   .service-card {
   width: 30%;
   background-color: #1e1e1e;
