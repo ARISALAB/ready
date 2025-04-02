@@ -1,105 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <title>Υπηρεσίες</title><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <title>Αρχεία προς Λήψη</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
 
-    <link rel="stylesheet" href="style.css"> <!-- Το CSS από την index.html -->
-    <style>
 
 
-  .service-card {
-  width: 30%;
-  background-color: #1e1e1e;
-  padding: 20px;
-  text-align: left;
-  border-radius: 10px;
-  position: relative; /* Για να λειτουργεί το pseudo-element */
-  z-index: 1; /* Τοποθέτηση μπροστά από το pseudo-element */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Σκιά για γυαλιστερό αποτέλεσμα */
-  transition: transform 0.3s ease;
+
+
+nav ul.active {
+    display: block;
+}
+    .file-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .file-card {
+      background-color: #000000;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 600px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      color: #ddd;
+    }
+
+    .buy-button {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .buy-button:hover {
+      background-color: goldenrod;
+    }
+
+    .pdf-preview {
+    text-align: center;
+    padding: 20px 0;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border-radius: 15px; /* Ίδιο ή μεγαλύτερο από το border-radius της κάρτας */
-  z-index: -1; /* Τοποθέτηση πίσω από την κάρτα */
-}
-
-.service-card:hover {
-  transform: scale(1.05); /* Αύξηση μεγέθους για εφέ hover */
-}
-
-.service-card h3 {
-  font-size: 1.2rem;
-  color: goldenrod;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-  margin-bottom: 10px;
-}
-
-.service-card h3 .icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(to bottom, goldenrod, white);
-  border-radius: 50%; /* Στρογγυλό σχήμα */
-  position: relative;
-}
-
-.service-card h3 .icon::after {
-  content: '';
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  border-radius: 50%;
-  background: linear-gradient(to bottom, goldenrod, black); /* Διαβαθμισμένο χρώμα */
-  z-index: -1;
-}
-
-.service-card h3 i {
-  color: black;
-  font-size: 18px;
-}
-
-.service-card p {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #ffffff;
-  margin-top: 10px;
+.pdf-preview i {
+    color: goldenrod;
+    font-size: 10px;
 }
 
 
 
-/* Responsive Σχεδιασμός για Κινητά */
-@media (max-width: 768px) {
-  .service-card {
-    width: 100%; /* Οι κάρτες καταλαμβάνουν όλο το πλάτος */
-    padding: 15px; /* Μειωμένο padding για μικρότερες οθόνες */
+    p, ul {
+    margin-left: 30px;
+    margin-right: 30px;
   }
-
-  .service-cards {
-    flex-direction: column; /* Οι κάρτες στοιχίζονται κάθετα */
-  }
+  .background-container {
+    position: relative; /* Δημιουργεί ένα κοντέινερ για το overlay */
+    background-image: url('4.jpg'); /* Βάζει την εικόνα ως φόντο */
+    background-size: cover; /* Εξασφαλίζει ότι η εικόνα καλύπτει όλη την περιοχή */
+    background-position: center; /* Τοποθετεί την εικόνα στο κέντρο */
+    background-repeat: no-repeat; /* Αποτρέπει την επανάληψη της εικόνας */
+    color: #fff; /* Λευκό κείμενο */
+    padding: 50px 20px; /* Προσθέτει padding γύρω από το περιεχόμενο */
+    z-index: 2; /* Βάζει το κείμενο πάνω από το overlay */
 }
-    </style>
+
+.background-container::before {
+    content: ''; /* Δημιουργεί ένα άδειο στοιχείο */
+    position: absolute; /* Τοποθετεί το overlay από πάνω της εικόνας */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Μαύρο overlay με 40% αδιαφάνεια */
+    z-index: 1; /* Βάζει το overlay κάτω από το κείμενο */
+}
+
+.background-container h3, .background-container p, .background-container ul {
+    position: relative; /* Αφήνει το κείμενο να εμφανίζεται πάνω από το overlay */
+    z-index: 2; /* Βάζει το κείμενο πάνω από το overlay */
+}
+
+
+.folder-container {
+  text-align: center; /* Κεντράρει το περιεχόμενο οριζόντια */
+  display: flex; /* Μετατρέπουμε το div σε flex container */
+  justify-content: center; /* Κεντράρει το περιεχόμενο κατακόρυφα */
+  align-items: center; /* Κεντράρει το περιεχόμενο κατά μήκος του άξονα κύλισης */
+  height: 200px; /* Προσαρμόστε το ύψος ανάλογα */
+  width: 200px; /* Προσαρμόστε το πλάτος ανάλογα */
+  border: 2px solid black; /* Προαιρετικό: Περίγραμμα για να δείτε τα όρια */
+}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AbP8aGEBpUSbe7x2frrXYzb502UdR7uL3CjpNb-Sp6lk7hy0j9sYRAJORgfzT01owV39NlnKlycB1mcj&currency=EUR"></script>
 </head>
 <body>
-    <header>
-        <div class="image-container">
-            <img src="1.jpg" alt="Header Animation">
-          </div>
-          <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+  <header>
+   
+  
+    <div class="image-container">
+        <img src="1.jpg" alt="Header Animation">
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
       <nav>
         <ul>
           <li><a href="index.html" id="menu-home">Αρχική</a></li>
@@ -108,73 +126,158 @@
           <li><a href="1.html" id="menu-documents">Έγγραφα</a></li>
           <li><a href="contact.html" id="menu-contact">Επικοινωνία</a></li>
         </ul>
-          </nav>
-          <div class="language-selector">
-            <select id="language-select">
-              <option value="el">Ελληνικά</option>
-              <option value="en">English</option>
-              <option value="es">Español</option>
-            </select>
-          </div>
-    </header>
-    <main>
+      </nav>
+      <div class="language-selector">
+        <select id="language-select">
+          <option value="el">Ελληνικά</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </div>
+      </header>
+        <BR>
+            <h2>Αρχεία προς Λήψη</h2>
+            <br>
+            
+           
+<div class="background-container">
+ <h3 style="text-align: center;">Απαραίτητα Έγγραφα Υγειονομικού Ελέγχου για Εστιατόρια</h3>
 <br>
-<section id="services">
-  <h2 id="services-title">Οι Υπηρεσίες μας</h2>
-            
-                
+<p>
+  Στον χώρο της εστίασης, η υγιεινή και η ασφάλεια των τροφίμων είναι αδιαπραγμάτευτες. Κάθε εστιατόριο οφείλει να διατηρεί έναν πλήρη και ενημερωμένο φάκελο με όλα τα απαραίτητα έγγραφα που απαιτούνται από τις υγειονομικές αρχές. Η σωστή τήρηση αυτών των αρχείων δεν είναι μόνο ζήτημα συμμόρφωσης με τη νομοθεσία, αλλά και απόδειξη υπευθυνότητας απέναντι στους πελάτες και τους συνεργάτες σας.
+</p>
+<br>
 
-                <div class="service-cards">
-                  
-                  
-                    <div class="service-card">
-                      <h3 id="restaurant-consulting-title"><span class="icon"><i class="fas fa-utensils"></i></span> Συμβουλευτική Εστιατορίων</h3>
-                      <p id="restaurant-consulting-description1">Ως σύμβουλοι εστιατορίων και φιλοξενίας, προσφέρουμε την τεχνογνωσία μας και παρέχουμε καθοδήγηση για τη βελτίωση της εξυπηρέτησης πελατών, τη βελτίωση της εμπειρίας των επισκεπτών, τη βελτιστοποίηση των λειτουργικών διαδικασιών και την εφαρμογή βέλτιστων πρακτικών για την αύξηση της αποτελεσματικότητας και της κερδοφορίας. Ως ειδικοί στην ανάπτυξη ιδεών σχετικά με εστιατόρια και ξενοδοχεία, βοηθάμε επιχειρηματίες και επιχειρήσεις να δημιουργήσουν μοναδικές και εμπορεύσιμες ιδέες για εστιατόρια και ξενοδοχεία. Λειτουργώντας ως σύμβουλοι τροφίμων και ποτών, βοηθούμε περαιτέρω τα εστιατόρια και τα ξενοδοχεία να επιμεληθούν τις προσφορές τους. Παρέχουμε καθοδήγηση σχετικά με την επιλογή τροφίμων και ποτών, την εκπαίδευση του προσωπικού, τη διαχείριση φαγητού και κελαριού και την ανάπτυξη μενού που βελτιώνουν τη συνολική γευστική εμπειρία.</p>                        
-                    </div>
-            
-                    <div class="service-card">
-                      <h3 id="strategic-planning-title"><span class="icon"><i class="fas fa-chalkboard-teacher"></i></span> Στρατηγικός Σχεδιασμός</h3>
-                      <p id="strategic-planning-description1">Ως ειδικοί στη βιομηχανία τροφίμων και ποτών, βοηθάμε τα ξενοδοχεία και τα εστιατόρια να αναπτύξουν στρατηγικές για να αυξήσουν τα έσοδά τους. Μέσω της σταθερής έρευνας αγοράς βοηθάμε στον εντοπισμό ευκαιριών για νέες επιχειρήσεις να ανοίξουν σε νέους τομείς ή υπάρχουσες επιχειρήσεις για να επεκτείνουν ή να ξεπεράσουν εμπόδια και εμπόδια που δεν τους επέτρεψαν να αναπτύξουν πλήρως τις δυνατότητές τους. Κατανοώντας και ικανοποιώντας τις διαφορετικές ανάγκες και προσδοκίες των πελατών, βοηθάμε τις επιχειρήσεις στους τομείς της διατροφής, του τουρισμού και της φιλοξενίας να παρέχουν εξαιρετικές εμπειρίες που αφήνουν μια μόνιμη εντύπωση στους πελάτες τους.</p>                    </div>
-            
-                    <div class="service-card">
-                      <h3 id="business-development-title"><span class="icon"><i class="fas fa-briefcase"></i></span> Ανάπτυξη Επιχειρήσεων</h3>
-                      <p id="business-development-description1">Στην AR Akron εστιάζουμε στην παροχή εξαιρετικής αξίας στους πελάτες μας, διασφαλίζοντας παράλληλα βιώσιμη ανάπτυξη και κερδοφορία, καθορίζοντας την αγορά-στόχο των πελατών μας. Τους συμβουλεύουμε και τους καθοδηγούμε προς την κατεύθυνση της επένδυσης στην πρόσληψη και τη διατήρηση κορυφαίων ταλέντων με διαφορετικά σύνολα δεξιοτήτων και εμπειρία στον κλάδο. Καθιερώνουμε μακροχρόνιες συνεργασίες με τους πελάτες μας παρέχοντας εξαιρετικές υπηρεσίες και υπερβαίνοντας σταθερά τις προσδοκίες τους. Εστιάζουμε στην οικοδόμηση εμπιστοσύνης, στην κατανόηση των στόχων και των προκλήσεων των πελατών μας και στην παροχή εξατομικευμένων λύσεων για την αντιμετώπιση των συγκεκριμένων αναγκών τους.</p>                    </div>
-            
-                    <div class="service-card">
-                      <h3 id="specialized-services-title"><span class="icon"><i class="fas fa-concierge-bell"></i></span> Εξειδικευμένες Υπηρεσίες</h3>
-                      <p id="specialized-services-description1">Παρέχουμε τεχνογνωσία και συμβουλευτική στην ανάπτυξη μενού, τη δημιουργία συνταγών και τον σχεδιασμό ιδέας φαγητού. Βοηθάμε τις επιχειρήσεις να αναπτύξουν μοναδικές και ελκυστικές προσφορές τροφίμων, λαμβάνοντας υπόψη τις τοπικές και διεθνείς γαστρονομικές τάσεις, τις διατροφικές προτιμήσεις και τις πολιτιστικές εκτιμήσεις. Βοηθάμε τα εστιατόρια να αναλύσουν τα μενού τους για να μεγιστοποιήσουν την κερδοφορία. Βοηθάμε στη βελτιστοποίηση των διατάξεων του μενού, των στρατηγικών τιμολόγησης και της επιλογής συστατικών για αύξηση των πωλήσεων και της κερδοφορίας, διατηρώντας παράλληλα την ικανοποίηση των πελατών. Λειτουργώντας ως σύμβουλοι βιωσιμότητας στους κλάδους του τουρισμού τροφίμων και της φιλοξενίας, βοηθούμε επίσης τους πελάτες μας στην εφαρμογή φιλικών προς το περιβάλλον πρακτικών, στη μείωση των απορριμμάτων, στην προμήθεια τοπικών και βιολογικών συστατικών και στην προώθηση ηθικών και υπεύθυνων επιχειρηματικών λειτουργιών.  </p>                    </div>
-            
-                    <div class="service-card">
-                      <h3 id="training-seminars-title"><span class="icon"><i class="fas fa-users"></i></span> Εκπαιδευτικά Σεμινάρια</h3>
-                      <p id="training-seminars-description1"> Βοηθάμε τους πελάτες μας να αναπτύξουν μια ισχυρή ομάδα, ενισχύοντας ένα συνεργατικό και υποστηρικτικό περιβάλλον εργασίας που ενθαρρύνει την επαγγελματική ανάπτυξη και τη συνεχή μάθηση. Οι εξειδικευμένες εκπαιδευτικές μας συνεδρίες για το προσωπικό της βιομηχανίας τροφίμων είναι εξαιρετικά επωφελείς για την ενίσχυση των δεξιοτήτων, των γνώσεων και των επιδόσεων τους. Έτσι, πραγματοποιούμε εκπαίδευση σε πρακτικές ασφάλειας και υγιεινής των τροφίμων, σε λειτουργίες διαχείρισης τροφίμων και ποτών σε εστιατόρια και ξενοδοχεία, στην ανάπτυξη δεξιοτήτων εξυπηρέτησης πελατών, σε προτεινόμενες στρατηγικές πώλησης και ανόδου πωλήσεων για αύξηση των εσόδων, καθώς και σε αποτελεσματικές τεχνικές διαχείρισης χρόνου. Προσαρμόζουμε πάντα τις εκπαιδευτικές συνεδρίες με βάση τη συγκεκριμένη εγκατάσταση των πελατών μας, τις προσφορές της και τις ανάγκες του προσωπικού τους.  </p>                    </div>
-            
-                    <div class="service-card">
-                      <h3 id="financial-management-title"><span class="icon"><i class="fas fa-chart-line"></i></span> Διαχείριση Οικονομικών</h3>
-                      <p id="financial-management-description1">Προσφέρουμε και εφαρμόζουμε πρακτικές ορθής οικονομικής διαχείρισης για να διασφαλίσουμε την κερδοφορία και τη βιωσιμότητα των επιχειρήσεων των πελατών μας. Αυτό περιλαμβάνει τον καθορισμό σαφών οικονομικών στόχων, τη διαχείριση του κόστους και την τακτική αναθεώρηση της δομής τιμολόγησης τους για να διασφαλιστεί ότι ευθυγραμμίζεται με την αξία που παρέχουν. Δεδομένου ότι η βιομηχανία τροφίμων, τουρισμού και φιλοξενίας είναι ένας συνεχώς εξελισσόμενος τομέας, η προσαρμοστικότητα και η ευελιξία είναι βασικοί όροι που χρησιμοποιούνται, ειδικά όσον αφορά τις διαδικασίες οικονομικής διαχείρισης, ως σύμβουλοι προτρέπουμε τους πελάτες και τους συνεργάτες μας να ακολουθήσουν. Ενημερωνόμαστε συνεχώς για τις αναδυόμενες τάσεις και τις ρυθμιστικές αλλαγές που μπορεί να επηρεάσουν τις βιομηχανίες των πελατών μας, παραμένοντας σε εγρήγορση και πάντα έτοιμοι να περιστρέφουμε και να προσαρμόζουμε τις υπηρεσίες των πελατών μας ώστε να ανταποκρίνονται στις μεταβαλλόμενες ανάγκες των πελατών και τη δυναμική της αγοράς.   </p>                    </div>
-                </div>
-            </section>
-            
-    </main>
-    <footer>
-        <p>&copy; 2025 AR Akron Services. Όλα τα δικαιώματα διατηρούνται.</p>
-      </footer>
-    <script>
-const tabButtons = document.querySelectorAll('.tab-button');
-const tabContents = document.querySelectorAll('.tab-content');
+<h3 style="text-align: center;">Τα βασικά έγγραφα που πρέπει να διατηρεί κάθε εστιατόριο:</h3>
+<br>
+<ul>
+  <li>✔️ <strong>Πιστοποιητικό Υγείας Προσωπικού:</strong> Κάθε εργαζόμενος στον χώρο της εστίασης πρέπει να διαθέτει έγκυρο πιστοποιητικό υγείας.</li>
+  <li>✔️ <strong>Βεβαιώσεις Εκπαίδευσης στην Υγιεινή και Ασφάλεια Τροφίμων:</strong> Η εκπαίδευση του προσωπικού σε θέματα ασφάλειας τροφίμων είναι ζωτικής σημασίας για την αποφυγή επιμολύνσεων.</li>
+  <li>✔️ <strong>Πρόγραμμα Καθαρισμού και Απολύμανσης:</strong> Αναλυτικό σχέδιο για την καθαριότητα των χώρων και των εξοπλισμών, καθώς και τα προϊόντα που χρησιμοποιούνται.</li>
+  <li>✔️ <strong>Αρχεία Θερμοκρασιών Ψυγείων και Καταψυκτών:</strong> Η καθημερινή παρακολούθηση των θερμοκρασιών εξασφαλίζει τη σωστή διατήρηση των τροφίμων.</li>
+  <li>✔️ <strong>Φάκελος Πρώτων Υλών και Προμηθευτών:</strong> Περιλαμβάνει στοιχεία των προμηθευτών και ελέγχους ποιότητας των πρώτων υλών.</li>
+  <li>✔️ <strong>Διαχείριση Μαγειρικών Ελαίων:</strong> Καταγραφή της ποσότητας και του τρόπου διάθεσης των χρησιμοποιημένων ελαίων σύμφωνα με τις περιβαλλοντικές απαιτήσεις.</li>
+  <li>✔️ <strong>Πιστοποιητικό Πυροπροστασίας:</strong> Απαραίτητο για την ασφάλεια του προσωπικού και των πελατών.</li>
+  <li>✔️ <strong>Άδειες και Βεβαιώσεις Λειτουργίας:</strong> Συμπεριλαμβάνουν όλες τις απαραίτητες εγκρίσεις από τις αρμόδιες αρχές.</li>
+  <li>✔️ <strong>Πιστοποιητικό Απεντόμωσης και Μυοκτονίας:</strong> Απαιτείται πιστοποιητικό από αδειοδοτημένη επιχείρηση για την καταπολέμηση εντόμων και τρωκτικών.</li>
+  <li>✔️ <strong>Διάγραμμα Ροής:</strong> Αποτυπώνει τη ροή όλων των εργασιών της επιχείρησης και πρέπει να είναι υπογεγραμμένο από ειδικό, όπως υγιεινολόγο ή τεχνολόγο τροφίμων.</li>
+  <li>✔️ <strong>Φάκελος Καταλληλότητας Νερού:</strong> Περιλαμβάνει βεβαίωση από τον αρμόδιο φορέα για την καταλληλότητα του νερού που χρησιμοποιείται στην επιχείρηση.</li>
+</ul>
+<br>
 
-tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        document.querySelector('.tab-button.active').classList.remove('active');
-        button.classList.add('active');
+<h3 style="text-align: center;">Γιατί είναι σημαντική η οργάνωση των εγγράφων;</h3>
+<br>
+<ul>
+  <li><strong>Εύκολη πρόσβαση:</strong> Τα έγγραφα πρέπει να είναι εύκολα προσβάσιμα σε όλους τους υπαλλήλους που τα χρειάζονται.</li>
+  <li><strong>Συμμόρφωση με τους κανονισμούς:</strong> Η οργάνωση των εγγράφων διευκολύνει τους ελέγχους από τις αρμόδιες αρχές.</li>
+  <li><strong>Βελτίωση της διαχείρισης:</strong> Ένας καλά οργανωμένος φάκελος βοηθά στην αποτελεσματική διαχείριση της επιχείρησης.</li>
+  <li><strong>Προστασία από κινδύνους:</strong> Η διατήρηση των εγγράφων βοηθά στην προστασία της επιχείρησης από πιθανές νομικές διεκδικήσεις.</li>
+</ul>
+<br>
 
-        document.querySelector('.tab-content.active').classList.remove('active');
-        document.getElementById(button.dataset.tab).classList.add('active');
-    });
-});
+<h3 style="text-align: center;">Πώς μπορώ να οργανώσω τα έγγραφά μου;</h3>
+<br>
+<ul>
+  <li><strong>Χρησιμοποίηση φακέλων:</strong> Διαχωρίστε τα έγγραφα σε φακέλους με βάση το είδος τους.</li>
+  <li><strong>Ηλεκτρονική αρχειοθέτηση:</strong> Χρησιμοποιήστε λογισμικό για να αποθηκεύσετε τα έγγραφα σε ηλεκτρονική μορφή.</li>
+  <li><strong>Τακτική αναθεώρηση:</strong> Αναθεωρείτε τακτικά τα έγγραφα και καταστρέφετε αυτά που δεν χρειάζονται πλέον.</li>
+</ul>
+<br>
 
+<h3 style="text-align: center;">Συμπέρασμα</h3>
+<br>
+<p>
+  Η σωστή τήρηση αυτών των εγγράφων διασφαλίζει ότι η επιχείρησή σας λειτουργεί σύμφωνα με τις απαιτήσεις του νόμου, προστατεύοντας τόσο την επιχείρηση όσο και τους πελάτες σας.
+</p>
+<br>
+<p style="text-align: center;"><strong>📞 Επικοινωνήστε μαζί μας για περισσότερες πληροφορίες σχετικά με τη σωστή διαχείριση των εγγράφων υγειονομικού ελέγχου!</strong></p>
 
-    </script>
-     <script>
+            <br>
+  <div class="file-container">
+    <!-- Αρχείο 1 -->
+    <div class="file-card">
+        <h2>Η σημασία της διατήρησης υγειονομικών εγγράφων:</h2>
+              <p>
+        <br>
+                Η διατήρηση ενός ολοκληρωμένου φακέλου με τα απαραίτητα υγειονομικά έγγραφα είναι ζωτικής σημασίας για κάθε επιχείρηση εστίασης. Αυτά τα έγγραφα αποδεικνύουν τη δέσμευσή σας για την παροχή ασφαλών τροφίμων και την τήρηση των υγειονομικών κανονισμών.</p>
+        <br>
+        <h3 style="text-align: center;color: goldenrod;"> Μην περιμένετε άλλο! Αποκτήστε τον πλήρη φάκελό σας τώρα και εξασφαλίστε την επιχείρησή σας με μόλις 6,90€!</h3>
+               
+               </p>
+       
+       <br>
+       <div class="pdf-preview" id="pdf-preview-file1">
+        <div class="folder-container">
+            <i class="fas fa-folder" style="font-size: 200px; color: goldenrod;"></i>
+          </div>    </div><br>
+          <div id="paypal-button-file1"></div>
+    </div>
+   
+  </div>
+  
+
+  <script>
+    // Φόρτωση και εμφάνιση preview του PDF (απαιτεί τον σωστό URL του PDF)
+    function renderPDFPreview(pdfUrl, previewElementId) {
+      pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+        pdf.getPage(1).then(function(page) {
+          var canvas = document.createElement('canvas');
+          var context = canvas.getContext('2d');
+          var viewport = page.getViewport({ scale: 0.5 });
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          page.render({ canvasContext: context, viewport: viewport }).promise.then(function() {
+            document.getElementById(previewElementId).appendChild(canvas);
+          });
+        });
+      });
+    }
+
+   
+
+    // PayPal Button για το Αρχείο 1
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '6.90' // Τιμή σε EUR
+            },
+            description: "Αγορά Αρχείου 1"
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Η πληρωμή ολοκληρώθηκε από τον ' + details.payer.name.given_name + 'AKRON_FILES.');
+          // Μετά την πληρωμή, γίνεται λήψη του αρχείου
+          window.location.href = 'AKRON_FILES.zip';
+        });
+      }
+    }).render('#paypal-button-file1');
+
+    // PayPal Button για το Αρχείο 2
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '6.90' // Τιμή σε EUR
+            },
+            description: "Αγορά Αρχείου 2"
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Η πληρωμή ολοκληρώθηκε από τον ' + details.payer.name.given_name + ' για το Αρχείο 2.');
+          // Μετά την πληρωμή, γίνεται λήψη του αρχείου
+          window.location.href = 'file2.pdf';
+        });
+      }
+    }).render('#paypal-button-file2');
+  </script>
+      <script>
         document.addEventListener('DOMContentLoaded', () => {
           const menuToggle = document.querySelector('.menu-toggle');
           const menu = document.querySelector('nav ul');
@@ -184,7 +287,7 @@ tabButtons.forEach(button => {
           });
         });
       </script>
-          <script src="script.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
