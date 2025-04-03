@@ -33,8 +33,8 @@ jobs:
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
-          source: ./
-          destination: ./_site
+          source: ./  # Ο φάκελος που περιέχει τα αρχεία του Jekyll
+          destination: ./_site  # Ο φάκελος που δημιουργεί το τελικό site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
