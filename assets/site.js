@@ -47,6 +47,31 @@
     els.forEach(function (el) { el.classList.add('in'); });
   }
 
+
+  /* ---------- Αριθμοί που "τρέχουν" ---------- */
+  var nums = document.querySelectorAll('.stat-n');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function countUp(el) {
+    var m = el.textContent.trim().match(/^(\d+)(.*)$/);
+    if (!m) return;
+    var target = parseInt(m[1], 10), suffix = m[2], dur = 1800, start = null;
+    el.textContent = '0' + suffix;
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if (nums.length && !reduce && 'IntersectionObserver' in window) {
+    var nio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { countUp(en.target); nio.unobserve(en.target); } });
+    }, { threshold: 0.6 });
+    nums.forEach(function (n) { nio.observe(n); });
+  }
+
   /* ---------- Cookie consent + Google Analytics ---------- */
   var GA_ID = 'G-XJ6142EJPG', KEY = 'cookieConsent';
   function loadGA() {

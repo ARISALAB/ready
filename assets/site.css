@@ -288,3 +288,20 @@ section { padding: 110px 0; }
 @media (max-width: 560px) { .grid-3 { grid-template-columns: 1fr; } }
 .grid-3 .card { display: flex; flex-direction: column; }
 .grid-3 .card .link { margin-top: auto; padding-top: 18px; }
+
+/* ---------- v5: λογότυπα καταστημάτων ---------- */
+.client-list { gap: 26px 48px; }
+.client-list li { display: flex; align-items: center; min-height: 64px; }
+.client-list img {
+  height: 60px; width: auto; max-width: 150px; object-fit: contain;
+  filter: grayscale(1) brightness(1.15); opacity: .7; transition: filter .3s, opacity .3s;
+}
+.client-list img:hover { filter: none; opacity: 1; }
+.stat-n { font-variant-numeric: tabular-nums; }
+
+/* ---------- v6: λογότυπα σε ενιαίο κρεμ χρώμα ---------- */
+.client-list { gap: 34px 56px; max-width: 1000px; margin: 0 auto; }
+.client-list img { height: 54px; max-width: 170px; filter: none; opacity: .62; }
+.client-list img:hover { opacity: 1; }
+.client-list img[src*="kipos-pandrosou"], .client-list img[src*="albouro"] { height: 66px; }
+@media (max-width: 560px) { .client-list { gap: 26px 34px; } .client-list img { height: 42px; max-width: 130px; } }

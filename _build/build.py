@@ -6,7 +6,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://www.arakronservices.gr"
 UTM = "?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions"
 W3F_KEY = "612db534-c306-4c99-914c-b151396dac36"
-V = "4"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
+V = "6"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
 
 ICON = {
  "arrow": '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
@@ -238,7 +238,7 @@ L["el"].update(dict(
   ab_teaser="Η AR Akron Services στηρίζεται σε εμπειρία από κάθε πόστο ενός εστιατορίου: από τη σάλα και την κουζίνα μέχρι τη διοίκηση και την οικονομική διεύθυνση.",
   ab_more="Γνωρίστε μας",
   venues_eyebrow="Καταστήματα όπου έχουμε αναλάβει έναρξη, οργάνωση ή διοίκηση",
-  venues=["Ο Κήπος της Πανδρόσου","Πλάκι Meze","Άλμπουρο","Πράσινη Τέντα","Ερμείον","Κίτρο","Θέσπις","Ουζερί Αλέξης","Άβατον Wine Bar"],
+  venues=["Ο Κήπος της Πανδρόσου","Πλάκι Meze","Άλμπουρο","Πράσινη Τέντα","Ερμείον","Κίτρο","Θέσπις","Χάραμα","Στάση για Φαγητό","Ουζερί Αλέξης","Άβατον Wine Bar"],
   title_about="Σχετικά | AR Akron Services",
   desc_about="Η AR Akron Services στηρίζεται σε πάνω από 25 χρόνια εμπειρίας στην εστίαση: ανοίγματα καταστημάτων, οργάνωση, εκπαίδευση προσωπικού και οικονομική διεύθυνση.",
   abp_h1="Εμπειρία από μέσα, όχι από βιβλία",
@@ -282,7 +282,7 @@ L["en"].update(dict(
   ab_teaser="AR Akron Services is built on experience from every position in a restaurant: from the floor and the kitchen to management and financial direction.",
   ab_more="About us",
   venues_eyebrow="Venues where we have led an opening, organisation or management",
-  venues=["Pandrosou Garden","Plaki Meze","Albouro","Prasini Tenta","Ermeion","Kitro","Thespis","Ouzeri Alexis","Avaton Wine Bar"],
+  venues=["Pandrosou Garden","Plaki Meze","Albouro","Prasini Tenta","Hermion","Kitro","Thespis","Xarama","Stasi gia Fagito","Ouzeri Alexis","Avaton Wine Bar"],
   title_about="About | AR Akron Services",
   desc_about="AR Akron Services is built on 25+ years of restaurant experience: venue openings, operations, staff training and financial management.",
   abp_h1="Experience from the inside, not from books",
@@ -421,8 +421,13 @@ def service_cards(t, lang, detailed=False):
 def stats_band(t):
     return '<div class="stats">' + "".join(f'<div class="stat reveal"><p class="stat-n">{n}</p><p class="stat-l">{l}</p></div>' for n,l in t["stats"]) + '</div>'
 
+LOGO_SLUGS = ["kipos-pandrosou","plaki-meze","albouro","prasini-tenta","ermeion","kitro","thespis","xarama","stasi","ouzeri-alexis","avaton"]
 def venues(t):
-    return f'<div class="clients reveal"><p class="eyebrow">{t["venues_eyebrow"]}</p><ul class="client-list">' + "".join(f"<li>{v}</li>" for v in t["venues"]) + '</ul></div>'
+    items = []
+    for slug, name in zip(LOGO_SLUGS, t["venues"]):
+        items.append(f'<li><img src="/logos/{slug}.png" alt="{name}" title="{name}" loading="lazy" '
+                     f'onerror="this.replaceWith(document.createTextNode(this.alt))"></li>')
+    return f'<div class="clients reveal"><p class="eyebrow">{t["venues_eyebrow"]}</p><ul class="client-list">' + "".join(items) + '</ul></div>'
 
 def app_cards(t):
     out=[]
