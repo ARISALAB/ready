@@ -6,7 +6,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://www.arakronservices.gr"
 UTM = "?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions"
 W3F_KEY = "612db534-c306-4c99-914c-b151396dac36"
-V = "3"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
+V = "4"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
 
 ICON = {
  "arrow": '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
@@ -15,8 +15,10 @@ ICON = {
  "mail": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
  "ig": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>',
 }
-MARK = ('<svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#c9a24a" stroke-width="1.4"/>'
-        '<text x="20" y="25.5" text-anchor="middle" font-family="Noto Serif Display, Georgia, serif" font-size="15" fill="#e2c77e">AR</text></svg>')
+MARK = ('<svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">'
+        '<rect x="1.5" y="1.5" width="61" height="61" rx="13" fill="none" stroke="#c9a24a" stroke-opacity=".45"/>'
+        '<path d="M15 49 L32 14 L49 49" fill="none" stroke="#c9a24a" stroke-width="5.2"/>'
+        '<path d="M22.5 38.5 H41.5" stroke="#c9a24a" stroke-width="4.2"/></svg>')
 
 # ------------------------------------------------------------------ κείμενα
 L = {
@@ -202,11 +204,103 @@ L = {
   ft_cookies="Cookie settings", ft_rights="All rights reserved.", ft_nav="Pages", home="Home",
 )}
 
-PAGES = ["home","services","apps","contact","privacy"]
+
+# ================================================================ ενημέρωση περιεχομένου (βάσει εμπειρίας)
+L["el"].update(dict(
+  hero_lead="Συμβουλευτική, εκπαίδευση προσωπικού και ψηφιακά εργαλεία για εστιατόρια, ξενοδοχεία και τουριστικές επιχειρήσεις, με πάνω από 25 χρόνια εμπειρίας μέσα σε καταστήματα εστίασης.",
+  nav=[("services","Υπηρεσίες"),("apps","Εφαρμογές"),("about","Σχετικά"),("contact","Επικοινωνία")],
+  srv_h2="Από το άνοιγμα μέχρι την καθημερινή λειτουργία",
+  srv_lead="Έξι τομείς όπου μπορούμε να βοηθήσουμε, είτε ξεκινάτε νέο κατάστημα είτε θέλετε να βελτιώσετε ένα που ήδη λειτουργεί.",
+  srv_link="Περισσότερα",
+  services2=[
+   dict(h="Έναρξη & επαναλειτουργία καταστήματος", short="Από το άδειο κατάστημα μέχρι την πρώτη γεμάτη βραδιά.",
+        p="Σχεδιάζουμε και επιβλέπουμε όλη την προετοιμασία ενός νέου καταστήματος ή την επαναλειτουργία ενός χώρου μετά από διακοπή, ώστε να ανοίξει οργανωμένο από την πρώτη μέρα.",
+        items=["Επίβλεψη ανακαίνισης και προετοιμασίας","Στελέχωση και οργανόγραμμα","Επαναλειτουργία μετά από διακοπή λειτουργίας"]),
+   dict(h="Μενού & τιμολογιακή πολιτική", short="Μενού που πουλάει και τιμές που αφήνουν κέρδος.",
+        p="Καταρτίζουμε ή αναδιοργανώνουμε το μενού με βάση το πραγματικό κόστος κάθε πιάτου, το κοινό σας και τις συνθήκες της αγοράς.",
+        items=["Κατάρτιση και αναδιοργάνωση μενού","Κοστολόγηση πιάτων και ποτών","Τιμολογιακή πολιτική","Συνδυασμοί φαγητού και κρασιού"]),
+   dict(h="Εκπαίδευση προσωπικού", short="Ομάδα που δουλεύει με τον ίδιο τρόπο και το ίδιο επίπεδο.",
+        p="Εκπαιδεύουμε σερβιτόρους, προσωπικό υποδοχής, ταμεία και μετρ, με πιστοποιημένη μεθοδολογία εκπαίδευσης ενηλίκων και πρακτική μέσα στο κατάστημα.",
+        items=["Εξυπηρέτηση και πωλήσεις στη σάλα","Υποδοχή πελατών και κρατήσεις","Διαδικασίες ταμείου","Εκπαίδευση νέων υπαλλήλων"]),
+   dict(h="Οργάνωση λειτουργίας", short="Σάλα και κουζίνα που δουλεύουν συντονισμένα.",
+        p="Βάζουμε σαφείς ρόλους, σωστό καταμερισμό εργασίας και καθαρή ροή παραγγελιών ανάμεσα σε κουζίνα και σάλα, για γρηγορότερη και σταθερή εξυπηρέτηση.",
+        items=["Ροή παραγγελιών κουζίνας και σάλας","Καταμερισμός εργασίας και βάρδιες","Πρότυπα εξυπηρέτησης πελατών"], link="tr"),
+   dict(h="Οικονομική διαχείριση & ταμείο", short="Ξέρετε κάθε μέρα τι κερδίζετε.",
+        p="Αναλαμβάνουμε ή οργανώνουμε την οικονομική διαχείριση: έλεγχο ταμείου και εισπράξεων, παρακολούθηση εξόδων και αποτελεσμάτων.",
+        items=["Έλεγχος ταμείου και εισπράξεων","Παρακολούθηση εξόδων και αποτελεσμάτων","Οικονομική διεύθυνση καταστήματος"], link="gf"),
+   dict(h="Αποθήκη & προμηθευτές", short="Λιγότερη σπατάλη, καλύτερες τιμές.",
+        p="Οργανώνουμε τη διαχείριση τροφίμων και αποθήκης και αξιολογούμε τους προμηθευτές σας με βάση τη σχέση κόστους και ποιότητας.",
+        items=["Διαχείριση τροφίμων και αποθήκης","Αξιολόγηση κόστους και ποιότητας προμηθευτών","Έλεγχος σπατάλης"]),
+  ],
+  sp_h1="Υπηρεσίες για εστίαση, τουρισμό και φιλοξενία",
+  stats=[("25+","χρόνια στην εστίαση"),("15+","χρόνια σε θέσεις ευθύνης"),("15+","καταστήματα και μονάδες"),("3","πόλεις: Αθήνα, Βέροια, Αλεξανδρούπολη")],
+  ab_eyebrow="Σχετικά", ab_h2="Εμπειρία από μέσα, όχι από βιβλία",
+  ab_teaser="Η AR Akron Services στηρίζεται σε εμπειρία από κάθε πόστο ενός εστιατορίου: από τη σάλα και την κουζίνα μέχρι τη διοίκηση και την οικονομική διεύθυνση.",
+  ab_more="Γνωρίστε μας",
+  venues_eyebrow="Καταστήματα όπου έχουμε αναλάβει έναρξη, οργάνωση ή διοίκηση",
+  venues=["Ο Κήπος της Πανδρόσου","Πλάκι Meze","Άλμπουρο","Πράσινη Τέντα","Ερμείον","Κίτρο","Θέσπις","Ουζερί Αλέξης","Άβατον Wine Bar"],
+  title_about="Σχετικά | AR Akron Services",
+  desc_about="Η AR Akron Services στηρίζεται σε πάνω από 25 χρόνια εμπειρίας στην εστίαση: ανοίγματα καταστημάτων, οργάνωση, εκπαίδευση προσωπικού και οικονομική διεύθυνση.",
+  abp_h1="Εμπειρία από μέσα, όχι από βιβλία",
+  abp_lead="Η AR Akron Services δημιουργήθηκε από ανθρώπους που έχουν δουλέψει σε κάθε πόστο ενός εστιατορίου.",
+  abp_story=["Η εμπειρία μας ξεκινά από τη σάλα και φτάνει μέχρι τη διοίκηση: σερβιτόρος, μετρ, υπεύθυνος προσωπικού, υπεύθυνος καταστήματος, οικονομικός διευθυντής και ιδιοκτήτης επιχείρησης. Γι' αυτό καταλαβαίνουμε τα προβλήματα κάθε θέσης και μιλάμε τη γλώσσα της ομάδας σας.",
+             "Έχουμε αναλάβει την έναρξη νέων καταστημάτων, την επαναλειτουργία μονάδων μετά από διακοπή και την οργάνωση εστιατορίων σε Αθήνα, Βέροια και Αλεξανδρούπολη: από ουζερί και ταβέρνες μέχρι wine bars και μεγάλους χώρους με ζωντανή μουσική.",
+             "Σήμερα, μαζί με τη συμβουλευτική, αναπτύσσουμε και δικά μας ψηφιακά εργαλεία, όπως το TableReserve και το GoFinanceOS, για να λύνουμε προβλήματα που ζήσαμε στην πράξη."],
+  hl_eyebrow="Τι φέρνουμε στη συνεργασία", hl_h2="Αποδεδειγμένη εμπειρία",
+  highlights=[("Ανοίγματα & επαναλειτουργίες","Έναρξη νέων καταστημάτων και επαναλειτουργία μονάδων, από την ανακαίνιση μέχρι την πρώτη μέρα λειτουργίας."),
+              ("Βραβευμένα καταστήματα","Εμπειρία σε βραβευμένα καταστήματα, και ένα κατάστημα που στήθηκε από το μηδέν και πωλήθηκε επιτυχώς μέσα σε τρία χρόνια."),
+              ("Πιστοποιημένη εκπαίδευση","Πιστοποίηση εκπαιδευτή ενηλίκων από το Κέντρο Επιμόρφωσης του ΕΚΠΑ και πιστοποίηση εξυπηρέτησης πελατών εστιατορίου."),
+              ("Ελληνικά & Αγγλικά","Άριστη γνώση αγγλικών (C2), για συνεργασία με τουριστικές επιχειρήσεις και διεθνή πελατεία.")],
+))
+L["en"].update(dict(
+  hero_lead="Consulting, staff training and digital tools for restaurants, hotels and tourism businesses, backed by more than 25 years of hands-on restaurant experience.",
+  srv_h2="From opening day to everyday operations",
+  srv_lead="Six areas where we can help, whether you are opening a new venue or improving one that is already running.",
+  srv_link="Learn more",
+  services2=[
+   dict(h="Opening & re-opening a venue", short="From an empty room to the first full night.",
+        p="We plan and supervise the whole preparation of a new venue, or the re-opening of one after a closure, so it opens organised from day one.",
+        items=["Supervision of renovation and preparation","Staffing and organisation chart","Re-opening after a closure"]),
+   dict(h="Menu & pricing", short="A menu that sells and prices that leave a profit.",
+        p="We create or rework your menu based on the real cost of every dish, your audience and market conditions.",
+        items=["Menu creation and redesign","Dish and drink costing","Pricing policy","Food and wine pairing"]),
+   dict(h="Staff training", short="A team that works the same way, to the same standard.",
+        p="We train waiters, hosts, cashiers and maîtres d'hôtel, using a certified adult-training methodology and hands-on practice in your venue.",
+        items=["Floor service and upselling","Guest reception and bookings","Cash desk procedures","Onboarding new staff"]),
+   dict(h="Operations", short="Floor and kitchen working in sync.",
+        p="We set clear roles, the right division of work and a clean order flow between kitchen and floor, for faster and more consistent service.",
+        items=["Kitchen and floor order flow","Division of work and shifts","Guest service standards"], link="tr"),
+   dict(h="Financial management & cash control", short="Know every day what you earn.",
+        p="We run or organise your financial management: cash and receipts control, tracking of expenses and results.",
+        items=["Cash and receipts control","Tracking expenses and results","Financial management of the venue"], link="gf"),
+   dict(h="Stock & suppliers", short="Less waste, better prices.",
+        p="We organise food and stock management and assess your suppliers on the balance of cost and quality.",
+        items=["Food and stock management","Supplier cost and quality assessment","Waste control"]),
+  ],
+  stats=[("25+","years in hospitality"),("15+","years in management roles"),("15+","venues and units"),("3","cities: Athens, Veria, Alexandroupoli")],
+  ab_eyebrow="About", ab_h2="Experience from the inside, not from books",
+  ab_teaser="AR Akron Services is built on experience from every position in a restaurant: from the floor and the kitchen to management and financial direction.",
+  ab_more="About us",
+  venues_eyebrow="Venues where we have led an opening, organisation or management",
+  venues=["Pandrosou Garden","Plaki Meze","Albouro","Prasini Tenta","Ermeion","Kitro","Thespis","Ouzeri Alexis","Avaton Wine Bar"],
+  title_about="About | AR Akron Services",
+  desc_about="AR Akron Services is built on 25+ years of restaurant experience: venue openings, operations, staff training and financial management.",
+  abp_h1="Experience from the inside, not from books",
+  abp_lead="AR Akron Services was created by people who have worked every position in a restaurant.",
+  abp_story=["Our experience runs from the floor to management: waiter, maître d'hôtel, staff manager, venue manager, financial director and business owner. That's why we understand the problems of every role and speak your team's language.",
+             "We have led the opening of new venues, the re-opening of units after a closure and the organisation of restaurants in Athens, Veria and Alexandroupoli: from ouzeris and tavernas to wine bars and large venues with live music.",
+             "Today, alongside consulting, we build our own digital tools, such as TableReserve and GoFinanceOS, to solve problems we have lived in practice."],
+  hl_eyebrow="What we bring", hl_h2="Proven experience",
+  highlights=[("Openings & re-openings","Opening new venues and re-opening units, from renovation to the first day of service."),
+              ("Award-winning venues","Experience in award-winning venues, and a venue built from scratch and successfully sold within three years."),
+              ("Certified training","Adult trainer certification from the University of Athens Lifelong Learning Centre, and a restaurant customer-service certification."),
+              ("Greek & English","Fluent English (C2), for working with tourism businesses and international guests.")],
+))
+
+PAGES = ["home","services","apps","about","contact","privacy"]
 def url(lang, page):
     p = L[lang]["prefix"]
     if page == "home": return (p + "/") if p else "/"
-    if page == "about": return (p + "/#about") if p else "/#about"
     return f"{p}/{page}"
 def fname(lang, page):
     base = "index" if page == "home" else page
@@ -234,9 +328,10 @@ def head(t, lang, page, title, desc, extra=""):
   <meta property="og:locale" content="{t['locale']}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0b0b0c">
-  <link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+  <link rel="icon" href="/favicon.ico?v=3" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600&family=Noto+Serif+Display:ital,wght@0,400;0,500;1,400&display=swap">
@@ -311,14 +406,23 @@ def cta_band(t, lang):
 
 def service_cards(t, lang, detailed=False):
     out = []
-    for i,(h,p,items) in enumerate(t["services"]):
+    for i, s in enumerate(t["services2"]):
+        if not detailed:
+            out.append(f'<article class="card reveal"><p class="card-num">0{i+1}</p><h3>{s["h"]}</h3><p>{s["short"]}</p>'
+                       f'<a class="link" href="{url(lang,"services")}#s{i+1}">{t["srv_link"]} →</a></article>')
+            continue
         extra = ""
-        if detailed and i == 0: extra = f'<a class="link" href="https://tablereserve.gr/{UTM}" target="_blank" rel="noopener">{t["link_tr"]} →</a>'
-        if detailed and i == 3: extra = f'<a class="link" href="https://gofinanceos.com/{UTM}" target="_blank" rel="noopener">{t["link_gf"]} →</a>'
-        lis = "".join(f"<li>{x}</li>" for x in items)
-        tag = "h2" if detailed else "h3"
-        out.append(f'''<article class="card reveal"><p class="card-num">0{i+1}</p><{tag} style="font-size:1.55rem;margin-bottom:12px">{h}</{tag}><p>{p}</p><ul>{lis}</ul>{extra}</article>''')
-    return '<div class="grid-2">' + "\n".join(out) + '</div>'
+        if s.get("link") == "tr": extra = f'<a class="link" href="https://tablereserve.gr/{UTM}" target="_blank" rel="noopener">{t["link_tr"]} →</a>'
+        if s.get("link") == "gf": extra = f'<a class="link" href="https://gofinanceos.com/{UTM}" target="_blank" rel="noopener">{t["link_gf"]} →</a>'
+        lis = "".join(f"<li>{x}</li>" for x in s["items"])
+        out.append(f'<article class="card reveal" id="s{i+1}"><p class="card-num">0{i+1}</p><h2 class="card-h">{s["h"]}</h2><p>{s["p"]}</p><ul>{lis}</ul>{extra}</article>')
+    return f'<div class="{"grid-2" if detailed else "grid-3"}">' + "\n".join(out) + '</div>'
+
+def stats_band(t):
+    return '<div class="stats">' + "".join(f'<div class="stat reveal"><p class="stat-n">{n}</p><p class="stat-l">{l}</p></div>' for n,l in t["stats"]) + '</div>'
+
+def venues(t):
+    return f'<div class="clients reveal"><p class="eyebrow">{t["venues_eyebrow"]}</p><ul class="client-list">' + "".join(f"<li>{v}</li>" for v in t["venues"]) + '</ul></div>'
 
 def app_cards(t):
     out=[]
@@ -335,14 +439,12 @@ def page_home(t, lang):
     ld = {"@context":"https://schema.org","@type":"ProfessionalService","name":"AR Akron Services",
           "url":SITE+"/","image":SITE+"/og-image.jpg","logo":SITE+"/favicon-512.png",
           "description":t["desc_home"],"telephone":"+306983661460","email":"info@arakronservices.gr",
-          "founder":{"@type":"Person","name":"Αριστείδης Αλαμπουρινός"},
+          
           "address":{"@type":"PostalAddress","streetAddress":"Γρίβα Διγενή 2","postalCode":"17342","addressLocality":"Άγιος Δημήτριος","addressRegion":"Αττική","addressCountry":"GR"},
           "areaServed":"GR","sameAs":["https://www.facebook.com/arakronservices","https://www.instagram.com/arakronservices/"]}
     extra = f'  <link rel="preload" as="image" href="/hero.jpg">\n  <script type="application/ld+json">{json.dumps(ld,ensure_ascii=False)}</script>\n'
     aud = "".join(f"<li>{x}</li>" for x in t["audience"])
     steps = "".join(f'<div class="step reveal"><p class="step-num">0{i+1}</p><h3>{h}</h3><p>{p}</p></div>' for i,(h,p) in enumerate(t["steps"]))
-    abp = "".join(f"<p>{p}</p>" for p in t["about_p"])
-    clients = "".join(f"<li>{c}</li>" for c in t["clients"])
     body = f'''<main id="main">
 <section class="hero">
   <div class="hero-bg" aria-hidden="true"></div>
@@ -383,22 +485,10 @@ def page_home(t, lang):
 
 <section id="about" class="alt">
   <div class="wrap">
-    <div class="about">
-      <div class="portrait reveal">
-        <div class="ph" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="#c9a24a" stroke-width=".8"/><text x="20" y="25.5" text-anchor="middle" font-family="Noto Serif Display, Georgia, serif" font-size="15" fill="#e2c77e">AR</text></svg></div>
-        <img src="/founder.jpg" alt="{t['about_alt']}" loading="lazy" width="760" height="950" onerror="this.remove()">
-      </div>
-      <div class="text reveal">
-        <p class="eyebrow">{t['about_eyebrow']}</p>
-        <h2 class="h2" style="margin-bottom:26px">{t['about_h2']}</h2>
-        {abp}
-        <p class="sign">{t['sign']}</p>
-      </div>
-    </div>
-    <div class="clients reveal">
-      <p class="eyebrow">{t['clients_eyebrow']}</p>
-      <ul class="client-list">{clients}</ul>
-    </div>
+    <div class="section-head reveal"><p class="eyebrow">{t['ab_eyebrow']}</p><h2 class="h2">{t['ab_h2']}</h2><p class="lead">{t['ab_teaser']}</p></div>
+    {stats_band(t)}
+    <p class="more"><a class="btn btn-ghost" href="{url(lang,'about')}">{t['ab_more']} {ICON['arrow']}</a></p>
+    {venues(t)}
   </div>
 </section>
 {cta_band(t, lang)}
@@ -477,7 +567,33 @@ def page_privacy(t, lang):
 '''
     return head(t, lang, "privacy", t["title_privacy"], t["desc_privacy"]) + header(t, lang, "privacy") + body + footer(t, lang)
 
-BUILD = dict(home=page_home, services=page_services, apps=page_apps, contact=page_contact, privacy=page_privacy)
+
+def page_about(t, lang):
+    story = "".join(f"<p>{p}</p>" for p in t["abp_story"])
+    hl = "".join(f'<article class="card reveal"><p class="card-num">0{i+1}</p><h3>{h}</h3><p>{p}</p></article>' for i,(h,p) in enumerate(t["highlights"]))
+    body = f'''<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">{t['ab_eyebrow']}</p><h1>{t['abp_h1']}</h1><p class="lead">{t['abp_lead']}</p></div></div>
+<section><div class="wrap">
+  <div class="about">
+    <div class="portrait reveal">
+      <div class="ph" aria-hidden="true">{MARK.replace('class="brand-mark"','')}</div>
+      <img src="/founder.jpg" alt="AR Akron Services" loading="lazy" width="760" height="950" onerror="this.remove()">
+    </div>
+    <div class="text reveal">{story}</div>
+  </div>
+  <div style="margin-top:80px">{stats_band(t)}</div>
+</div></section>
+<section class="alt"><div class="wrap">
+  <div class="section-head reveal"><p class="eyebrow">{t['hl_eyebrow']}</p><h2 class="h2">{t['hl_h2']}</h2></div>
+  <div class="grid-2">{hl}</div>
+  {venues(t)}
+</div></section>
+{cta_band(t, lang)}
+</main>
+'''
+    return head(t, lang, "about", t["title_about"], t["desc_about"]) + header(t, lang, "about") + body + footer(t, lang)
+
+BUILD = dict(home=page_home, about=page_about, services=page_services, apps=page_apps, contact=page_contact, privacy=page_privacy)
 for lang in ("el","en"):
     os.makedirs(os.path.join(ROOT, "en"), exist_ok=True)
     for pg in PAGES:
@@ -490,7 +606,6 @@ def redirect(path, target):
         f.write(f'<!DOCTYPE html><html lang="el"><head><meta charset="UTF-8"><meta name="robots" content="noindex">'
                 f'<link rel="canonical" href="{SITE}{target}"><meta http-equiv="refresh" content="0; url={target}">'
                 f'<title>AR Akron Services</title></head><body><p><a href="{target}">AR Akron Services</a></p></body></html>\n')
-redirect("about.html", "/#about")
 redirect("documents.html", "/")
 
 # sitemap
