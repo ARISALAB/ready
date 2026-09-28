@@ -1,5 +1,9 @@
 const translations = {
     en: {
+      "apps-more": "All apps",
+      "apps-cta-title": "Want to see an app in action?",
+      "apps-cta-text": "Book a short demo and we will show you how it fits your business.",
+      "apps-cta-btn": "Book a demo",
       "footer-afm": "VAT No.: EL112492149",
       "menu-solutions": "Apps",
       "solutions-title": "Digital Solutions",
@@ -86,6 +90,10 @@ const translations = {
 
     },
     es: {
+      "apps-more": "Todas las aplicaciones",
+      "apps-cta-title": "¿Quiere ver una aplicación en acción?",
+      "apps-cta-text": "Reserve una breve demostración y le mostraremos cómo se adapta a su negocio.",
+      "apps-cta-btn": "Reservar demostración",
       "footer-afm": "NIF-IVA: EL112492149",
       "menu-solutions": "Aplicaciones",
       "solutions-title": "Soluciones Digitales",
@@ -170,6 +178,10 @@ const translations = {
 
     },
     el: {
+      "apps-more": "Όλες οι εφαρμογές",
+      "apps-cta-title": "Θέλετε να δείτε μια εφαρμογή στην πράξη;",
+      "apps-cta-text": "Κλείστε μια σύντομη παρουσίαση και σας δείχνουμε πώς ταιριάζει στη δική σας επιχείρηση.",
+      "apps-cta-btn": "Κλείστε παρουσίαση",
       "footer-afm": "ΑΦΜ: 112492149",
       "menu-solutions": "Εφαρμογές",
       "solutions-title": "Ψηφιακές Λύσεις",

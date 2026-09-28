@@ -194,3 +194,44 @@ footer.site-footer {
 footer.site-footer p, footer.site-footer ul, div.cookie-banner p { margin-left: 0; margin-right: 0; }
 footer.site-footer h4 { color: #fff; }
 footer.site-footer p.footer-bottom { margin: 36px auto 0; }
+
+/* ---------- Αρχική: σύντομη προβολή εφαρμογών ---------- */
+#solutions.teaser .solutions-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+#solutions.teaser h2,
+#solutions.teaser .solutions-intro,
+#solutions.teaser .apps-more { grid-column: 1 / -1; }
+#solutions.teaser .solutions-intro { margin-bottom: 16px; }
+#solutions.teaser .solution {
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 0;
+  border-top: 0;
+  align-items: start;
+}
+#solutions.teaser .solution-shot { order: 0; }
+#solutions.teaser .solution-desc { display: none; }
+#solutions.teaser .solution h3 { font-size: 1.3rem; }
+#solutions.teaser .solution-cta { padding: 8px 16px; font-size: .95rem; }
+#solutions.teaser .apps-more { text-align: center; margin-top: 20px; }
+#solutions.teaser .apps-more .solution-cta { background: goldenrod; color: #000; padding: 12px 26px; }
+@media (max-width: 800px) {
+  #solutions.teaser .solutions-inner { grid-template-columns: 1fr; }
+}
+
+/* ---------- Σελίδα Εφαρμογές ---------- */
+.apps-h1 { text-align: center; font-size: 2.2rem; margin-bottom: 14px; }
+.apps-cta {
+  max-width: 760px;
+  margin: 0 auto 80px;
+  padding: 40px 24px;
+  text-align: center;
+  border: 1px solid #333;
+  border-radius: 12px;
+  background: #1a1a1a;
+}
+.apps-cta h2 { font-size: 1.5rem; margin-bottom: 10px; }
+.apps-cta p { color: #cfcfcf; margin-bottom: 22px; line-height: 1.6; }
