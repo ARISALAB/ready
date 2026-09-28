@@ -313,3 +313,19 @@ section { padding: 110px 0; }
   opacity: 0; transition: opacity 1.2s ease;
 }
 .hero-video.on { opacity: 1; }
+
+/* ---------- v8: hero με ποτήρι κρασί ---------- */
+.hero { background: #060404; }
+.hero-bg { background: none; opacity: 1; -webkit-mask-image: none; mask-image: none; }
+.hero-media {
+  position: absolute; top: 0; bottom: 0; right: 8%;
+  aspect-ratio: 720 / 1066;
+  background: url("/hero-wine.jpg") center / cover no-repeat;
+  -webkit-mask-image: radial-gradient(ellipse 54% 52% at 50% 46%, #000 52%, transparent 100%);
+  mask-image: radial-gradient(ellipse 54% 52% at 50% 46%, #000 52%, transparent 100%);
+}
+.hero-media .hero-video { object-fit: cover; object-position: center; }
+@media (max-width: 860px) {
+  .hero-bg { opacity: .4; }
+  .hero-media { right: auto; left: 50%; transform: translateX(-50%); }
+}

@@ -6,7 +6,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://www.arakronservices.gr"
 UTM = "?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions"
 W3F_KEY = "612db534-c306-4c99-914c-b151396dac36"
-V = "7"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
+V = "8"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
 
 ICON = {
  "arrow": '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
@@ -447,12 +447,12 @@ def page_home(t, lang):
           
           "address":{"@type":"PostalAddress","streetAddress":"Γρίβα Διγενή 2","postalCode":"17342","addressLocality":"Άγιος Δημήτριος","addressRegion":"Αττική","addressCountry":"GR"},
           "areaServed":"GR","sameAs":["https://www.facebook.com/arakronservices","https://www.instagram.com/arakronservices/"]}
-    extra = f'  <link rel="preload" as="image" href="/hero.jpg">\n  <script type="application/ld+json">{json.dumps(ld,ensure_ascii=False)}</script>\n'
+    extra = f'  <link rel="preload" as="image" href="/hero-wine.jpg">\n  <script type="application/ld+json">{json.dumps(ld,ensure_ascii=False)}</script>\n'
     aud = "".join(f"<li>{x}</li>" for x in t["audience"])
     steps = "".join(f'<div class="step reveal"><p class="step-num">0{i+1}</p><h3>{h}</h3><p>{p}</p></div>' for i,(h,p) in enumerate(t["steps"]))
     body = f'''<main id="main">
 <section class="hero">
-  <div class="hero-bg" aria-hidden="true"><video class="hero-video" muted loop playsinline preload="none" poster="/hero.jpg" data-src="/hero-fire.mp4"></video></div>
+  <div class="hero-bg" aria-hidden="true"><div class="hero-media"><video class="hero-video" muted loop playsinline preload="none" poster="/hero-wine.jpg" data-src="/hero-wine.mp4"></video></div></div>
   <div class="wrap hero-inner">
     <p class="eyebrow">{t['hero_eyebrow']}</p>
     <h1>{t['hero_h1']}</h1>
