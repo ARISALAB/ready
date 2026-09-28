@@ -305,3 +305,11 @@ section { padding: 110px 0; }
 .client-list img:hover { opacity: 1; }
 .client-list img[src*="kipos-pandrosou"], .client-list img[src*="albouro"] { height: 66px; }
 @media (max-width: 560px) { .client-list { gap: 26px 34px; } .client-list img { height: 42px; max-width: 130px; } }
+
+/* ---------- v7: hero video φωτιάς ---------- */
+.hero-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: right center;
+  opacity: 0; transition: opacity 1.2s ease;
+}
+.hero-video.on { opacity: 1; }

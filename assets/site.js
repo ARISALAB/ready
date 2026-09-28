@@ -36,6 +36,22 @@
     });
   }
 
+
+  /* ---------- Hero video (μόνο σε υπολογιστή) ---------- */
+  var hv = document.querySelector('.hero-video');
+  if (hv) {
+    var conn = navigator.connection || {};
+    var wide = window.matchMedia('(min-width: 861px)').matches;
+    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (wide && !calm && !conn.saveData) {
+      hv.src = hv.getAttribute('data-src');
+      hv.addEventListener('canplay', function () { hv.classList.add('on'); }, { once: true });
+      var pr = hv.play(); if (pr && pr.catch) pr.catch(function () {});
+    } else {
+      hv.remove();
+    }
+  }
+
   /* ---------- Reveal on scroll ---------- */
   var els = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
