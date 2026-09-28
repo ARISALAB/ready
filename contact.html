@@ -1,288 +1,96 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <meta name="description" content="Επικοινωνήστε με την AR Akron Services: τηλ. 6983661460, info@arakronservices.gr, Γρίβα Διγενή 2, Άγιος Δημήτριος Αττικής.">
-    <link rel="canonical" href="https://www.arakronservices.gr/contact">
-    <meta property="og:title" content="Επικοινωνία | AR Akron Services">
-    <meta property="og:description" content="Επικοινωνήστε με την AR Akron Services: τηλ. 6983661460, info@arakronservices.gr, Γρίβα Διγενή 2, Άγιος Δημήτριος Αττικής.">
-    <meta property="og:image" content="https://www.arakronservices.gr/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://www.arakronservices.gr/contact">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="el_GR">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://www.arakronservices.gr/og-image.jpg">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2">
-    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png?v=2">
-    <link rel="stylesheet" href="akron-extra.css">
-
-<link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2">
-    <title>Επικοινωνία | AR Akron Services</title>
-    <link rel="stylesheet" href="style.css"> <!-- Το CSS από την index.html -->
-    <style>
-
-#contact {
-    display: flex;
-    justify-content: space-between; /* Χώρος ανάμεσα στα δύο στοιχεία */
-    width: 100%;
-    max-width: 800px; /* Ρυθμίζει το μέγιστο πλάτος του section */
-    margin: 0 auto;
-    padding: 60px;
-    background-color: #000000;
-    color: #ccc;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.social-links a {
-    display: inline-block;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.social-links a:hover {
-    transform: scale(1.1);
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 400px; /* Έως 400px πλάτος για τη φόρμα */
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 300px; /* Έως 300px πλάτος για τις πληροφορίες επικοινωνίας */
-}
-
-.contact-info ul {
-    display: flex;
-    gap: 10px;
-}
-
-.contact-info img {
-    width: 32px;
-    height: 32px;
-}
-@media (max-width: 767px) {
-    #contact {
-        flex-direction: column; /* Στοιχίζουμε τα στοιχεία κάθετα σε κινητές συσκευές */
-        padding: 15px; /* Μειώνουμε το padding για κινητές συσκευές */
-    }
-
-    .contact-form {
-        max-width: 100%; /* Η φόρμα καλύπτει όλο το πλάτος */
-    }
-
-    .contact-info {
-        max-width: 100%; /* Οι πληροφορίες επικοινωνίας καλύπτουν όλο το πλάτος */
-        margin-top: 20px; /* Δίνουμε λίγο διάστημα πάνω από την περιοχή πληροφοριών */
-    }
-
-    .contact-info ul {
-        justify-content: center; /* Κεντράρουμε τα social icons */
-    }
-}
-
-.contact-form button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    background-color: goldenrod; /* Μωβ χρώμα για το κουμπί */
-    border: none;
-    border-radius: 5px; /* Στρογγυλεμένες γωνίες για το κουμπί */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.contact-form button:hover {
-    background-color: gold; /* Σκούρο μωβ χρώμα όταν ο χρήστης περάσει από πάνω */
-}
-
-/* Προσαρμογή για Κινητές Συσκευές */
-@media (max-width: 767px) {
-    #contact {
-        padding: 15px; /* Μειώνουμε το padding για κινητές συσκευές */
-        max-width: 100%; /* Εξασφαλίζουμε ότι η φόρμα καταλαμβάνει όλο το πλάτος της οθόνης */
-    }
-
-    /* Για να αφήσουμε περιθώρια δεξιά και αριστερά στις μικρές οθόνες */
-    .contact-form input,
-    .contact-form textarea {
-        width: calc(100% - 30px); /* Μειώνουμε το πλάτος για να αφήσουμε περιθώρια */
-        margin-left: 15px; /* Περιθώριο αριστερά */
-        margin-right: 15px; /* Περιθώριο δεξιά */
-    }
-
-    .contact-form label {
-        font-size: 0.9rem; /* Μικρότερο μέγεθος γραμματοσειράς για τις οθόνες κινητών */
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 0.9rem; /* Μικρότερο μέγεθος γραμματοσειράς για τα πεδία */
-    }
-
-    .contact-form button {
-        font-size: 0.9rem; /* Μικρότερο μέγεθος γραμματοσειράς για το κουμπί */
-        padding: 8px 16px; /* Μειώνουμε το padding του κουμπιού */
-    }
-}
-.contact-paragraph {
-  margin: 0 20px; /* Περιθώριο 20px δεξιά και αριστερά */
-  text-align: justify; /* Προαιρετικό: Δικαιολόγηση κειμένου */
-  line-height: 1.6; /* Βελτίωση απόστασης μεταξύ γραμμών */
-}
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Επικοινωνία | AR Akron Services</title>
+  <meta name="description" content="Επικοινωνήστε με την AR Akron Services: τηλ. 698 366 1460, info@arakronservices.gr, Άγιος Δημήτριος Αττικής.">
+  <link rel="canonical" href="https://www.arakronservices.gr/contact">
+  <link rel="alternate" hreflang="el" href="https://www.arakronservices.gr/contact">
+  <link rel="alternate" hreflang="en" href="https://www.arakronservices.gr/en/contact">
+  <link rel="alternate" hreflang="x-default" href="https://www.arakronservices.gr/contact">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AR Akron Services">
+  <meta property="og:title" content="Επικοινωνία | AR Akron Services">
+  <meta property="og:description" content="Επικοινωνήστε με την AR Akron Services: τηλ. 698 366 1460, info@arakronservices.gr, Άγιος Δημήτριος Αττικής.">
+  <meta property="og:url" content="https://www.arakronservices.gr/contact">
+  <meta property="og:image" content="https://www.arakronservices.gr/og-image.jpg">
+  <meta property="og:locale" content="el_GR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600&family=Noto+Serif+Display:ital,wght@0,400;0,500;1,400&display=swap">
+  <link rel="stylesheet" href="/assets/site.css?v=3">
 </head>
 <body>
-    <header>
-        <div class="image-container">
-            <img src="1.jpg" alt="AR Akron Services" width="100" height="100">
-          </div>
-          <button class="menu-toggle" aria-label="Toggle menu">☰</button>
-          <nav>
-        <ul>
-          <li><a href="./" id="menu-home">Αρχική</a></li>
-          <li><a href="./about" id="menu-about">Σχετικά</a></li>
-          <li><a href="./services" id="menu-services">Υπηρεσίες</a></li>
-          <li><a href="./apps" id="menu-solutions">Εφαρμογές</a></li>
-          <li><a href="./contact" class="active" aria-current="page" id="menu-contact">Επικοινωνία</a></li>
-        </ul>
-      </nav>
-          <div class="language-selector">
-            <select id="language-select" aria-label="Γλώσσα / Language">
-              <option value="el">Ελληνικά</option>
-              <option value="en">English</option>
-              <option value="es">Español</option>
-            </select>
-          </div>
-    </header>
-    <br>
-    <main>
-        <h2 id="contact-title">Επικοινωνία</h2>
-
-        <p class="contact-paragraph" id="contact-text">
-          Αν επιθυμείτε να μιλήσετε με κάποιον από τους ειδικούς μας στον τομέα της εστίασης, του τουρισμού ή της φιλοξενίας, καλέστε μας στο 6983661460. Θα χαρούμε πολύ να σας βοηθήσουμε με οτιδήποτε χρειάζεστε.
-        </p>
-        <br>
-        
-        <section id="contact">
-            <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="612db534-c306-4c99-914c-b151396dac36">
-                <input type="hidden" name="subject" value="Νέο μήνυμα από arakronservices.gr">
-                <input type="hidden" name="from_name" value="arakronservices.gr">
-                <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
-                <label for="name" id="name-label">Το Όνομά σας</label>
-                <input type="text" id="name" name="name" placeholder="Το Όνομά σας" required style="width: 100%; max-width: 250px;">
-                
-                <label for="email" id="email-label">Email</label>
-                <input type="email" id="email" name="email" placeholder="name@example.com" required style="width: 100%; max-width: 250px;">
-                
-                <label for="message" id="message-label">Μήνυμα</label>
-                <textarea id="message" name="message" placeholder="Το μήνυμά σας..." required style="width: 100%; max-width: 250px; height: 100px;"></textarea>
-                
-                <button type="submit" style="padding: 8px 16px; font-size: 14px; margin-top: 10px;" id="submit-button">Αποστολή μηνύματος</button>
-                <p class="form-status" id="form-status" role="status"></p>
-            </form>
-        
-            <div class="contact-info">
-                <h3 id="company-name">AR Akron Services</h3>
-                <p>
-                    <i class="fas fa-map-marker-alt" style="color: goldenrod; margin-right: 10px;"></i>
-                    <span id="address">ΓΡΙΒΑ ΔΙΓΕΝΗ 2, 17342 ΑΓΙΟΥ ΔΗΜΗΤΡΙΟΥ, ΑΤΤΙΚΗΣ</span>
-                </p>
-                <p>
-                    <i class="fas fa-phone-alt" style="color: goldenrod; margin-right: 10px;"></i>
-                    <strong id="phone-label">Τηλέφωνο:</strong><br>
-                    <a id="phone-number" href="tel:+306983661460" style="color: goldenrod; text-decoration: none;">6983661460</a>
-                </p>
-                <p>
-                    <i class="fas fa-envelope" style="color: goldenrod; margin-right: 10px;"></i>
-                    <strong id="email-info-label">Email:</strong><br>
-                    <a href="mailto:info@arakronservices.gr" style="color: goldenrod; text-decoration: none;">info@arakronservices.gr</a>
-                </p>
-                <h4 id="follow-us">Ακολουθήστε μας:</h4>
-                <ul class="social-links" style="list-style: none; padding: 0; display: flex; gap: 10px;">
-                    <li>
-                        <a href="https://www.facebook.com/arakronservices" target="_blank" style="text-decoration: none; color: inherit;">
-                            <i class="fab fa-facebook-square" style="font-size: 32px; color: goldenrod;"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/arakronservices/" target="_blank" style="text-decoration: none; color: inherit;">
-                            <i class="fab fa-instagram" style="font-size: 32px; color: goldenrod;"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://g.co/kgs/NGnwr8o" target="_blank" style="text-decoration: none; color: inherit;">
-                            <i class="fab fa-google" style="font-size: 32px; color: goldenrod;"></i>
-                        </a>
-                    </li>
-                </ul>
-        
-                <!-- Font Awesome Link -->
-            </div>
-        </section>
-        
-        
-        
-        
-    </main>
-    <br>
-    <br>
-
-    <footer class="site-footer">
-      <div class="footer-cols">
-        <div>
-          <h4>AR Akron Services</h4>
-          <p id="footer-owner">Αριστείδης Αλαμπουρινός</p>
-          <p id="footer-address">Γρίβα Διγενή 2, 17342 Άγιος Δημήτριος, Αττική</p>
-          <p><span id="footer-gemi">Αρ. ΓΕΜΗ: 161479309000</span></p>
-          <p><span id="footer-afm">ΑΦΜ: 112492149</span></p>
-          <p><a href="tel:+306983661460">698 366 1460</a><br><a href="mailto:info@arakronservices.gr">info@arakronservices.gr</a></p>
-        </div>
-        <div>
-          <h4 id="footer-apps-title">Οι εφαρμογές μας</h4>
-          <ul>
-            <li><a href="https://tablereserve.gr/?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions" target="_blank" rel="noopener">TableReserve</a></li>
-            <li><a href="https://gofinanceos.com/?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions" target="_blank" rel="noopener">GoFinanceOS</a></li>
-            <li><a href="https://akronwebuilder.gr/?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions" target="_blank" rel="noopener">akronwebuilder.gr</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 id="footer-info-title">Πληροφορίες</h4>
-          <ul>
-            <li><a href="./privacy" id="footer-privacy">Πολιτική απορρήτου</a></li>
-            <li><button type="button" class="linklike" id="footer-cookies">Ρυθμίσεις cookies</button></li>
-            <li><a href="https://www.facebook.com/arakronservices" target="_blank" rel="noopener">Facebook</a></li>
-            <li><a href="https://www.instagram.com/arakronservices/" target="_blank" rel="noopener">Instagram</a></li>
-          </ul>
+<a class="skip" href="#main">Μετάβαση στο περιεχόμενο</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="AR Akron Services"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#c9a24a" stroke-width="1.4"/><text x="20" y="25.5" text-anchor="middle" font-family="Noto Serif Display, Georgia, serif" font-size="15" fill="#e2c77e">AR</text></svg><span class="brand-name">AR Akron<small>SERVICES</small></span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Μενού</button>
+    <nav class="nav" id="nav">
+      <a href="/services">Υπηρεσίες</a>
+      <a href="/apps">Εφαρμογές</a>
+      <a href="/#about">Σχετικά</a>
+      <a href="/contact" aria-current="page">Επικοινωνία</a>
+      <a class="lang" href="/en/contact" hreflang="en" lang="en">EN</a>
+      <a class="btn btn-gold" href="/contact">Κλείστε ραντεβού</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">Επικοινωνία</p><h1>Πείτε μας τι χρειάζεστε</h1><p class="lead">Γράψτε μας λίγα λόγια για την επιχείρησή σας και θα σας απαντήσουμε μέσα σε μία εργάσιμη ημέρα.</p></div></div>
+<section><div class="wrap contact-grid">
+  <form class="form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="612db534-c306-4c99-914c-b151396dac36">
+    <input type="hidden" name="subject" value="Νέο μήνυμα από arakronservices.gr">
+    <input type="hidden" name="from_name" value="arakronservices.gr">
+    <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="field"><label for="f-name">Ονοματεπώνυμο</label><input id="f-name" name="name" required autocomplete="name"></div>
+    <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+    <div class="field"><label for="f-phone">Τηλέφωνο (προαιρετικό)</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+    <div class="field"><label for="f-biz">Επιχείρηση (προαιρετικό)</label><input id="f-biz" name="business" autocomplete="organization"></div>
+    <div class="field"><label for="f-msg">Μήνυμα</label><textarea id="f-msg" name="message" required></textarea></div>
+    <button class="btn btn-gold" type="submit">Αποστολή μηνύματος</button>
+    <p class="form-status" id="form-status" role="status"></p>
+  </form>
+  <div class="info">
+    <div class="info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><div><span>Τηλέφωνο</span><a href="tel:+306983661460">698 366 1460</a></div></div>
+    <div class="info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><div><span>Email</span><a href="mailto:info@arakronservices.gr">info@arakronservices.gr</a></div></div>
+    <div class="info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><div><span>Διεύθυνση</span><p>Γρίβα Διγενή 2, 17342 Άγιος Δημήτριος, Αττική</p></div></div>
+    <div class="info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><div><span>Social</span><a href="https://www.instagram.com/arakronservices/" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a href="https://www.facebook.com/arakronservices" target="_blank" rel="noopener">Facebook</a></div></div>
+  </div>
+</div></section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="/" aria-label="AR Akron Services"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#c9a24a" stroke-width="1.4"/><text x="20" y="25.5" text-anchor="middle" font-family="Noto Serif Display, Georgia, serif" font-size="15" fill="#e2c77e">AR</text></svg><span class="brand-name">AR Akron<small>SERVICES</small></span></a>
+        <p style="margin-top:16px;max-width:34ch">Συμβουλευτική και ψηφιακά εργαλεία για εστίαση, τουρισμό και φιλοξενία.</p>
+        <div class="legal-lines" style="margin-top:18px">
+          <p>Αριστείδης Αλαμπουρινός</p>
+          <p>Γρίβα Διγενή 2, 17342 Άγιος Δημήτριος, Αττική</p>
+          <p>ΑΦΜ: 112492149 &nbsp;|&nbsp; Αρ. ΓΕΜΗ: 161479309000</p>
+          <p><a href="tel:+306983661460">+30 698 366 1460</a> &nbsp;|&nbsp; <a href="mailto:info@arakronservices.gr">info@arakronservices.gr</a></p>
         </div>
       </div>
-      <p class="footer-bottom" id="footer-text">© 2026 AR Akron Services. Όλα τα δικαιώματα διατηρούνται.</p>
-    </footer>
-      <script src="script.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          const menuToggle = document.querySelector('.menu-toggle');
-          const menu = document.querySelector('nav ul');
-      
-          menuToggle.addEventListener('click', () => {
-            menu.classList.toggle('visible');
-          });
-        });
-      </script>
-    <script src="contact-form.js" defer></script>
-    <script src="consent.js" defer></script>
+      <div><h4>Σελίδες</h4><ul><li><a href="/">Αρχική</a></li><li><a href="/services">Υπηρεσίες</a></li><li><a href="/apps">Εφαρμογές</a></li><li><a href="/#about">Σχετικά</a></li><li><a href="/contact">Επικοινωνία</a></li></ul></div>
+      <div><h4>Εφαρμογές</h4><ul><li><a href="https://tablereserve.gr/?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions" target="_blank" rel="noopener">TableReserve</a></li><li><a href="https://gofinanceos.com/?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions" target="_blank" rel="noopener">GoFinanceOS</a></li><li><a href="https://akronwebuilder.gr/?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions" target="_blank" rel="noopener">akronwebuilder.gr</a></li></ul></div>
+      <div><h4>Πληροφορίες</h4><ul>
+        <li><a href="/privacy">Πολιτική απορρήτου</a></li>
+        <li><button type="button" class="linklike" id="cookie-settings">Ρυθμίσεις cookies</button></li>
+        <li><a href="https://www.facebook.com/arakronservices" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://www.instagram.com/arakronservices/" target="_blank" rel="noopener">Instagram</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 AR Akron Services. Όλα τα δικαιώματα διατηρούνται.</span><span>arakronservices.gr</span></div>
+  </div>
+</footer>
+<script src="/assets/site.js?v=3" defer></script>
 </body>
 </html>
