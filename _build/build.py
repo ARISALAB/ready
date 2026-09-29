@@ -75,7 +75,7 @@ L = {
   clients_eyebrow="Έχουμε συνεργαστεί με",
   clients=["Pandrosou Garden","ΔΙΕΘΝΗΣ ΔΡΑΣΗ"],
   cta_h2="Ας δούμε μαζί την επιχείρησή σας",
-  cta_p="Μια πρώτη συζήτηση είναι χωρίς δέσμευση. Πείτε μας τι σας απασχολεί και θα σας προτείνουμε τα επόμενα βήματα.",
+  cta_p="Πείτε μας τι σας απασχολεί και θα σας προτείνουμε τα επόμενα βήματα.",
   call="Καλέστε μας",
   # services page
   title_services="Υπηρεσίες | AR Akron Services",
@@ -168,7 +168,7 @@ L = {
   clients_eyebrow="We have worked with",
   clients=["Pandrosou Garden","DIETHNIS DRASI"],
   cta_h2="Let's look at your business together",
-  cta_p="A first conversation comes with no commitment. Tell us what's on your mind and we'll suggest the next steps.",
+  cta_p="Tell us what's on your mind and we'll suggest the next steps.",
   call="Call us",
   title_services="Services | AR Akron Services",
   desc_services="Restaurant consulting, strategy and growth, staff training and financial management for hospitality businesses.",
@@ -209,7 +209,7 @@ L = {
 L["el"].update(dict(
   hero_lead="Συμβουλευτική, εκπαίδευση προσωπικού και ψηφιακά εργαλεία για εστιατόρια, ξενοδοχεία και τουριστικές επιχειρήσεις, με πάνω από 25 χρόνια εμπειρίας μέσα σε καταστήματα εστίασης.",
   nav=[("services","Υπηρεσίες"),("apps","Εφαρμογές"),("about","Σχετικά"),("contact","Επικοινωνία")],
-  srv_h2="Από το άνοιγμα μέχρι την καθημερινή λειτουργία",
+  srv_h2="Από το ξεκίνημα μέχρι την καθημερινή λειτουργία",
   srv_lead="Έξι τομείς όπου μπορούμε να βοηθήσουμε, είτε ξεκινάτε νέο κατάστημα είτε θέλετε να βελτιώσετε ένα που ήδη λειτουργεί.",
   srv_link="Περισσότερα",
   services2=[
@@ -233,7 +233,7 @@ L["el"].update(dict(
         items=["Διαχείριση τροφίμων και αποθήκης","Αξιολόγηση κόστους και ποιότητας προμηθευτών","Έλεγχος σπατάλης"]),
   ],
   sp_h1="Υπηρεσίες για εστίαση, τουρισμό και φιλοξενία",
-  stats=[("25+","χρόνια στην εστίαση"),("15+","χρόνια σε θέσεις ευθύνης"),("15+","καταστήματα και μονάδες"),("3","πόλεις: Αθήνα, Βέροια, Αλεξανδρούπολη")],
+  stats=[("25+","χρόνια στην εστίαση"),("15+","χρόνια σε θέσεις ευθύνης"),("40+","καταστήματα και μονάδες"),("15+","πόλεις και περιοχές, από την Αθήνα έως την Αλεξανδρούπολη")],
   ab_eyebrow="Σχετικά", ab_h2="Η εστίαση, από κάθε πόστο",
   ab_teaser="Η AR Akron Services στηρίζεται σε εμπειρία από κάθε πόστο ενός εστιατορίου: από τη σάλα και την κουζίνα μέχρι τη διοίκηση και την οικονομική διεύθυνση.",
   ab_more="Γνωρίστε μας",
@@ -242,9 +242,9 @@ L["el"].update(dict(
   title_about="Σχετικά | AR Akron Services",
   desc_about="Η AR Akron Services στηρίζεται σε πάνω από 25 χρόνια εμπειρίας στην εστίαση: ανοίγματα καταστημάτων, οργάνωση, εκπαίδευση προσωπικού και οικονομική διεύθυνση.",
   abp_h1="Η εστίαση, από κάθε πόστο",
-  abp_lead="Η AR Akron Services δημιουργήθηκε από ανθρώπους που έχουν δουλέψει σε κάθε πόστο ενός εστιατορίου.",
+  abp_lead="Πίσω από την AR Akron Services βρίσκεται μια πορεία 25 ετών σε κάθε πόστο ενός εστιατορίου.",
   abp_story=["Η εμπειρία μας ξεκινά από τη σάλα και φτάνει μέχρι τη διοίκηση: σερβιτόρος, μετρ, υπεύθυνος προσωπικού, υπεύθυνος καταστήματος, οικονομικός διευθυντής και ιδιοκτήτης επιχείρησης. Γι' αυτό καταλαβαίνουμε τα προβλήματα κάθε θέσης και μιλάμε τη γλώσσα της ομάδας σας.",
-             "Έχουμε αναλάβει την έναρξη νέων καταστημάτων, την επαναλειτουργία μονάδων μετά από διακοπή και την οργάνωση εστιατορίων σε Αθήνα, Βέροια και Αλεξανδρούπολη: από ουζερί και ταβέρνες μέχρι wine bars και μεγάλους χώρους με ζωντανή μουσική.",
+             "Έχουμε αναλάβει την έναρξη νέων καταστημάτων, την επαναλειτουργία μονάδων μετά από διακοπή και την οργάνωση εστιατορίων από την Αθήνα έως την Αλεξανδρούπολη: από ουζερί και ταβέρνες μέχρι wine bars και μεγάλους χώρους με ζωντανή μουσική.",
              "Σήμερα, μαζί με τη συμβουλευτική, αναπτύσσουμε και δικά μας ψηφιακά εργαλεία, όπως το TableReserve και το GoFinanceOS, για να λύνουμε προβλήματα που ζήσαμε στην πράξη."],
   hl_eyebrow="Τι φέρνουμε στη συνεργασία", hl_h2="Αποδεδειγμένη εμπειρία",
   highlights=[("Ανοίγματα & επαναλειτουργίες","Έναρξη νέων καταστημάτων και επαναλειτουργία μονάδων, από την ανακαίνιση μέχρι την πρώτη μέρα λειτουργίας."),
@@ -254,7 +254,7 @@ L["el"].update(dict(
 ))
 L["en"].update(dict(
   hero_lead="Consulting, staff training and digital tools for restaurants, hotels and tourism businesses, backed by more than 25 years of hands-on restaurant experience.",
-  srv_h2="From opening day to everyday operations",
+  srv_h2="From the very start to everyday operations",
   srv_lead="Six areas where we can help, whether you are opening a new venue or improving one that is already running.",
   srv_link="Learn more",
   services2=[
@@ -277,7 +277,7 @@ L["en"].update(dict(
         p="We organise food and stock management and assess your suppliers on the balance of cost and quality.",
         items=["Food and stock management","Supplier cost and quality assessment","Waste control"]),
   ],
-  stats=[("25+","years in hospitality"),("15+","years in management roles"),("15+","venues and units"),("3","cities: Athens, Veria, Alexandroupoli")],
+  stats=[("25+","years in hospitality"),("15+","years in management roles"),("40+","venues and units"),("15+","cities and regions, from Athens to Alexandroupoli")],
   ab_eyebrow="About", ab_h2="Hospitality, from every position",
   ab_teaser="AR Akron Services is built on experience from every position in a restaurant: from the floor and the kitchen to management and financial direction.",
   ab_more="About us",
@@ -286,9 +286,9 @@ L["en"].update(dict(
   title_about="About | AR Akron Services",
   desc_about="AR Akron Services is built on 25+ years of restaurant experience: venue openings, operations, staff training and financial management.",
   abp_h1="Hospitality, from every position",
-  abp_lead="AR Akron Services was created by people who have worked every position in a restaurant.",
+  abp_lead="Behind AR Akron Services lies a 25-year career across every position in a restaurant.",
   abp_story=["Our experience runs from the floor to management: waiter, maître d'hôtel, staff manager, venue manager, financial director and business owner. That's why we understand the problems of every role and speak your team's language.",
-             "We have led the opening of new venues, the re-opening of units after a closure and the organisation of restaurants in Athens, Veria and Alexandroupoli: from ouzeris and tavernas to wine bars and large venues with live music.",
+             "We have led the opening of new venues, the re-opening of units after a closure and the organisation of restaurants from Athens to Alexandroupoli: from ouzeris and tavernas to wine bars and large venues with live music.",
              "Today, alongside consulting, we build our own digital tools, such as TableReserve and GoFinanceOS, to solve problems we have lived in practice."],
   hl_eyebrow="What we bring", hl_h2="Proven experience",
   highlights=[("Openings & re-openings","Opening new venues and re-opening units, from renovation to the first day of service."),
@@ -399,7 +399,6 @@ def cta_band(t, lang):
   <p>{t['cta_p']}</p>
   <div class="hero-cta">
     <a class="btn btn-gold" href="{url(lang,'contact')}">{t['book']} {ICON['arrow']}</a>
-    <a class="btn btn-ghost" href="tel:+306983661460">{t['call']}: 698 366 1460</a>
   </div>
 </div></div></section>
 '''
