@@ -6,7 +6,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://www.arakronservices.gr"
 UTM = "?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions"
 W3F_KEY = "612db534-c306-4c99-914c-b151396dac36"
-V = "8"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
+V = "9"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
 
 ICON = {
  "arrow": '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
@@ -233,7 +233,7 @@ L["el"].update(dict(
         items=["Διαχείριση τροφίμων και αποθήκης","Αξιολόγηση κόστους και ποιότητας προμηθευτών","Έλεγχος σπατάλης"]),
   ],
   sp_h1="Υπηρεσίες για εστίαση, τουρισμό και φιλοξενία",
-  stats=[("25+","χρόνια στην εστίαση"),("15+","χρόνια σε θέσεις ευθύνης"),("40+","καταστήματα και μονάδες"),("15+","πόλεις και περιοχές, από την Αθήνα έως την Αλεξανδρούπολη")],
+  stats=[("25+","χρόνια στην εστίαση"),("20+","χρόνια σε θέσεις ευθύνης"),("40+","καταστήματα και μονάδες"),("15+","πόλεις και περιοχές, από την Αθήνα έως την Αλεξανδρούπολη")],
   ab_eyebrow="Σχετικά", ab_h2="Η εστίαση, από κάθε πόστο",
   ab_teaser="Η AR Akron Services στηρίζεται σε εμπειρία από κάθε πόστο ενός εστιατορίου: από τη σάλα και την κουζίνα μέχρι τη διοίκηση και την οικονομική διεύθυνση.",
   ab_more="Γνωρίστε μας",
@@ -277,7 +277,7 @@ L["en"].update(dict(
         p="We organise food and stock management and assess your suppliers on the balance of cost and quality.",
         items=["Food and stock management","Supplier cost and quality assessment","Waste control"]),
   ],
-  stats=[("25+","years in hospitality"),("15+","years in management roles"),("40+","venues and units"),("15+","cities and regions, from Athens to Alexandroupoli")],
+  stats=[("25+","years in hospitality"),("20+","years in management roles"),("40+","venues and units"),("15+","cities and regions, from Athens to Alexandroupoli")],
   ab_eyebrow="About", ab_h2="Hospitality, from every position",
   ab_teaser="AR Akron Services is built on experience from every position in a restaurant: from the floor and the kitchen to management and financial direction.",
   ab_more="About us",
@@ -343,7 +343,7 @@ def head(t, lang, page, title, desc, extra=""):
 
 def header(t, lang, page):
     items = []
-    for key, label in t["nav"]:
+    for key, label in [("home", t["home"])] + t["nav"]:
         cur = ' aria-current="page"' if key == page else ''
         items.append(f'<a href="{url(lang,key)}"{cur}>{label}</a>')
     other = t["other"]
