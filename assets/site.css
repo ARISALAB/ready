@@ -329,3 +329,16 @@ section { padding: 110px 0; }
   .hero-bg { opacity: .4; }
   .hero-media { right: auto; left: 50%; transform: translateX(-50%); }
 }
+
+/* header: χωράει και το "Ερωτήσεις" χωρίς να σπάει σε 2 γραμμές */
+.brand, .brand-name, .nav a { white-space: nowrap; }
+.brand, .nav .btn { flex-shrink: 0; }
+@media (min-width: 861px) and (max-width: 1180px) {
+  .header-inner { gap: 18px; }
+  .nav { gap: 16px; }
+  .nav a { font-size: .88rem; }
+  .nav .btn { padding-left: 16px; padding-right: 16px; }
+}
+@media (min-width: 861px) and (max-width: 980px) {
+  .nav .btn { display: none; }
+}

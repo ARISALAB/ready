@@ -6,7 +6,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://www.arakronservices.gr"
 UTM = "?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions"
 W3F_KEY = "612db534-c306-4c99-914c-b151396dac36"
-V = "9"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
+V = "10"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
 
 ICON = {
  "arrow": '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
@@ -24,7 +24,7 @@ MARK = ('<svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">'
 L = {
 "el": dict(
   prefix="", other="en", other_label="EN", locale="el_GR",
-  nav=[("services","Υπηρεσίες"),("apps","Εφαρμογές"),("about","Σχετικά"),("contact","Επικοινωνία")],
+  nav=[("services","Υπηρεσίες"),("apps","Εφαρμογές"),("about","Σχετικά"),("faq","Ερωτήσεις"),("contact","Επικοινωνία")],
   book="Κλείστε ραντεβού", menu="Μενού", skip="Μετάβαση στο περιεχόμενο",
   title_home="AR Akron Services | Συμβουλευτική εστίασης & φιλοξενίας",
   desc_home="Συμβουλευτική, εκπαίδευση προσωπικού και ψηφιακά εργαλεία για εστιατόρια, ξενοδοχεία και τουριστικές επιχειρήσεις στην Αθήνα.",
@@ -117,7 +117,7 @@ L = {
 ),
 "en": dict(
   prefix="/en", other="el", other_label="ΕΛ", locale="en_US",
-  nav=[("services","Services"),("apps","Apps"),("about","About"),("contact","Contact")],
+  nav=[("services","Services"),("apps","Apps"),("about","About"),("faq","FAQ"),("contact","Contact")],
   book="Book a meeting", menu="Menu", skip="Skip to content",
   title_home="AR Akron Services | Restaurant & hospitality consulting in Athens",
   desc_home="Consulting, staff training and digital tools for restaurants, hotels and tourism businesses in Athens, Greece.",
@@ -208,7 +208,7 @@ L = {
 # ================================================================ ενημέρωση περιεχομένου (βάσει εμπειρίας)
 L["el"].update(dict(
   hero_lead="Συμβουλευτική, εκπαίδευση προσωπικού και ψηφιακά εργαλεία για εστιατόρια, ξενοδοχεία και τουριστικές επιχειρήσεις, με πάνω από 25 χρόνια εμπειρίας μέσα σε καταστήματα εστίασης.",
-  nav=[("services","Υπηρεσίες"),("apps","Εφαρμογές"),("about","Σχετικά"),("contact","Επικοινωνία")],
+  nav=[("services","Υπηρεσίες"),("apps","Εφαρμογές"),("about","Σχετικά"),("faq","Ερωτήσεις"),("contact","Επικοινωνία")],
   srv_h2="Από το ξεκίνημα μέχρι την καθημερινή λειτουργία",
   srv_lead="Έξι τομείς όπου μπορούμε να βοηθήσουμε, είτε ξεκινάτε νέο κατάστημα είτε θέλετε να βελτιώσετε ένα που ήδη λειτουργεί.",
   srv_link="Περισσότερα",
@@ -390,6 +390,8 @@ def ld_org(t, lang):
             "identifier":{"@type":"PropertyValue","propertyID":"ΓΕΜΗ","value":"161479309000"},
             "vatID":"EL112492149",
             "founder":{"@id":FOUNDER_ID},
+            "subOrganization":{"@type":"ProfessionalService","@id":"https://akronwebuilder.gr/#service","name":"akronwebuilder.gr","url":"https://akronwebuilder.gr/",
+                               "description":"Κατασκευή ιστοσελίδων και web εφαρμογών" if lang=="el" else "Websites and web applications"},
             "knowsAbout":t["knows"],
             "knowsLanguage":["el","en"],
             "sameAs":["https://www.facebook.com/arakronservices","https://www.instagram.com/arakronservices/"]}
@@ -482,7 +484,6 @@ def footer(t, lang):
       <div><h4>{t['ft_nav']}</h4><ul>{pages}</ul></div>
       <div><h4>{t['ft_apps']}</h4><ul>{apps}</ul></div>
       <div><h4>{t['ft_info']}</h4><ul>
-        <li><a href="{url(lang,'faq')}">{t['ft_faq']}</a></li>
         <li><a href="{url(lang,'privacy')}">{t['ft_privacy']}</a></li>
         <li><button type="button" class="linklike" id="cookie-settings">{t['ft_cookies']}</button></li>
         <li><a href="https://www.facebook.com/arakronservices" target="_blank" rel="noopener">Facebook</a></li>
@@ -644,7 +645,7 @@ def page_apps(t, lang):
 
 def page_contact(t, lang):
     body = f'''<main id="main">
-<div class="page-head"><div class="wrap"><p class="eyebrow">{t['nav'][3][1]}</p><h1>{t['cp_h1']}</h1><p class="lead">{t['cp_lead']}</p></div></div>
+<div class="page-head"><div class="wrap"><p class="eyebrow">{dict(t['nav'])['contact']}</p><h1>{t['cp_h1']}</h1><p class="lead">{t['cp_lead']}</p></div></div>
 <section><div class="wrap contact-grid">
   <form class="form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
     <input type="hidden" name="access_key" value="{W3F_KEY}">
