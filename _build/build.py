@@ -297,7 +297,106 @@ L["en"].update(dict(
               ("Greek & English","Fluent English (C2), for working with tourism businesses and international guests.")],
 ))
 
-PAGES = ["home","services","apps","about","contact","privacy"]
+
+# ================================================================ FAQ + δομημένα δεδομένα (AI / SEO)
+L["el"].update(dict(
+  ft_faq="Συχνές ερωτήσεις", faq_more="Συχνές ερωτήσεις",
+  title_faq="Συχνές ερωτήσεις | Σύμβουλος εστίασης | AR Akron Services",
+  desc_faq="Απαντήσεις για τη συμβουλευτική εστιατορίων: κόστος συνεργασίας, κοστολόγηση πιάτων, άνοιγμα εστιατορίου, μείωση σπατάλης και εκπαίδευση προσωπικού.",
+  fq_eyebrow="Συχνές ερωτήσεις", fq_h1="Ό,τι ρωτούν συνήθως οι επιχειρήσεις εστίασης",
+  fq_lead="Σύντομες, πρακτικές απαντήσεις από την καθημερινή δουλειά μέσα σε εστιατόρια, καφέ και ξενοδοχεία.",
+  faq=[
+   ("Τι κάνει ένας σύμβουλος εστίασης;",
+    "Ένας σύμβουλος εστίασης βοηθά ένα εστιατόριο, καφέ ή ξενοδοχείο να λειτουργεί πιο οργανωμένα και πιο κερδοφόρα. Στην AR Akron Services αυτό σημαίνει: οργάνωση κουζίνας και σάλας, κατάρτιση και κοστολόγηση μενού, εκπαίδευση προσωπικού, έλεγχο ταμείου και εξόδων, διαχείριση αποθήκης και προμηθευτών, καθώς και έναρξη ή επαναλειτουργία καταστημάτων. Η δουλειά ξεκινά πάντα από αυτοψία μέσα στο κατάστημα."),
+   ("Πόσο κοστίζει η συνεργασία με σύμβουλο εστίασης;",
+    "Το κόστος εξαρτάται από το μέγεθος του καταστήματος και από το τι χρειάζεται: μια συγκεκριμένη εργασία, όπως η κοστολόγηση μενού ή ένα σεμινάριο προσωπικού, κοστίζει λιγότερο από την πλήρη οργάνωση ή το άνοιγμα ενός νέου καταστήματος. Μετά την αυτοψία σάς δίνουμε γραπτό πλάνο με προτεραιότητες, κόστος και αναμενόμενο αποτέλεσμα, ώστε να αποφασίσετε πριν ξεκινήσει οτιδήποτε."),
+   ("Πώς υπολογίζεται το κόστος ενός πιάτου;",
+    "Για κάθε πιάτο γράφεται συνταγή με τις ακριβείς ποσότητες ανά μερίδα. Κάθε υλικό κοστολογείται με την τρέχουσα τιμή αγοράς, λαμβάνοντας υπόψη τη φύρα (καθάρισμα, μαγείρεμα). Το άθροισμα είναι το κόστος πρώτων υλών της μερίδας. Συγκρίνοντάς το με την τιμή πώλησης χωρίς ΦΠΑ βλέπετε το ποσοστό κόστους και το περιθώριο κέρδους κάθε πιάτου. Τα πιάτα με χαμηλό περιθώριο είτε ανατιμολογούνται είτε αλλάζουν συνταγή ή μερίδα."),
+   ("Τι χρειάζεται για να ανοίξει ένα νέο εστιατόριο;",
+    "Τα βασικά βήματα είναι: business plan και έλεγχος βιωσιμότητας, επιλογή χώρου, άδειες σε συνεργασία με μηχανικό και λογιστή, ανακαίνιση και εξοπλισμός, μενού με κοστολόγηση, επιλογή προμηθευτών, στελέχωση και εκπαίδευση προσωπικού, και δοκιμαστική λειτουργία πριν το επίσημο άνοιγμα. Αναλαμβάνουμε τον σχεδιασμό και την επίβλεψη όλης της προετοιμασίας, ώστε το κατάστημα να ανοίξει οργανωμένο από την πρώτη μέρα."),
+   ("Πώς μπορεί ένα εστιατόριο να μειώσει τη σπατάλη;",
+    "Η σπατάλη μειώνεται με σταθερές μερίδες ανά συνταγή, σωστή σειρά χρήσης των υλικών στην αποθήκη (ό,τι μπήκε πρώτο βγαίνει πρώτο), παραγγελίες με βάση τις πραγματικές πωλήσεις και καταγραφή ό,τι πετιέται. Με την καταγραφή φαίνεται γρήγορα ποια πιάτα, ποιες βάρδιες ή ποιοι προμηθευτές προκαλούν τις μεγαλύτερες απώλειες."),
+   ("Κάνετε εκπαίδευση προσωπικού μέσα στο κατάστημα;",
+    "Ναι. Εκπαιδεύουμε σερβιτόρους, προσωπικό υποδοχής, ταμεία και μετρ μέσα στο δικό σας κατάστημα, πάνω στις δικές σας διαδικασίες. Η εκπαίδευση βασίζεται σε πιστοποιημένη μεθοδολογία εκπαίδευσης ενηλίκων (ΕΚΠΑ) και καλύπτει εξυπηρέτηση, πωλήσεις στη σάλα, υποδοχή και κρατήσεις, διαδικασίες ταμείου και ένταξη νέων υπαλλήλων."),
+   ("Συνεργάζεστε με ξενοδοχεία και τουριστικές επιχειρήσεις;",
+    "Ναι. Εκτός από εστιατόρια, ταβέρνες, καφέ και bars, συνεργαζόμαστε με ξενοδοχεία και τουριστικές επιχειρήσεις, τόσο στο κομμάτι της εστίασης όσο και στην εκπαίδευση προσωπικού. Η συνεργασία μπορεί να γίνει στα ελληνικά ή στα αγγλικά."),
+   ("Σε ποιες περιοχές δραστηριοποιείστε;",
+    "Η έδρα μας είναι στην Αττική και οι περισσότερες συνεργασίες γίνονται στην Αθήνα. Έχουμε εμπειρία από καταστήματα σε περισσότερες από 15 πόλεις και περιοχές, από την Αθήνα έως τη Βέροια και την Αλεξανδρούπολη. Για έργο εκτός Αττικής, επικοινωνήστε μαζί μας."),
+   ("Ποια ψηφιακά εργαλεία προτείνετε για εστιατόρια;",
+    "Αναπτύσσουμε δικές μας εφαρμογές για τον κλάδο: το <a href=\"https://tablereserve.gr/\">TableReserve</a> για online κρατήσεις τραπεζιών και το <a href=\"https://gofinanceos.com/\">GoFinanceOS</a> για οικονομική διαχείριση (έσοδα, έξοδα, προμηθευτές, μισθοδοσία), που λειτουργεί και χωρίς internet με εφάπαξ άδεια. Μέσω του akronwebuilder.gr φτιάχνουμε και ιστοσελίδες για εστιατόρια."),
+  ],
+  knows=["Συμβουλευτική εστιατορίων","Κοστολόγηση μενού","Τιμολογιακή πολιτική εστιατορίων","Εκπαίδευση προσωπικού εστίασης","Έναρξη εστιατορίου","Οργάνωση κουζίνας και σάλας","Οικονομική διαχείριση εστιατορίου","Διαχείριση αποθήκης και προμηθευτών","Φιλοξενία και τουρισμός"],
+))
+L["en"].update(dict(
+  ft_faq="FAQ", faq_more="Frequently asked questions",
+  title_faq="FAQ | Restaurant consultant in Athens | AR Akron Services",
+  desc_faq="Answers about restaurant consulting in Athens: cost of working with a consultant, dish costing, opening a restaurant, reducing waste and staff training.",
+  fq_eyebrow="FAQ", fq_h1="What restaurant owners usually ask",
+  fq_lead="Short, practical answers from day-to-day work inside restaurants, cafés and hotels.",
+  faq=[
+   ("What does a restaurant consultant do?",
+    "A restaurant consultant helps a restaurant, café or hotel run in a more organised and more profitable way. At AR Akron Services this means: kitchen and floor organisation, menu design and costing, staff training, cash and expense control, stock and supplier management, and opening or re-opening venues. The work always starts with a site visit at your venue."),
+   ("How much does a restaurant consultant cost?",
+    "It depends on the size of the venue and what you need: a specific task, such as menu costing or a staff seminar, costs less than a full reorganisation or the opening of a new venue. After the site visit we give you a written plan with priorities, cost and the expected result, so you can decide before anything starts."),
+   ("How do you calculate the cost of a dish?",
+    "Each dish gets a recipe with exact quantities per portion. Every ingredient is costed at its current purchase price, allowing for yield loss (trimming, cooking). The total is the food cost of the portion. Comparing it with the selling price excluding VAT gives you the cost percentage and the margin of each dish. Dishes with a low margin are either repriced or get a new recipe or portion size."),
+   ("What do you need to open a new restaurant?",
+    "The main steps are: a business plan and feasibility check, choosing the premises, licences together with an engineer and an accountant, renovation and equipment, a costed menu, choosing suppliers, staffing and training, and a soft opening before the official launch. We plan and supervise the whole preparation so the venue opens organised from day one."),
+   ("How can a restaurant reduce food waste?",
+    "Waste comes down with fixed portions per recipe, the right stock rotation (first in, first out), ordering based on real sales, and recording everything that is thrown away. Recording quickly shows which dishes, shifts or suppliers cause the biggest losses."),
+   ("Do you train staff on site?",
+    "Yes. We train waiters, hosts, cashiers and maîtres d'hôtel inside your own venue, on your own procedures. Training follows a certified adult-training methodology (University of Athens) and covers service, upselling, guest reception and bookings, cash desk procedures and onboarding new staff."),
+   ("Do you work with hotels and tourism businesses?",
+    "Yes. Besides restaurants, tavernas, cafés and bars, we work with hotels and tourism businesses, both on food and beverage operations and on staff training. We work in Greek or English."),
+   ("Which areas do you cover?",
+    "We are based in Attica and most of our work is in Athens. We have experience from venues in more than 15 cities and regions of Greece, from Athens to Veria and Alexandroupoli. For a project outside Attica, get in touch."),
+   ("Which digital tools do you recommend for restaurants?",
+    "We build our own apps for the industry: <a href=\"https://tablereserve.gr/\">TableReserve</a> for online table reservations and <a href=\"https://gofinanceos.com/\">GoFinanceOS</a> for financial management (revenue, expenses, suppliers, payroll), which also works offline with a one-time license. Through akronwebuilder.gr we also build restaurant websites."),
+  ],
+  knows=["Restaurant consulting","Menu costing","Restaurant pricing","Hospitality staff training","Restaurant opening","Kitchen and floor operations","Restaurant financial management","Stock and supplier management","Hospitality and tourism"],
+))
+
+# ------------------------------------------------------------------ schema.org (JSON-LD)
+import re
+ORG_ID, FOUNDER_ID = SITE + "/#org", SITE + "/#founder"
+def ld_script(data):
+    return f'  <script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>\n'
+def plain(html):
+    return re.sub(r"<[^>]+>", "", html)
+def ld_founder(lang):
+    el = lang == "el"
+    return {"@type":"Person","@id":FOUNDER_ID,
+            "name":"Αριστείδης Αλαμπουρινός" if el else "Aristeidis Alampourinos",
+            "alternateName":["Άρης Αλαμπουρινός","Aris Alampourinos"],
+            "jobTitle":"Ιδρυτής, σύμβουλος εστίασης" if el else "Founder, restaurant consultant",
+            "worksFor":{"@id":ORG_ID},
+            "alumniOf":[{"@type":"CollegeOrUniversity","name":"Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών" if el else "National and Kapodistrian University of Athens"},
+                        {"@type":"CollegeOrUniversity","name":"Δημοκρίτειο Πανεπιστήμιο Θράκης" if el else "Democritus University of Thrace"}],
+            "knowsLanguage":["el","en"],
+            "knowsAbout":L[lang]["knows"]}
+def ld_org(t, lang):
+    return {"@type":"ProfessionalService","@id":ORG_ID,"name":"AR Akron Services",
+            "legalName":"Αριστείδης Αλαμπουρινός – AR Akron Services",
+            "url":SITE+"/","image":SITE+"/og-image.jpg","logo":SITE+"/favicon-512.png",
+            "description":t["desc_home"],"telephone":"+306983661460","email":"info@arakronservices.gr",
+            "address":{"@type":"PostalAddress","streetAddress":"Γρίβα Διγενή 2","postalCode":"17342","addressLocality":"Άγιος Δημήτριος","addressRegion":"Αττική","addressCountry":"GR"},
+            "areaServed":[{"@type":"City","name":"Αθήνα" if lang=="el" else "Athens"},
+                          {"@type":"AdministrativeArea","name":"Αττική" if lang=="el" else "Attica"},
+                          {"@type":"Country","name":"Ελλάδα" if lang=="el" else "Greece"}],
+            "identifier":{"@type":"PropertyValue","propertyID":"ΓΕΜΗ","value":"161479309000"},
+            "vatID":"EL112492149",
+            "founder":{"@id":FOUNDER_ID},
+            "knowsAbout":t["knows"],
+            "knowsLanguage":["el","en"],
+            "sameAs":["https://www.facebook.com/arakronservices","https://www.instagram.com/arakronservices/"]}
+def ld_page(t, lang, page, ptype, title, extra_nodes=(), main=None):
+    node = {"@type":ptype,"@id":SITE+url(lang,page)+"#page","url":SITE+url(lang,page),"name":title,
+            "inLanguage":lang,"isPartOf":{"@type":"WebSite","@id":SITE+"/#website","url":SITE+"/","name":"AR Akron Services"},
+            "about":{"@id":ORG_ID}}
+    if main: node["mainEntity"] = main
+    return ld_script({"@context":"https://schema.org","@graph":[node, ld_org(t, lang), ld_founder(lang), *extra_nodes]})
+
+PAGES = ["home","services","apps","about","faq","contact","privacy"]
 def url(lang, page):
     p = L[lang]["prefix"]
     if page == "home": return (p + "/") if p else "/"
@@ -379,6 +478,7 @@ def footer(t, lang):
       <div><h4>{t['ft_nav']}</h4><ul>{pages}</ul></div>
       <div><h4>{t['ft_apps']}</h4><ul>{apps}</ul></div>
       <div><h4>{t['ft_info']}</h4><ul>
+        <li><a href="{url(lang,'faq')}">{t['ft_faq']}</a></li>
         <li><a href="{url(lang,'privacy')}">{t['ft_privacy']}</a></li>
         <li><button type="button" class="linklike" id="cookie-settings">{t['ft_cookies']}</button></li>
         <li><a href="https://www.facebook.com/arakronservices" target="_blank" rel="noopener">Facebook</a></li>
@@ -440,13 +540,7 @@ def app_cards(t):
 
 # ------------------------------------------------------------------ σελίδες
 def page_home(t, lang):
-    ld = {"@context":"https://schema.org","@type":"ProfessionalService","name":"AR Akron Services",
-          "url":SITE+"/","image":SITE+"/og-image.jpg","logo":SITE+"/favicon-512.png",
-          "description":t["desc_home"],"telephone":"+306983661460","email":"info@arakronservices.gr",
-          
-          "address":{"@type":"PostalAddress","streetAddress":"Γρίβα Διγενή 2","postalCode":"17342","addressLocality":"Άγιος Δημήτριος","addressRegion":"Αττική","addressCountry":"GR"},
-          "areaServed":"GR","sameAs":["https://www.facebook.com/arakronservices","https://www.instagram.com/arakronservices/"]}
-    extra = f'  <link rel="preload" as="image" href="/hero-wine.jpg">\n  <script type="application/ld+json">{json.dumps(ld,ensure_ascii=False)}</script>\n'
+    extra = '  <link rel="preload" as="image" href="/hero-wine.jpg">\n' + ld_page(t, lang, "home", "WebPage", t["title_home"])
     aud = "".join(f"<li>{x}</li>" for x in t["audience"])
     steps = "".join(f'<div class="step reveal"><p class="step-num">0{i+1}</p><h3>{h}</h3><p>{p}</p></div>' for i,(h,p) in enumerate(t["steps"]))
     body = f'''<main id="main">
@@ -508,11 +602,17 @@ def page_services(t, lang):
 <section class="alt"><div class="wrap">
   <div class="section-head reveal"><p class="eyebrow">{t['proc_eyebrow']}</p><h2 class="h2">{t['proc_h2']}</h2></div>
   <div class="steps">{steps}</div>
+  <p class="more"><a class="btn btn-ghost" href="{url(lang,'faq')}">{t['faq_more']} {ICON['arrow']}</a></p>
 </div></section>
 {cta_band(t, lang)}
 </main>
 '''
-    return head(t, lang, "services", t["title_services"], t["desc_services"]) + header(t, lang, "services") + body + footer(t, lang)
+    cat = {"@type":"OfferCatalog","@id":SITE+url(lang,"services")+"#catalog","name":t["sp_h1"],
+           "itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","@id":SITE+url(lang,"services")+f"#s{i+1}",
+               "name":x["h"],"description":x["p"],"serviceType":x["h"],"provider":{"@id":ORG_ID},
+               "areaServed":{"@type":"Country","name":"Ελλάδα" if lang=="el" else "Greece"}}} for i,x in enumerate(t["services2"])]}
+    extra = ld_page(t, lang, "services", "WebPage", t["title_services"], [cat], main={"@id":cat["@id"]})
+    return head(t, lang, "services", t["title_services"], t["desc_services"], extra) + header(t, lang, "services") + body + footer(t, lang)
 
 def page_apps(t, lang):
     rows=[]
@@ -532,7 +632,11 @@ def page_apps(t, lang):
 </div></div></section>
 </main>
 '''
-    return head(t, lang, "apps", t["title_apps"], t["desc_apps"]) + header(t, lang, "apps") + body + footer(t, lang)
+    sw = [{"@type":"SoftwareApplication","@id":a["url"]+"#app","name":a["name"],"url":a["url"],"description":a["desc"],
+           "applicationCategory":"BusinessApplication","operatingSystem":"Web",
+           "audience":{"@type":"BusinessAudience","name":a["for_"]},"publisher":{"@id":ORG_ID}} for a in t["apps"] if a["key"] in ("tr","gf")]
+    extra = ld_page(t, lang, "apps", "CollectionPage", t["title_apps"], sw)
+    return head(t, lang, "apps", t["title_apps"], t["desc_apps"], extra) + header(t, lang, "apps") + body + footer(t, lang)
 
 def page_contact(t, lang):
     body = f'''<main id="main">
@@ -560,7 +664,8 @@ def page_contact(t, lang):
 </div></section>
 </main>
 '''
-    return head(t, lang, "contact", t["title_contact"], t["desc_contact"]) + header(t, lang, "contact") + body + footer(t, lang)
+    extra = ld_page(t, lang, "contact", "ContactPage", t["title_contact"], main={"@id":ORG_ID})
+    return head(t, lang, "contact", t["title_contact"], t["desc_contact"], extra) + header(t, lang, "contact") + body + footer(t, lang)
 
 def page_privacy(t, lang):
     parts = "".join(f"<h2>{h}</h2>{b}" for h,b in t["privacy"])
@@ -595,9 +700,23 @@ def page_about(t, lang):
 {cta_band(t, lang)}
 </main>
 '''
-    return head(t, lang, "about", t["title_about"], t["desc_about"]) + header(t, lang, "about") + body + footer(t, lang)
+    extra = ld_page(t, lang, "about", "AboutPage", t["title_about"], main={"@id":ORG_ID})
+    return head(t, lang, "about", t["title_about"], t["desc_about"], extra) + header(t, lang, "about") + body + footer(t, lang)
 
-BUILD = dict(home=page_home, about=page_about, services=page_services, apps=page_apps, contact=page_contact, privacy=page_privacy)
+def page_faq(t, lang):
+    items = "".join(f'<h2>{q}</h2><p>{a}</p>' for q,a in t["faq"])
+    fq = {"@type":"FAQPage","@id":SITE+url(lang,"faq")+"#faq","inLanguage":lang,
+          "mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":plain(a)}} for q,a in t["faq"]]}
+    extra = ld_page(t, lang, "faq", "WebPage", t["title_faq"], [fq], main={"@id":fq["@id"]})
+    body = f'''<main id="main">
+<div class="page-head"><div class="wrap"><p class="eyebrow">{t['fq_eyebrow']}</p><h1>{t['fq_h1']}</h1><p class="lead">{t['fq_lead']}</p></div></div>
+<section style="padding-top:30px"><div class="wrap legal">{items}</div></section>
+{cta_band(t, lang)}
+</main>
+'''
+    return head(t, lang, "faq", t["title_faq"], t["desc_faq"], extra) + header(t, lang, "faq") + body + footer(t, lang)
+
+BUILD = dict(faq=page_faq, home=page_home, about=page_about, services=page_services, apps=page_apps, contact=page_contact, privacy=page_privacy)
 for lang in ("el","en"):
     os.makedirs(os.path.join(ROOT, "en"), exist_ok=True)
     for pg in PAGES:
@@ -616,6 +735,6 @@ redirect("documents.html", "/")
 urls = [(url(lg,p), "1.0" if p=="home" else ("0.3" if p=="privacy" else "0.8")) for lg in ("el","en") for p in PAGES]
 with open(os.path.join(ROOT,"sitemap.xml"),"w",encoding="utf-8",newline="\n") as f:
     f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
-    for u,pr in urls: f.write(f"  <url><loc>{SITE}{u}</loc><lastmod>2026-09-28</lastmod><priority>{pr}</priority></url>\n")
+    for u,pr in urls: f.write(f"  <url><loc>{SITE}{u}</loc><lastmod>2026-10-03</lastmod><priority>{pr}</priority></url>\n")
     f.write("</urlset>\n")
 print("OK")
