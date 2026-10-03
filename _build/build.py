@@ -298,6 +298,10 @@ L["en"].update(dict(
 ))
 
 
+# alt κείμενα για τα screenshots των εφαρμογών
+for _lg,_m in {'el': {'tr': 'TableReserve, εφαρμογή διαχείρισης κρατήσεων για εστιατόρια', 'gf': 'Αρχική σελίδα του GoFinanceOS, εφαρμογής οικονομικής διαχείρισης για εστιατόρια και καφέ', 'awb': 'Αρχική σελίδα του akronwebuilder.gr για ιστοσελίδες και web εφαρμογές κατά παραγγελία'}, 'en': {'tr': 'TableReserve, a reservation management app for restaurants', 'gf': 'GoFinanceOS homepage, a financial management app for restaurants and cafés', 'awb': 'akronwebuilder.gr homepage for custom websites and web applications'}}.items():
+    for _a in L[_lg]["apps"]: _a["alt"] = _m[_a["key"]]
+
 # ================================================================ FAQ + δομημένα δεδομένα (AI / SEO)
 L["el"].update(dict(
   ft_faq="Συχνές ερωτήσεις", faq_more="Συχνές ερωτήσεις",
@@ -532,7 +536,7 @@ def app_cards(t):
     out=[]
     for a in t["apps"]:
         out.append(f'''<article class="app reveal">
-  <a class="app-shot" href="{a['url']}{UTM}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="{a['img']}" alt="" loading="lazy" width="1200" height="750"></a>
+  <a class="app-shot" href="{a['url']}{UTM}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="{a['img']}" alt="{a['alt']}" loading="lazy" width="1200" height="750"></a>
   <div class="app-body"><h3>{a['name']}</h3><p class="for">{a['for_']}</p><p class="desc">{a['desc']}</p>
   <a class="link" href="{a['url']}{UTM}" target="_blank" rel="noopener">{a['cta']} →</a></div>
 </article>''')
@@ -619,7 +623,7 @@ def page_apps(t, lang):
     for a in t["apps"]:
         lis="".join(f"<li>{b}</li>" for b in a["bullets"])
         rows.append(f'''<article class="app-row reveal">
-  <a class="app-shot" href="{a['url']}{UTM}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="{a['img']}" alt="" loading="lazy" width="1200" height="750"></a>
+  <a class="app-shot" href="{a['url']}{UTM}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="{a['img']}" alt="{a['alt']}" loading="lazy" width="1200" height="750"></a>
   <div><h2>{a['name']}</h2><p class="for">{a['for_']}</p><p class="desc">{a['desc']}</p><ul>{lis}</ul>
   <a class="btn btn-gold" href="{a['url']}{UTM}" target="_blank" rel="noopener">{a['cta']} {ICON['arrow']}</a></div>
 </article>''')
