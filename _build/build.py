@@ -4,6 +4,9 @@
 import json, os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://www.arakronservices.gr"
+BOOKING = "https://rantevou.arakronservices.gr/arakron"
+def book_url(lang, service=None):
+    return f"{BOOKING}?lang={lang}" + (f"&service={service}" if service else "")
 UTM = "?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions"
 W3F_KEY = "612db534-c306-4c99-914c-b151396dac36"
 V = "10"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
@@ -453,7 +456,7 @@ def header(t, lang, page):
         items.append(f'<a href="{url(lang,key)}"{cur}>{label}</a>')
     other = t["other"]
     items.append(f'<a class="lang" href="{url(other,page)}" hreflang="{other}" lang="{other}">{t["other_label"]}</a>')
-    items.append(f'<a class="btn btn-gold" href="{url(lang,"contact")}">{t["book"]}</a>')
+    items.append(f'<a class="btn btn-gold" href="{book_url(lang)}">{t["book"]}</a>')
     return f'''<header class="site-header">
   <div class="wrap header-inner">
     <a class="brand" href="{url(lang,'home')}" aria-label="AR Akron Services">{MARK}<span class="brand-name">AR Akron<small>SERVICES</small></span></a>
@@ -503,7 +506,7 @@ def cta_band(t, lang):
   <h2>{t['cta_h2']}</h2>
   <p>{t['cta_p']}</p>
   <div class="hero-cta">
-    <a class="btn btn-gold" href="{url(lang,'contact')}">{t['book']} {ICON['arrow']}</a>
+    <a class="btn btn-gold" href="{book_url(lang)}">{t['book']} {ICON['arrow']}</a>
   </div>
 </div></div></section>
 '''
@@ -556,7 +559,7 @@ def page_home(t, lang):
     <h1>{t['hero_h1']}</h1>
     <p class="lead">{t['hero_lead']}</p>
     <div class="hero-cta">
-      <a class="btn btn-gold" href="{url(lang,'contact')}">{t['book']} {ICON['arrow']}</a>
+      <a class="btn btn-gold" href="{book_url(lang)}">{t['book']} {ICON['arrow']}</a>
       <a class="btn btn-ghost" href="{url(lang,'services')}">{t['hero_2']}</a>
     </div>
   </div>
@@ -633,7 +636,7 @@ def page_apps(t, lang):
 <section style="padding-top:40px"><div class="wrap">{''.join(rows)}</div></section>
 <section style="padding-top:0"><div class="wrap"><div class="cta-band reveal">
   <h2>{t['demo_h2']}</h2><p>{t['demo_p']}</p>
-  <div class="hero-cta"><a class="btn btn-gold" href="{url(lang,'contact')}">{t['demo_btn']} {ICON['arrow']}</a></div>
+  <div class="hero-cta"><a class="btn btn-gold" href="{book_url(lang,'demo')}">{t['demo_btn']} {ICON['arrow']}</a></div>
 </div></div></section>
 </main>
 '''
