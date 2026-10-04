@@ -342,3 +342,68 @@ section { padding: 110px 0; }
 @media (min-width: 861px) and (max-width: 980px) {
   .nav .btn { display: none; }
 }
+
+/* ============================================
+   BLOG — προσθήκη στο τέλος του assets/site.css
+   ============================================ */
+
+/* ---------- Blog listing ---------- */
+.post-list { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.post-item { background: var(--surface); padding: 30px 28px; display: block; text-decoration: none; transition: background-color .2s; }
+.post-item:hover { background: var(--surface-2); }
+.post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.post-meta .dot { color: var(--line); }
+.post-meta time { color: var(--muted); letter-spacing: .06em; text-transform: none; }
+.post-item h2 { font-size: clamp(1.35rem, 2.4vw, 1.75rem); margin-bottom: 10px; }
+.post-item p { color: var(--muted); max-width: 70ch; }
+.post-item .more { margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; color: var(--gold); font-weight: 600; font-size: .92rem; }
+
+/* ---------- Blog filters ---------- */
+.topic-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.topic-bar a { text-decoration: none; font-size: .88rem; padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); transition: border-color .2s, color .2s; }
+.topic-bar a:hover, .topic-bar a[aria-current="true"] { border-color: var(--gold); color: var(--text); }
+
+/* ---------- Article ---------- */
+.article { max-width: 760px; margin: 0 auto; }
+.article .post-meta { margin-bottom: 18px; }
+.article > h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 48px 0 16px; }
+.article > h3 { font-size: clamp(1.15rem, 2.2vw, 1.35rem); margin: 32px 0 12px; color: var(--gold-soft); }
+.article > p { margin-bottom: 18px; color: #d9d4cb; }
+.article > ul, .article > ol { margin: 0 0 20px; padding-left: 22px; color: #d9d4cb; }
+.article > ul li, .article > ol li { margin-bottom: 9px; }
+.article strong { color: var(--text); font-weight: 600; }
+.article a:not(.btn) { color: var(--gold-soft); text-decoration: underline; text-underline-offset: 3px; }
+
+.article .takeaway { background: var(--surface); border-left: 3px solid var(--gold); border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 28px 0; }
+.article .takeaway p { margin: 0; color: var(--text); }
+.article .takeaway strong { display: block; color: var(--gold); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+
+.article table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .94rem; }
+.article th, .article td { border: 1px solid var(--line); padding: 11px 14px; text-align: left; }
+.article th { background: var(--surface-2); color: var(--gold-soft); font-weight: 600; }
+.article td { color: #d9d4cb; }
+
+.toc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 26px; margin: 0 0 36px; }
+.toc h2 { font-family: var(--sans); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
+.toc ol { margin: 0; padding-left: 20px; }
+.toc li { margin-bottom: 7px; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover { color: var(--text); }
+
+.author-box { display: flex; gap: 18px; align-items: flex-start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 26px; margin-top: 48px; }
+.author-box .brand-mark { width: 46px; height: 46px; flex: none; }
+.author-box h3 { font-family: var(--sans); font-size: 1rem; margin: 0 0 6px; }
+.author-box p { font-size: .92rem; color: var(--muted); margin: 0; }
+
+.post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+.post-nav a { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 22px; text-decoration: none; transition: border-color .2s; }
+.post-nav a:hover { border-color: var(--gold); }
+.post-nav span { display: block; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.post-nav strong { font-family: var(--serif); font-weight: 500; font-size: 1.02rem; }
+
+@media (max-width: 760px) {
+  .post-item { padding: 24px 20px; }
+  .post-nav { grid-template-columns: 1fr; }
+  .author-box { flex-direction: column; gap: 14px; }
+  .article table { display: block; overflow-x: auto; }
+}

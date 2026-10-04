@@ -1,0 +1,61 @@
+================================================================
+  BLOG AR AKRON SERVICES — ΠΑΚΕΤΟ ΕΓΚΑΤΑΣΤΑΣΗΣ
+================================================================
+
+ΠΕΡΙΕΧΟΜΕΝΑ
+-----------
+blog/index.html                          Η σελίδα listing του blog
+blog/kostologisi-menou-estiatoriou.html  Πρώτο άρθρο (1.474 λέξεις)
+blog-css-additions.css                   CSS που προστίθεται στο site.css
+install-blog.sh                           Script που κάνει τα πάντα
+blog-plan.md                              Πλάνο 10 άρθρων με keywords
+GIT-BASH-ODIGIES.md                       Αναλυτικές οδηγίες
+
+
+ΣΥΝΤΟΜΗ ΕΚΔΟΧΗ — 4 ΕΝΤΟΛΕΣ
+---------------------------
+Άνοιξε Git Bash και τρέξε (άλλαξε τη διαδρομή του repo):
+
+  cd /c/Users/$USERNAME/Desktop/ready
+  cp -r /c/Users/$USERNAME/Downloads/blog-arakron/* .
+  bash install-blog.sh
+  git add -A && git commit -m "Blog" && git push
+
+
+ΤΙ ΚΑΝΕΙ ΤΟ SCRIPT
+------------------
+1. Backup όλου του repo σε ../ready-backup-<ημερομηνία>
+2. Προσθέτει το blog CSS στο assets/site.css
+3. site.css?v=10 -> v=11 (cache busting)
+4. Βάζει "Blog" σε μενού + footer, 14 σελίδες (GR + EN)
+5. +2 URLs στο sitemap.xml
+6. Ρυθμίζει clean URLs
+7. Σβήνει το προσωρινό blog-css-additions.css
+
+Μπορείς να το τρέξεις πολλές φορές — δεν διπλασιάζει τίποτα.
+
+
+ΑΝΑΙΡΕΣΗ
+--------
+Πριν το commit:   git checkout -- . && git clean -fd
+Μετά το commit:   git reset --hard HEAD~1
+
+
+ΠΡΙΝ ΤΟ PUSH — 2 ΑΛΛΑΓΕΣ ΣΤΟ ΑΡΘΡΟ
+-----------------------------------
+1. Τα νούμερα φύρας και οι τιμές υλικών είναι ενδεικτικά.
+   Πέρνα τα από τη δική σου εμπειρία.
+
+2. Στο takeaway box "Από την πράξη" (προς το τέλος) βάλε
+   ένα πραγματικό περιστατικό από κατάστημα που ανέλαβες.
+   Αυτό δεν μπορεί να το αντιγράψει κανένας ανταγωνιστής.
+
+
+ΜΕΤΑ ΤΟ DEPLOY
+--------------
+Google Search Console -> Έλεγχος URL -> Αίτημα ευρετηρίασης
+για:
+  https://www.arakronservices.gr/blog/
+  https://www.arakronservices.gr/blog/kostologisi-menou-estiatoriou
+
+================================================================
