@@ -407,3 +407,19 @@ section { padding: 110px 0; }
   .author-box { flex-direction: column; gap: 14px; }
   .article table { display: block; overflow-x: auto; }
 }
+
+/* ============================================
+   SHARE — κουμπιά κοινοποίησης άρθρων
+   ============================================ */
+.share { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); }
+.share-label { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px !important; }
+.share-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.article .share a.share-btn, .article .share button.share-btn, .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--text); font: 500 .9rem/1 var(--sans); text-decoration: none; cursor: pointer; transition: border-color .2s, background-color .2s; }
+.share-btn:hover { border-color: var(--gold); background: var(--surface-2); }
+.share-btn svg { width: 16px; height: 16px; flex: none; }
+.share-native { border-color: var(--gold); color: var(--gold-soft); }
+.share-btn[hidden] { display: none; }
+.share + .author-box { margin-top: 28px; }
+.article .share a.share-btn:hover { color: var(--text); }
+/* διόρθωση: οι κάρτες "Επόμενο άρθρο" να μην παίρνουν στυλ link κειμένου */
+.article .post-nav a { color: var(--text); text-decoration: none; }
