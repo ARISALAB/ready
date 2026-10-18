@@ -427,3 +427,31 @@ section { padding: 110px 0; }
 .article .share a.share-btn:hover { color: var(--text); }
 /* διόρθωση: οι κάρτες "Επόμενο άρθρο" να μην παίρνουν στυλ link κειμένου */
 .article .post-nav a { color: var(--text); text-decoration: none; }
+
+/* ---------- Θα μας βρείτε σε (αρχική) ---------- */
+.trust { padding: 72px 0; border-bottom: 1px solid var(--line); text-align: center; }
+.trust .eyebrow { margin-bottom: 28px; }
+.trust-list { list-style: none; margin: 0 auto; padding: 0; max-width: 980px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.trust-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 24px 16px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: border-color .25s; }
+.trust-list li { display: flex; }
+.trust-item { flex: 1; text-decoration: none; color: inherit; }
+a.trust-item:hover { border-color: rgba(201, 162, 74, .55); }
+.trust-ico { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid rgba(201, 162, 74, .4); border-radius: 50%; color: var(--gold); }
+.trust-ico svg { width: 17px; height: 17px; }
+.trust-name { font-family: var(--serif); font-size: 1.25rem; color: var(--text); line-height: 1.2; margin-top: 4px; }
+.trust-cap { font-size: .82rem; color: var(--muted); line-height: 1.4; }
+@media (max-width: 760px) {
+  .trust { padding: 56px 0; }
+  .trust-list { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .trust-item { padding: 20px 12px 18px; }
+  .trust-name { font-size: 1.1rem; }
+}
+/* ---------- Εφαρμογές: badge WordPress.org + Χτίζουμε με ---------- */
+.badge-line { margin: -6px 0 16px; }
+.badge-line a { display: inline-flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 5px 13px 5px 10px; transition: border-color .2s, color .2s; }
+.badge-line a:hover { border-color: var(--gold); color: var(--gold-soft); }
+.badge-line svg { width: 14px; height: 14px; color: var(--gold); }
+.stack { padding: 20px 0 80px; text-align: center; }
+.stack .eyebrow { margin-bottom: 20px; }
+.stack-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.stack-list li { font-size: .88rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 6px 15px; }
