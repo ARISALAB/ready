@@ -467,3 +467,5 @@ a.trust-item:hover { border-color: rgba(201, 162, 74, .55); }
 .press a { color: var(--gold-soft); text-underline-offset: 4px; }
 @media (max-width: 980px) { .awards { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .awards { grid-template-columns: 1fr; } .award-v { font-size: 2rem; } }
+.about-awards { margin-top: 90px; }
+.about-awards .section-head { margin-bottom: 40px; }
