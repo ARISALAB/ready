@@ -8,13 +8,13 @@
       ing: 'Υλικό', price: 'Τιμή αγοράς', per: 'ανά', yld: 'Απόδοση %', qty: 'Ποσότητα', cost: 'Κόστος',
       remove: 'Αφαίρεση υλικού', pc: 'τεμ.', phIng: 'π.χ. Ντομάτα',
       good: 'Καλό', warn: 'Προσοχή', over: 'Εκτός στόχου',
-      vGood: 'Άνετα μέσα στον στόχο. Το πιάτο αφήνει καλό περιθώριο.',
-      vWarn: 'Κοντά στον στόχο. Προσέξτε τις τιμές των προμηθευτών.',
-      vOver: '{n} μονάδες πάνω από τον στόχο. Εξετάστε νέα τιμή ή μικρότερη μερίδα.',
+      vGood: 'Η τιμή σας καλύπτει την ελάχιστη προτεινόμενη τιμή.',
+      vWarn: 'Λίγο κάτω από την ελάχιστη τιμή. Ελέγξτε τη μερίδα ή ανεβάστε την τιμή.',
+      vOver: 'Η τιμή είναι πολύ χαμηλή: το food cost είναι {n} μονάδες πάνω από τον στόχο.',
       noPrice: 'Βάλτε τιμή πώλησης για να δείτε food cost και κέρδος.',
       sheet: 'Κάρτα κοστολόγησης', dish: 'Πιάτο', portions: 'Μερίδες', recipe: 'Κόστος συνταγής',
       extras: 'Πρόσθετα / μερίδα', cpp: 'Κόστος / μερίδα', sell: 'Τιμή πώλησης (με ΦΠΑ)', net: 'Καθαρή τιμή',
-      pct: 'Food cost', profit: 'Μικτό κέρδος / μερίδα', target: 'Στόχος food cost', sug: 'Προτεινόμενη τιμή (με ΦΠΑ)',
+      pct: 'Food cost', profit: 'Μικτό κέρδος / μερίδα', target: 'Συντελεστής', sug: 'Ελάχιστη προτεινόμενη τιμή (με ΦΠΑ)', fc: 'food cost',
       date: 'Ημερομηνία', noName: 'Χωρίς όνομα', confirmClear: 'Να καθαριστούν όλα τα πεδία;',
       footer: 'Δημιουργήθηκε με το δωρεάν εργαλείο κοστολόγησης της AR Akron Services · arakronservices.gr',
       footer2: 'Όλο το μενού, ιστορικό τιμών και κάρτες για κάθε πιάτο: GoFinanceOS · gofinanceos.com',
@@ -24,13 +24,13 @@
       ing: 'Ingredient', price: 'Purchase price', per: 'per', yld: 'Yield %', qty: 'Quantity', cost: 'Cost',
       remove: 'Remove ingredient', pc: 'pc', phIng: 'e.g. Tomato',
       good: 'Good', warn: 'Caution', over: 'Over target',
-      vGood: 'Comfortably within target. This dish leaves a healthy margin.',
-      vWarn: 'Close to target. Keep an eye on supplier prices.',
-      vOver: '{n} points over target. Consider a new price or a smaller portion.',
+      vGood: 'Your price covers the minimum suggested price.',
+      vWarn: 'Slightly below the minimum price. Check the portion or raise the price.',
+      vOver: 'The price is too low: food cost is {n} points over target.',
       noPrice: 'Enter a selling price to see food cost and profit.',
       sheet: 'Costing sheet', dish: 'Dish', portions: 'Portions', recipe: 'Recipe cost',
       extras: 'Extras / portion', cpp: 'Cost / portion', sell: 'Selling price (incl. VAT)', net: 'Net price',
-      pct: 'Food cost', profit: 'Gross profit / portion', target: 'Target food cost', sug: 'Suggested price (incl. VAT)',
+      pct: 'Food cost', profit: 'Gross profit / portion', target: 'Multiplier', sug: 'Minimum suggested price (incl. VAT)', fc: 'food cost',
       date: 'Date', noName: 'Untitled dish', confirmClear: 'Clear all fields?',
       footer: 'Created with the free costing tool by AR Akron Services · arakronservices.gr',
       footer2: 'Your whole menu, price history and a sheet for every dish: GoFinanceOS · gofinanceos.com',
@@ -57,6 +57,7 @@
   function num(v) { var n = parseFloat(String(v == null ? '' : v).replace(/\s/g, '').replace(',', '.')); return isFinite(n) ? n : 0; }
   function eur(n) { return n.toLocaleString(T.locale, { style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
   function pct(n) { return n.toLocaleString(T.locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%'; }
+  function mx(n) { return '×' + n.toLocaleString(T.locale, { maximumFractionDigits: 2 }); }
   function inNum(n) { return String(n).replace('.', LANG === 'el' ? ',' : '.'); }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function uLabel(u) { return u === 'pc' ? T.pc : u; }
@@ -101,12 +102,15 @@
     var extras = num($('dc-pack').value) + num($('dc-extra').value);
     var cpp = recipe / portions + extras;
     var vat = num($('dc-vat').value), gross = num($('dc-price').value), net = gross / (1 + vat / 100);
-    var target = num($('dc-target').value) || 30;
+    // Minimum price = cost per portion x multiplier (net), then VAT. x4 = 25% food cost.
+    var mult = num($('dc-target').value); if (!(mult >= 1)) mult = 4;
+    var target = 100 / mult;
     var p = net > 0 ? cpp / net * 100 : 0, profit = net - cpp, margin = net > 0 ? profit / net * 100 : 0;
-    var status = (net <= 0 || cpp <= 0) ? 'none' : p <= target * 0.8 ? 'good' : p <= target ? 'warn' : 'over';
-    var sugNet = cpp > 0 ? cpp / (target / 100) : 0, sugGross = sugNet * (1 + vat / 100);
+    var ratio = cpp > 0 ? net / cpp : 0;
+    var status = (net <= 0 || cpp <= 0) ? 'none' : p <= target + 1e-9 ? 'good' : p <= target * 1.2 ? 'warn' : 'over';
+    var sugNet = cpp * mult, sugGross = sugNet * (1 + vat / 100);
     var sugRound = sugGross > 0 ? Math.ceil(sugGross * 10 - 1e-9) / 10 : 0;
-    return { lines: lines, recipe: recipe, portions: portions, extras: extras, cpp: cpp, vat: vat, gross: gross, net: net, pct: p, profit: profit, margin: margin, target: target, status: status, sugNet: sugNet, sugGross: sugRound };
+    return { lines: lines, recipe: recipe, portions: portions, extras: extras, cpp: cpp, vat: vat, gross: gross, net: net, pct: p, profit: profit, margin: margin, mult: mult, ratio: ratio, target: target, status: status, sugNet: sugNet, sugGross: sugRound };
   }
 
   function render() {
@@ -115,7 +119,9 @@
     $('dc-r-recipe').textContent = c.recipe > 0 ? eur(c.recipe) : '—';
     $('dc-r-sug').textContent = c.sugGross > 0 ? eur(c.sugGross) : '—';
     $('dc-r-sugnet').textContent = c.sugNet > 0 ? eur(c.sugNet) : '—';
+    $('dc-r-mult').textContent = mx(c.mult);
     $('dc-r-tgt').textContent = pct(c.target);
+    $('dc-r-ratio').textContent = c.status !== 'none' ? mx(c.ratio) : '—';
     $('dc-m-cpp').textContent = $('dc-r-cpp').textContent;
     $('dc-m-sug').textContent = $('dc-r-sug').textContent;
     $('dc-use').disabled = !(c.sugGross > 0);
@@ -162,7 +168,7 @@
 
   function loadExample() {
     $('dc-name').value = EXAMPLE.name; $('dc-portions').value = '1'; $('dc-price').value = inNum('9.50');
-    $('dc-vat').value = '13'; $('dc-target').value = '30'; $('dc-pack').value = ''; $('dc-extra').value = '';
+    $('dc-vat').value = '13'; $('dc-target').value = '4'; $('dc-pack').value = ''; $('dc-extra').value = '';
     rowsEl.innerHTML = ''; EXAMPLE.rows.forEach(addRow); render();
   }
 
@@ -179,7 +185,7 @@
       '<table class="ps-t"><thead><tr><th>' + T.ing + '</th><th>' + T.price + '</th><th>' + T.yld + '</th><th>' + T.qty + '</th><th class="r">' + T.cost + '</th></tr></thead><tbody>' + rows + '</tbody></table>' +
       '<table class="ps-kv">' + kv(T.recipe, eur(c.recipe)) + (c.extras > 0 ? kv(T.extras, eur(c.extras)) : '') + kv('<b>' + T.cpp + '</b>', '<b>' + eur(c.cpp) + '</b>') +
       (c.gross > 0 ? kv(T.sell, eur(c.gross)) + kv(T.net, eur(c.net)) + kv(T.pct, pct(c.pct) + ' · ' + T[c.status]) + kv(T.profit, eur(c.profit)) : '') +
-      kv(T.target, pct(c.target)) + kv('<b>' + T.sug + '</b>', '<b>' + eur(c.sugGross) + '</b>') + '</table>' +
+      kv(T.target, mx(c.mult) + ' (' + T.fc + ' ' + pct(c.target) + ')') + kv('<b>' + T.sug + '</b>', '<b>' + eur(c.sugGross) + '</b>') + '</table>' +
       '<p class="ps-foot">' + T.footer + '<br>' + T.footer2 + '</p>';
     var old = document.title;
     document.title = T.sheet + ' – ' + name;
