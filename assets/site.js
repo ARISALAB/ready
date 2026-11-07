@@ -145,9 +145,33 @@
         .then(function (j) {
           if (!j.success) throw new Error(j.message || 'error');
           status.className = 'form-status ok'; status.textContent = T.ok; form.reset();
+          track('generate_lead', { method: 'contact_form' });
         })
         .catch(function () { status.className = 'form-status err'; status.textContent = T.err; })
         .then(function () { submit.disabled = false; });
     });
   }
+
+  /* ---------- Key events (GA4) — στέλνονται μόνο αν έχει γίνει αποδοχή cookies ---------- */
+  function track(name, params) {
+    if (typeof window.gtag !== 'function') return;
+    params = params || {};
+    params.page_lang = LANG;
+    params.transport_type = 'beacon';
+    window.gtag('event', name, params);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var h = a.getAttribute('href') || '';
+    if (h.indexOf('tel:') === 0) track('phone_click', { link_url: h });
+    else if (h.indexOf('mailto:') === 0) track('email_click', { link_url: h });
+    else if (h.indexOf('rantevou.arakronservices.gr') > -1) {
+      var m = h.match(/[?&]service=([^&]+)/);
+      track('booking_click', { link_url: h, service: m ? m[1] : 'general' });
+    }
+    else if (h.indexOf('wa.me/') > -1) track('share', { method: 'whatsapp', content_type: 'article' });
+    else if (h.indexOf('viber://') === 0) track('share', { method: 'viber', content_type: 'article' });
+    else if (h.indexOf('facebook.com/sharer') > -1) track('share', { method: 'facebook', content_type: 'article' });
+  });
 })();

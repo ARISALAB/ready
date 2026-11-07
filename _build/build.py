@@ -9,7 +9,7 @@ def book_url(lang, service=None):
     return f"{BOOKING}?lang={lang}" + (f"&service={service}" if service else "")
 UTM = "?utm_source=arakronservices&utm_medium=referral&utm_campaign=digital_solutions"
 W3F_KEY = "612db534-c306-4c99-914c-b151396dac36"
-V = "10"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
+V = "11"  # αύξησε το όταν αλλάζεις css/js για να μην κρατάει ο browser παλιά έκδοση
 
 ICON = {
  "arrow": '<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
