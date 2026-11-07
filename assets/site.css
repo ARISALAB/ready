@@ -480,3 +480,31 @@ a.trust-item:hover { border-color: rgba(201, 162, 74, .55); }
 .btn-wa { display: inline-flex; align-items: center; gap: 8px; }
 .btn-wa svg { color: #25d366; }
 @media (max-width: 560px) { .inline-cta-btns .btn { flex: 1 1 100%; justify-content: center; text-align: center; } }
+
+
+/* ---------- Contact: ραντεβού πρώτα ---------- */
+.book-sec { padding: 70px 0 20px; }
+.book-card { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: center; padding: 40px 44px; border: 1px solid rgba(201,162,74,.5); border-radius: var(--radius); background: linear-gradient(135deg, rgba(201,162,74,.13), rgba(201,162,74,.02) 60%), var(--surface); }
+.book-card .h2 { margin: 6px 0 12px; max-width: none; }
+.book-main > p:not(.eyebrow) { color: var(--muted); margin: 0 0 16px; }
+.book-note { color: var(--muted); }
+.book-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.book-points li { display: flex; gap: 10px; align-items: center; color: var(--text); }
+.book-points svg { width: 18px; height: 18px; color: var(--gold); flex: none; }
+.book-act { text-align: center; }
+.book-act .btn-lg { width: 100%; justify-content: center; padding: 18px 26px; font-size: 1.05rem; }
+.book-note { margin: 12px 0 0 !important; font-size: .88rem; }
+.quick-label { margin: 44px 0 16px; color: var(--muted); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; }
+.quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.quick-item { display: flex; gap: 14px; align-items: center; padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); text-decoration: none; transition: border-color .2s, transform .2s; }
+.quick-item:hover { border-color: var(--gold); transform: translateY(-2px); }
+.quick-item svg { width: 26px; height: 26px; color: var(--gold); flex: none; }
+.quick-wa svg { color: #25d366; }
+.quick-item strong { display: block; font-weight: 600; }
+.quick-item small { display: block; color: var(--muted); font-size: .88rem; word-break: break-all; }
+.msg-sec { padding-top: 40px; }
+.msg-sec .section-head { margin-bottom: 28px; }
+@media (max-width: 860px) {
+  .book-card { grid-template-columns: 1fr; gap: 24px; padding: 28px 24px; }
+  .quick-grid { grid-template-columns: 1fr; }
+}
