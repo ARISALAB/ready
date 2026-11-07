@@ -139,6 +139,9 @@
     return c;
   }
 
+  function ga(name) { if (typeof window.gtag === 'function') window.gtag('event', name, { calculator: 'dish_cost', page_lang: LANG }); }
+  var gaUsed = false;
+  rowsEl.addEventListener('input', function () { if (!gaUsed) { gaUsed = true; ga('calculator_use'); } });
   rowsEl.addEventListener('input', render);
   rowsEl.addEventListener('change', function (e) {
     if (e.target.getAttribute('data-k') === 'bu') {
@@ -174,6 +177,7 @@
 
   // Costing sheet: filled on demand and printed (the browser's "Save as PDF").
   $('dc-pdf').addEventListener('click', function () {
+    ga('calculator_pdf');
     var c = render(), name = $('dc-name').value.trim() || T.noName;
     var rows = c.lines.filter(function (l) { return l.name || l.cost > 0; }).map(function (l) {
       return '<tr><td>' + esc(l.name || '—') + '</td><td>' + eur(l.price) + ' / ' + uLabel(l.bu) + '</td><td>' + pct(l.yld) + '</td><td>' + esc(String(l.qty).replace('.', LANG === 'el' ? ',' : '.')) + ' ' + uLabel(l.qu) + '</td><td class="r">' + eur(l.cost) + '</td></tr>';
