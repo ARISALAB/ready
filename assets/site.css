@@ -163,7 +163,7 @@ section { padding: 110px 0; }
 .clients .eyebrow { margin-bottom: 26px; }
 .client-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 18px 56px; }
 .client-list li { font-family: var(--serif); font-size: 1.35rem; color: #cfc9bd; opacity: .8; }
-.client-list img { height: 44px; width: auto; filter: grayscale(1) brightness(1.6); opacity: .75; }
+.client-list img { height: 44px; width: auto; max-width: none; filter: grayscale(1) brightness(1.6); opacity: .75; }
 
 /* ---------- CTA band ---------- */
 .cta-band {
@@ -210,7 +210,7 @@ section { padding: 110px 0; }
 /* ---------- Footer ---------- */
 .site-footer { border-top: 1px solid var(--line); padding: 70px 0 30px; font-size: .92rem; color: var(--muted); }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 36px; }
-.site-footer h4 { font-family: var(--sans); font-size: .76rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text); margin: 0 0 16px; font-weight: 600; }
+.site-footer h4, .site-footer h3.f-h { font-family: var(--sans); font-size: .76rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text); margin: 0 0 16px; font-weight: 600; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; }
 .site-footer li { margin: 7px 0; }
 .site-footer a { text-decoration: none; }

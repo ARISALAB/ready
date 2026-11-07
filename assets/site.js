@@ -124,7 +124,7 @@
   function showBanner() {
     closeBanner();
     var b = document.createElement('div');
-    b.id = 'cookie'; b.className = 'cookie'; b.setAttribute('role', 'dialog'); b.setAttribute('aria-live', 'polite');
+    b.id = 'cookie'; b.className = 'cookie'; b.setAttribute('role', 'dialog'); b.setAttribute('aria-label', LANG === 'en' ? 'Cookie settings' : 'Ρυθμίσεις cookies'); b.setAttribute('aria-live', 'polite');
     b.innerHTML = '<p>' + T.cookie + ' <a href="' + T.privacy + '">' + T.more + '</a></p>' +
       '<div class="cookie-actions"><button type="button" class="btn btn-gold" data-c="1">' + T.accept +
       '</button><button type="button" class="btn btn-ghost" data-c="0">' + T.reject + '</button></div>';
