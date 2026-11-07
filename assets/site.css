@@ -470,3 +470,13 @@ a.trust-item:hover { border-color: rgba(201, 162, 74, .55); }
 .about-awards { margin-top: 90px; }
 .about-awards .section-head { margin-bottom: 40px; }
 .about .text a { color: var(--gold-soft); text-underline-offset: 4px; }
+
+/* ---------- Inline CTA μέσα σε άρθρα ---------- */
+.article .inline-cta, .inline-cta { background: linear-gradient(180deg, rgba(201,162,74,.10), rgba(201,162,74,.03)); border: 1px solid rgba(201,162,74,.45); border-radius: var(--radius); padding: 22px 24px; margin: 34px 0; }
+.inline-cta p { margin: 0 0 14px; color: var(--text); }
+.inline-cta .inline-cta-label { color: var(--gold); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+.inline-cta-btns { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 0; }
+.inline-cta-btns .btn { text-decoration: none; }
+.btn-wa { display: inline-flex; align-items: center; gap: 8px; }
+.btn-wa svg { color: #25d366; }
+@media (max-width: 560px) { .inline-cta-btns .btn { flex: 1 1 100%; justify-content: center; text-align: center; } }

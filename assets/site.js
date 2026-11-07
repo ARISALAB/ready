@@ -179,6 +179,7 @@
       var m = h.match(/[?&]service=([^&]+)/);
       track('booking_click', { link_url: h, service: m ? m[1] : 'general' });
     }
+    else if (/wa\.me\/\d/.test(h)) track('whatsapp_click', { link_url: location.pathname });
     else if (h.indexOf('wa.me/') > -1) track('share', { method: 'whatsapp', content_type: 'article' });
     else if (h.indexOf('viber://') === 0) track('share', { method: 'viber', content_type: 'article' });
     else if (h.indexOf('facebook.com/sharer') > -1) track('share', { method: 'facebook', content_type: 'article' });
