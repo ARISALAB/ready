@@ -88,6 +88,15 @@
     nums.forEach(function (n) { nio.observe(n); });
   }
 
+  /* ---------- Cloudflare Web Analytics (χωρίς cookies — δεν χρειάζεται συναίνεση) ---------- */
+  (function () {
+    if (!/arakronservices\.gr$/.test(location.hostname)) return;
+    var cf = document.createElement('script'); cf.defer = true;
+    cf.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    cf.setAttribute('data-cf-beacon', '{"token": "1c40aa253d604525b7e285723d32c667"}');
+    document.head.appendChild(cf);
+  })();
+
   /* ---------- Cookie consent + Google Analytics ---------- */
   var GA_ID = 'G-XJ6142EJPG', KEY = 'cookieConsent';
   function loadGA() {
