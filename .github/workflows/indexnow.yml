@@ -1,0 +1,44 @@
+# Ειδοποιεί Bing (και Yandex, Seznam κ.ά.) μέσω IndexNow όταν αλλάζουν σελίδες.
+# Τρέχει αυτόματα ΜΕΤΑ το deploy του GitHub Pages.
+# "Run workflow" με το χέρι = στέλνει ΟΛΟ το sitemap.
+name: IndexNow
+
+on:
+  workflow_run:
+    workflows: ["Deploy Jekyll with GitHub Pages dependencies preinstalled"]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  ping:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    env:
+      HOST: www.arakronservices.gr
+      KEY: 9bd4adc318fbd8d5fdcb35899f8a68c6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 2
+
+      - name: Λίστα URL
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            grep -o '<loc>[^<]*</loc>' sitemap.xml | sed -E 's#</?loc>##g' > urls.txt
+          else
+            git diff --name-only --diff-filter=AM HEAD~1 HEAD -- '*.html' \
+              | grep -v -E '^(404|documents|google[^/]*)\.html$|^_' \
+              | sed -E 's#(^|/)index\.html$#\1#; s#\.html$##' \
+              | sed "s#^#https://$HOST/#" > urls.txt || true
+          fi
+          echo "URLs:"; cat urls.txt
+
+      - name: Αποστολή στο IndexNow
+        run: |
+          [ -s urls.txt ] || { echo "Καμία αλλαγμένη σελίδα"; exit 0; }
+          LIST=$(python3 -c "import json;print(json.dumps([l.strip() for l in open('urls.txt') if l.strip()]))")
+          BODY="{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"https://$HOST/$KEY.txt\",\"urlList\":$LIST}"
+          CODE=$(curl -s -o resp.txt -w '%{http_code}' -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' -d "$BODY")
+          echo "HTTP $CODE"; cat resp.txt
+          [ "$CODE" = "200" ] || [ "$CODE" = "202" ]
