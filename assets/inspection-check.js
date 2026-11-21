@@ -1,15 +1,15 @@
-/* AR Akron Services — Health inspection readiness check (EN).
+/* AR Akron Services — Health inspection risk check (EN).
    Answers stay in the browser unless the visitor asks for the full report by email. */
 (function () {
   var root = document.getElementById('ic');
   if (!root || !window.IC_DATA) return;
 
   var ENDPOINT = 'https://arakron.netlify.app/.netlify/functions/health-report';
-  var D = window.IC_DATA, SRC = D.SRC, SECTIONS = D.SECTIONS, Q = D.Q, LEVEL = D.LEVEL;
+  var D = window.IC_DATA, Q = D.Q;
   var TOTAL = Q.length;
   var A = {};
   var unlocked = false;
-  try { unlocked = sessionStorage.getItem('ic-unlocked') === '1'; } catch (e) {}
+  try { unlocked = sessionStorage.getItem('ic-unlocked2') === '1'; } catch (e) {}
 
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -17,51 +17,38 @@
 
   // ---- build questions
   var form = $('ic-form');
-  var n = 0;
-  SECTIONS.forEach(function (sec) {
-    var box = el('section', 'ic-sec');
-    box.appendChild(el('h2', 'ic-sec-h', '<span>' + sec.no + '</span>' + esc(sec.title)));
-    var ol = el('ol', 'ic-qs');
-    Q.filter(function (q) { return q.s === sec.id; }).forEach(function (q) {
-      n++;
-      var li = el('li', 'ic-q');
-      li.id = 'q-' + q.id;
-      var fs = el('fieldset');
-      fs.appendChild(el('legend', null, '<span class="ic-num">' + (n < 10 ? '0' + n : n) + '</span>' + esc(q.q)));
-      var opts = el('div', 'ic-opts');
-      var choices = [['y', 'Yes'], ['n', 'No'], ['u', 'Not sure']];
-      if (q.na) choices.push(['x', 'Doesn’t apply']);
-      choices.forEach(function (c) {
-        var lab = el('label', 'ic-opt ic-' + c[0]);
-        lab.innerHTML = '<input type="radio" name="' + q.id + '" value="' + c[0] + '"><span>' + c[1] + '</span>';
-        opts.appendChild(lab);
-      });
-      fs.appendChild(opts);
-      li.appendChild(fs);
-      ol.appendChild(li);
+  var ol = el('ol', 'ic-qs');
+  Q.forEach(function (q, i) {
+    var li = el('li', 'ic-q');
+    li.id = 'q-' + q.id;
+    var fs = el('fieldset');
+    fs.appendChild(el('legend', null, '<span class="ic-num">' + (i + 1 < 10 ? '0' + (i + 1) : i + 1) + '</span>' + esc(q.q)));
+    var opts = el('div', 'ic-choices');
+    q.o.forEach(function (o) {
+      var lab = el('label', 'ic-choice');
+      lab.innerHTML = '<input type="radio" name="' + q.id + '" value="' + o.k + '"><span>' + esc(o.t) + '</span>';
+      opts.appendChild(lab);
     });
-    box.appendChild(ol);
-    form.appendChild(box);
+    fs.appendChild(opts);
+    li.appendChild(fs);
+    ol.appendChild(li);
   });
+  form.appendChild(ol);
 
   form.addEventListener('change', function (e) {
     if (e.target.name) { A[e.target.name] = e.target.value; update(); }
   });
 
-  function sourceLink(key) {
-    var s = SRC[key];
-    return s ? '<a href="' + s.u + '" target="_blank" rel="noopener">' + esc(s.t) + '</a>' : '';
+  function factorItem(f) {
+    var li = el('li', 'ic-gap ' + (f.o.r >= 4 ? 'ic-w3' : 'ic-w2'));
+    li.innerHTML = '<p class="ic-gap-lvl">' + (f.o.r >= 4 ? 'Major factor' : 'Risk factor') + '</p><p class="ic-gap-t">' + esc(f.o.f) + '</p>';
+    return li;
   }
 
-  function gapItem(g) {
-    var q = g.q;
-    var li = el('li', 'ic-gap ic-w' + q.w);
-    li.innerHTML =
-      '<p class="ic-gap-lvl">' + LEVEL[q.w] + ' risk' + (g.unsure ? ' · not sure' : '') + '</p>' +
-      '<p class="ic-gap-t">' + esc(q.gap) + '</p>' +
-      '<p class="ic-gap-f"><span>Penalty</span>' + esc(q.fine.txt) + (q.fine.src ? ' <em>' + sourceLink(q.fine.src) + '</em>' : '') + '</p>' +
-      '<a class="ic-gap-q" href="#q-' + q.id + '">Change answer</a>';
-    return li;
+  function stakesHtml() {
+    return '<p class="ic-gaps-h">What it could cost</p><ul class="ic-stakes">' + D.STAKES.map(function (s) {
+      return '<li><span>' + esc(s.t) + '</span><b>' + esc(s.v) + '</b><a href="' + s.s.u + '" target="_blank" rel="noopener">' + esc(s.s.t) + '</a></li>';
+    }).join('') + '</ul>';
   }
 
   function update() {
@@ -73,31 +60,26 @@
     res.classList.toggle('is-unlocked', unlocked);
     if (r.answered === 0) { mini(r); return; }
 
-    $('ic-score').textContent = r.score;
-    $('ic-meter').style.width = r.score + '%';
-    var b = D.band(r);
-    res.dataset.band = b.k;
-    $('ic-band').textContent = r.done ? b.t : 'Provisional';
-    $('ic-band-d').textContent = r.done ? b.d : 'Answer all ' + TOTAL + ' questions for your final result. ' + (TOTAL - r.answered) + ' to go.';
-    $('ic-gapn').textContent = r.gaps.length;
-    $('ic-highn').textContent = r.high;
-    $('ic-closure').hidden = !r.gaps.some(function (g) { return g.q.fine.closure; });
+    var L = D.LEVELS[r.level];
+    res.dataset.band = r.level === 'high' ? 'low' : r.level === 'medium' ? 'mid' : 'ok';
+    $('ic-level').textContent = r.done ? L.t : 'Provisional';
+    $('ic-meter').style.width = Math.max(4, r.risk) + '%';
+    $('ic-band-d').textContent = r.done ? L.d : 'Answer all ' + TOTAL + ' questions for your result. ' + (TOTAL - r.answered) + ' to go.';
+    $('ic-gapn').textContent = r.factors.length;
 
     var list = $('ic-gaps');
     list.innerHTML = '';
-    if (!r.gaps.length) list.appendChild(el('li', 'ic-gap-none', 'No gaps in the questions you have answered so far.'));
-    var shown = unlocked ? r.gaps : r.gaps.slice(0, 1);
-    shown.forEach(function (g) { list.appendChild(gapItem(g)); });
-    $('ic-gaps-h').textContent = unlocked || r.gaps.length < 2 ? 'What an inspector would find' : 'The most serious gap';
+    if (!r.factors.length) list.appendChild(el('li', 'ic-gap-none', 'No risk factors in your answers so far.'));
+    (unlocked ? r.factors : r.factors.slice(0, 1)).forEach(function (f) { list.appendChild(factorItem(f)); });
+    $('ic-gaps-h').textContent = unlocked || r.factors.length < 2 ? 'Your risk factors' : 'Your biggest risk factor';
+    $('ic-stakes').innerHTML = unlocked ? stakesHtml() : '';
 
-    // lock / email block
-    var more = r.gaps.length - 1;
-    var lock = $('ic-lock');
-    lock.hidden = unlocked;
+    var more = r.factors.length - 1;
+    $('ic-lock').hidden = unlocked;
     if (!unlocked) {
       $('ic-lock-h').textContent = more > 0
-        ? '+' + more + ' more gap' + (more === 1 ? '' : 's') + ' with their penalties and sources'
-        : 'Your full report, with penalties and sources';
+        ? '+' + more + ' more risk factor' + (more === 1 ? '' : 's') + ', and what they could cost you'
+        : 'Your full report, and what a failed inspection could cost you';
       $('ic-lock-p').textContent = r.done
         ? 'Get the full report by email, free. No newsletter.'
         : 'Answer all ' + TOTAL + ' questions, then get the full report by email, free.';
@@ -105,15 +87,14 @@
     }
     $('ic-tools').hidden = !unlocked;
 
-    var wa = 'Hello, I did the health inspection readiness check on arakronservices.gr. My score is ' + r.score + '/100 with ' + r.gaps.length + ' gaps. I would like to talk about my venue.';
+    var wa = 'Hello, I did the health inspection risk check on arakronservices.gr. My result: ' + (r.done ? L.t : 'not finished') + ', ' + r.factors.length + ' risk factors. I would like to talk about my venue.';
     $('ic-wa').href = 'https://wa.me/306983661460?text=' + encodeURIComponent(wa);
     mini(r);
-    if (unlocked) sheet(r, b);
+    if (unlocked) sheet(r, L);
   }
 
   // ---- email request
-  var mailForm = $('ic-lock');
-  mailForm.addEventListener('submit', function (e) {
+  $('ic-lock').addEventListener('submit', function (e) {
     e.preventDefault();
     var r = D.compute(A);
     var msg = $('ic-msg');
@@ -130,12 +111,12 @@
       .then(function (out) {
         if (!out.ok) throw new Error(out.j && out.j.error || 'send');
         unlocked = true;
-        try { sessionStorage.setItem('ic-unlocked', '1'); } catch (e) {}
+        try { sessionStorage.setItem('ic-unlocked2', '1'); } catch (e) {}
         $('ic-done').hidden = false;
         $('ic-done-mail').textContent = email;
         update();
         $('ic-res').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (window.gtag) { try { window.gtag('event', 'health_check_report', { score: r.score }); } catch (e) {} }
+        if (window.gtag) { try { window.gtag('event', 'health_check_report', { level: r.level }); } catch (e) {} }
       })
       .catch(function (err) {
         msg.innerHTML = String(err.message) === 'email'
@@ -149,33 +130,33 @@
   var miniBar = $('ic-mini');
   function mini(r) {
     if (!miniBar) return;
-    $('ic-m-score').textContent = r.answered ? r.score + '/100' : '—';
-    $('ic-m-gaps').textContent = r.answered ? r.gaps.length : '—';
+    $('ic-m-score').textContent = r.answered ? (r.done ? D.LEVELS[r.level].t : '…') : '—';
+    $('ic-m-gaps').textContent = r.answered ? r.factors.length : '—';
     var box = $('ic-res').getBoundingClientRect();
     miniBar.classList.toggle('off', !r.answered || (box.top < window.innerHeight && box.bottom > 0));
   }
   window.addEventListener('scroll', function () { mini(D.compute(A)); }, { passive: true });
 
   // ---- print sheet (only after the report was requested)
-  function sheet(r, b) {
-    var s = $('ic-sheet');
+  function sheet(r, L) {
     var venue = ($('ic-venue').value || '').trim();
     var d = new Date();
     var date = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
-    var rows = r.gaps.map(function (g, i) {
-      return '<tr><td>' + (i + 1) + '</td><td>' + esc(g.q.gap) + (g.unsure ? ' <i>(not sure)</i>' : '') + '</td><td>' + LEVEL[g.q.w] + '</td><td>' + esc(g.q.fine.txt) + (g.q.fine.src ? '<br><small>' + esc(SRC[g.q.fine.src].t) + '</small>' : '') + '</td></tr>';
-    }).join('');
-    s.innerHTML =
-      '<div class="ps-head"><div><p class="ps-brand">AR Akron <span>Services</span></p><p class="ps-kicker">Health inspection readiness check</p><h2>' + (venue ? esc(venue) : 'Your venue') + '</h2></div>' +
-      '<p class="ps-date">' + date + '<br>Score <b>' + r.score + '/100</b><br>' + esc(r.done ? b.t : 'Provisional (' + r.answered + '/' + TOTAL + ' answered)') + '</p></div>' +
-      (rows ? '<table><thead><tr><th>#</th><th>Gap</th><th>Risk</th><th>Penalty</th></tr></thead><tbody>' + rows + '</tbody></table>' : '<p>No gaps found in the answered questions.</p>') +
-      '<p class="ps-foot">Indicative information based on your own answers, not legal advice. The exact fine is set by the inspecting authority. Fine ranges as of November 2026. ' +
-      'Prepared with the free tool at arakronservices.gr/blog/health-inspection-checklist-greece · AR Akron Services · +30 698 366 1460 · info@arakronservices.gr</p>';
+    var rows = r.factors.map(function (f, i) { return '<tr><td>' + (i + 1) + '</td><td>' + esc(f.o.f) + '</td></tr>'; }).join('');
+    var stakes = D.STAKES.map(function (s) { return '<tr><td>' + esc(s.t) + '</td><td>' + esc(s.v) + '<br><small>' + esc(s.s.t) + '</small></td></tr>'; }).join('');
+    $('ic-sheet').innerHTML =
+      '<div class="ps-head"><div><p class="ps-brand">AR Akron <span>Services</span></p><p class="ps-kicker">Health inspection risk check</p><h2>' + (venue ? esc(venue) : 'Your venue') + '</h2></div>' +
+      '<p class="ps-date">' + date + '<br><b>' + esc(L.t) + '</b></p></div>' +
+      '<p>' + esc(L.d) + '</p>' +
+      (rows ? '<table><thead><tr><th>#</th><th>Risk factor</th></tr></thead><tbody>' + rows + '</tbody></table>' : '<p>No risk factors in your answers.</p>') +
+      '<table style="margin-top:18px"><thead><tr><th>What it could cost</th><th>Penalty</th></tr></thead><tbody>' + stakes + '</tbody></table>' +
+      '<p class="ps-foot">Indicative assessment based on your own answers, not legal advice. Fine ranges as of November 2026. ' +
+      'arakronservices.gr/blog/health-inspection-checklist-greece · AR Akron Services · +30 698 366 1460 · info@arakronservices.gr</p>';
   }
 
   $('ic-pdf').addEventListener('click', function () {
     if (!unlocked) return;
-    var r = D.compute(A); sheet(r, D.band(r)); window.print();
+    var r = D.compute(A); sheet(r, D.LEVELS[r.level]); window.print();
   });
   $('ic-reset').addEventListener('click', function () {
     A = {};

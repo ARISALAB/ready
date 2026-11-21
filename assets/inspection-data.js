@@ -1,100 +1,99 @@
-/* AR Akron Services — health inspection readiness check: shared data (browser + Netlify function) */
+/* AR Akron Services — health inspection risk check: shared data (browser + Netlify function).
+   The questions are about the venue's situation, not about specific legal obligations. */
 (function (root) {
-  var SRC = {
-    l5243: { t: 'Law 5243/2025, art. 104', u: 'https://www.taxheaven.gr/law/5243/2025/arthro/104' },
-    l4442: { t: 'Law 4442/2016, art. 15', u: 'https://www.taxheaven.gr/law/4442/2016/arthro/15' },
-    erg: { t: 'Labour Inspectorate fines', u: 'https://www.naftemporiki.gr/finance/economy/2074740/poy-tha-chtypisei-i-epitheorisi-ergasias/' },
-    card: { t: 'Law 4808/2021 (digital work card)', u: 'https://www.powergame.gr/epichirisis/295968/yp-ergasias-prostima-eos-10-500-evro-gia-tin-paraviasi-tis-nomothesias/' },
-    aade: { t: 'AADE decision A.1115/2026', u: 'https://www.aade.gr/sites/default/files/2026-06/a1115_2026.pdf' }
-  };
-
-  var HYG = { txt: '€500 – €5,000', max: 5000, src: 'l5243', note: 'hygiene' };
-  var NOTIF = { txt: '€100 – €20,000', max: 20000, src: 'l4442' };
-
-  var SECTIONS = [
-    { id: 'lic', no: 'I', title: 'Licence and premises' },
-    { id: 'staff', no: 'II', title: 'Staff' },
-    { id: 'food', no: 'III', title: 'Food safety records' },
-    { id: 'ops', no: 'IV', title: 'Fire safety, receipts and smoking' }
-  ];
-
-  // w: 3 high, 2 medium, 1 low. na: question can be "doesn't apply".
+  // r = risk points for that answer. f = risk factor shown in the result (only for risky answers).
   var Q = [
-    { id: 'notif', s: 'lic', w: 3, q: 'The operating notification for the venue was submitted on notifybusiness.gov.gr, and the municipal fee was paid, before you opened.',
-      gap: 'No proof that the business was notified before opening. Inspectors usually ask for this first.', fine: NOTIF },
-    { id: 'changes', s: 'lic', w: 2, q: 'The premises match what was notified: same floor area, same rooms, same activity. Any change since then was notified too.',
-      gap: 'The premises may differ from what was notified. Unnotified changes are treated like a missing notification.', fine: NOTIF },
-    { id: 'tables', s: 'lic', w: 1, na: true, q: 'If you have tables outside, you hold a valid municipal permit for the public space, and you keep within the permitted area.',
-      gap: 'Outdoor tables without a valid permit, or outside the permitted area.', fine: { txt: 'Set by the municipality', max: 0 } },
-    { id: 'music', s: 'lic', w: 1, na: true, q: 'If you play music, the use of music was notified to the municipality and you keep to the permitted hours and limits.',
-      gap: 'Music without notification, or outside the permitted hours.', fine: { txt: 'Set by the municipality', max: 0 } },
-    { id: 'prices', s: 'lic', w: 1, q: 'A price list is on display, and every menu shows final prices including taxes.',
-      gap: 'No visible price list, or prices that are not final.', fine: { txt: 'Set by the market inspection authority', max: 0 } },
-
-    { id: 'ergani', s: 'staff', w: 3, q: 'Every person working at the venue, including trial days, family and part-timers, is declared on ERGANI before their first shift.',
-      gap: 'Undeclared work: the single most expensive finding in a Greek inspection.', fine: { txt: '€10,500 per worker, up to €31,500 on a repeat offence', max: 10500, src: 'erg' } },
-    { id: 'card', s: 'staff', w: 3, q: 'The digital work card is active for every employee, and the recorded hours match the declared schedule.',
-      gap: 'Digital work card not active, or hours that do not match the schedule.', fine: { txt: '€10,500 per employee', max: 10500, src: 'card' } },
-    { id: 'health', s: 'staff', w: 2, q: 'Everyone who handles food holds a valid health certificate, and a copy is kept at the venue.',
-      gap: 'Food handlers without a valid health certificate on file.', fine: HYG },
-    { id: 'training', s: 'staff', w: 2, q: 'Your staff have completed the food hygiene training required for your type of venue, and you can show proof.',
-      gap: 'No proof of hygiene training for the staff.', fine: HYG },
-    { id: 'conduct', s: 'staff', w: 1, q: 'Kitchen staff wear clean work clothes, keep wounds covered, and nobody smokes or eats in food areas.',
-      gap: 'Staff hygiene rules are not kept. Inspectors check this by looking, on the day.', fine: HYG },
-
-    { id: 'haccp', s: 'food', w: 3, q: 'Your venue has its own food safety self-check file, based on HACCP principles, and it is up to date.',
-      gap: 'No written self-check procedures for your venue.', fine: { txt: '€500 – €5,000', max: 5000, src: 'l5243' } },
-    { id: 'temps', s: 'food', w: 2, q: 'Temperature records for your fridges and freezers are kept and up to date.',
-      gap: 'Temperature records missing, incomplete or not believable.', fine: HYG },
-    { id: 'trace', s: 'food', w: 3, q: 'For every product you buy you keep supplier invoices or delivery notes, so you can show where it came from.',
-      gap: 'You cannot trace products back to the supplier.', fine: { txt: '€500 – €20,000', max: 20000, src: 'l5243' } },
-    { id: 'labels', s: 'food', w: 2, q: 'Food in storage is labelled and kept the way inspectors expect.',
-      gap: 'Food storage and labelling not in order.', fine: HYG },
-    { id: 'pest', s: 'food', w: 2, q: 'Your pest control file is complete and up to date.',
-      gap: 'No pest control file.', fine: HYG },
-    { id: 'clean', s: 'food', w: 1, q: 'Your cleaning is documented.',
-      gap: 'No cleaning schedule or cleaning records.', fine: HYG },
-    { id: 'hands', s: 'food', w: 2, q: 'Your hand-washing facilities meet the hygiene requirements.',
-      gap: 'Hand-washing facilities missing or not equipped.', fine: HYG },
-    { id: 'water', s: 'food', w: 1, q: 'The venue uses water from the public network, or, if it does not, you hold recent water analyses.',
-      gap: 'No proof that the water you use is safe.', fine: HYG },
-    { id: 'allergens', s: 'food', w: 2, q: 'Your staff can tell a customer which of the 14 allergens each dish contains, and the information is written down.',
-      gap: 'No allergen information for your dishes.', fine: { txt: '€200 – €5,000', max: 5000, src: 'l5243', note: 'other' } },
-
-    { id: 'fire', s: 'ops', w: 3, q: 'Fire safety is in order for your size of venue, documents and equipment included.',
-      gap: 'Fire safety documents or equipment not in order.', fine: { txt: 'Set by the Fire Service; no fixed range is published', max: 0 } },
-    { id: 'receipts', s: 'ops', w: 3, q: 'A receipt is issued for every sale, and the card terminal is linked to the cash register as required.',
-      gap: 'Sales without a receipt or not transmitted to AADE.', fine: { txt: 'Immediate 48-hour closure (more than 10 receipts or over €500 not issued); 96 hours on a repeat', max: 0, src: 'aade', closure: true } },
-    { id: 'smoking', s: 'ops', w: 2, na: true, q: 'Nobody smokes in indoor areas, and the no-smoking signs are in place.',
-      gap: 'Smoking in indoor areas. The venue operator is fined, not only the smoker.', fine: { txt: 'Fine on the operator, rising with each repeat; possible temporary closure', max: 0 } }
+    { id: 'stage', q: 'Where is your venue right now?', o: [
+      { k: 'o1', t: 'Opening in less than a month', r: 4, f: 'You open in less than a month. Inspections can come in the first weeks, and putting documents in place takes longer than most owners expect.' },
+      { k: 'o3', t: 'Opening in 1–3 months', r: 3, f: 'You open within three months. That is enough time only if the paperwork starts now.' },
+      { k: 'o6', t: 'Opening in more than 3 months', r: 1 },
+      { k: 'n1', t: 'Open for less than a year', r: 3, f: 'You opened less than a year ago. New venues are often inspected in their first year, and early gaps are still there.' },
+      { k: 'nx', t: 'Open for more than a year', r: 1 }
+    ]},
+    { id: 'type', q: 'What kind of venue is it?', o: [
+      { k: 'cafe', t: 'Café, bar or all-day', r: 2 },
+      { k: 'rest', t: 'Restaurant or taverna', r: 2 },
+      { k: 'take', t: 'Takeaway, delivery or bakery', r: 1 },
+      { k: 'multi', t: 'Hotel kitchen, or more than one venue', r: 4, f: 'A hotel kitchen or several venues carry stricter requirements and more for an inspector to check.' }
+    ]},
+    { id: 'staff', q: 'How many people work there, including part-time and seasonal staff?', o: [
+      { k: 's1', t: '1–3', r: 1 },
+      { k: 's2', t: '4–10', r: 2 },
+      { k: 's3', t: '11–25', r: 3, f: 'With more than ten people, a single staff paperwork mistake is repeated for every person, and staff fines are counted per employee.' },
+      { k: 's4', t: 'More than 25', r: 4, f: 'With more than 25 people, staff paperwork is your largest exposure: staff fines are counted per employee.' }
+    ]},
+    { id: 'greek', q: 'Can you read official documents in Greek?', o: [
+      { k: 'yes', t: 'Yes, comfortably', r: 0 },
+      { k: 'some', t: 'Partly, with help', r: 2, f: 'You read Greek only partly. Official documents and inspection reports are in Greek, so a gap can go unnoticed until an inspector points it out.' },
+      { k: 'no', t: 'No', r: 4, f: 'You do not read Greek. Notices, documents and inspection reports are in Greek, so you may not know what is missing until an inspector tells you.' }
+    ]},
+    { id: 'people', q: 'Who handles your staff declarations and paperwork?', o: [
+      { k: 'acc', t: 'An accountant who works with food businesses', r: 0 },
+      { k: 'acc2', t: 'An accountant, but not one who knows food businesses', r: 1 },
+      { k: 'me', t: 'I do it myself', r: 2, f: 'You handle staff paperwork yourself. It is the area where one mistake costs the most.' },
+      { k: 'none', t: 'Nobody yet, or I’m not sure', r: 4, f: 'Nobody has clearly taken on staff paperwork. In Greek inspections this is the single most expensive area to get wrong.' }
+    ]},
+    { id: 'hyg', q: 'Who looks after your food safety file?', o: [
+      { k: 'pro', t: 'A food technologist or consultant who keeps it up to date', r: 0 },
+      { k: 'tpl', t: 'We use a template we bought or downloaded', r: 3, f: 'Your food safety file comes from a generic template. Inspectors look for procedures that match your own venue, menu and equipment.' },
+      { k: 'none', t: 'Nobody yet', r: 4, f: 'Nobody looks after your food safety file. It is one of the first things a hygiene inspector asks for.' },
+      { k: 'unk', t: 'I’m not sure what that is', r: 4, f: 'You are not sure what a food safety file is. Every food business in Greece is expected to have one, and to keep it going.' }
+    ]},
+    { id: 'last', q: 'When was the venue last inspected?', o: [
+      { k: 'never', t: 'Never, or not open yet', r: 2 },
+      { k: 'ok', t: 'In the last year, with no remarks', r: 0 },
+      { k: 'remark', t: 'In the last year, with remarks or a fine', r: 4, f: 'Your last inspection ended with remarks or a fine. A follow-up visit is likely, and repeated findings are fined more heavily.' },
+      { k: 'old', t: 'More than a year ago', r: 2 }
+    ]},
+    { id: 'changes', q: 'Since the paperwork for the premises was filed, has anything changed: layout, kitchen, type of menu or opening hours?', o: [
+      { k: 'no', t: 'No', r: 0 },
+      { k: 'small', t: 'Small changes', r: 2 },
+      { k: 'big', t: 'Yes, significant changes', r: 3, f: 'Significant changes since the paperwork was filed often leave documents that no longer match the venue an inspector sees.' },
+      { k: 'unk', t: 'I don’t know what was filed', r: 3, f: 'You do not know what was filed for the premises, so you cannot be sure it matches the venue today.' }
+    ]},
+    { id: 'conf', q: 'If an inspector walked in tomorrow, how sure are you that you could show every document they ask for?', o: [
+      { k: 'c4', t: 'Completely sure', r: 0 },
+      { k: 'c3', t: 'Fairly sure', r: 1 },
+      { k: 'c2', t: 'Not very sure', r: 3, f: 'You are not sure you could show every document today. On the day of an inspection, a document you cannot show counts as missing.' },
+      { k: 'c1', t: 'Not sure at all', r: 4, f: 'You are not at all sure you could show the documents an inspector would ask for. On the day, a document you cannot show counts as missing.' }
+    ]},
+    { id: 'time', q: 'How much time can you give to paperwork and records each week?', o: [
+      { k: 't3', t: 'As much as it needs', r: 0 },
+      { k: 't2', t: 'A few hours', r: 1 },
+      { k: 't1', t: 'Almost none', r: 3, f: 'You have almost no time for paperwork. Records that fall behind are easy for an inspector to spot.' }
+    ]}
   ];
 
+  var STAKES = [
+    { t: 'Each undeclared worker', v: '€10,500', s: { t: 'Labour Inspectorate fines', u: 'https://www.naftemporiki.gr/finance/economy/2074740/poy-tha-chtypisei-i-epitheorisi-ergasias/' } },
+    { t: 'Receipts not issued', v: '48-hour closure', s: { t: 'AADE decision A.1115/2026', u: 'https://www.aade.gr/sites/default/files/2026-06/a1115_2026.pdf' } },
+    { t: 'Food hygiene breaches', v: '€200 – €20,000', s: { t: 'Law 5243/2025, art. 104', u: 'https://www.taxheaven.gr/law/5243/2025/arthro/104' } },
+    { t: 'Operating outside what was notified', v: '€100 – €20,000', s: { t: 'Law 4442/2016, art. 15', u: 'https://www.taxheaven.gr/law/4442/2016/arthro/15' } }
+  ];
+
+  var MAX = Q.reduce(function (s, q) { return s + Math.max.apply(null, q.o.map(function (o) { return o.r; })); }, 0);
 
   function compute(A) {
-    var answered = 0, got = 0, max = 0, gaps = [];
+    var answered = 0, pts = 0, factors = [];
     Q.forEach(function (q) {
-      var a = A[q.id];
-      if (!a) return;
-      answered++;
-      if (a === 'x') return;
-      max += q.w;
-      if (a === 'y') got += q.w;
-      else gaps.push({ q: q, unsure: a === 'u' });
+      var k = A[q.id]; if (!k) return;
+      var o = q.o.filter(function (x) { return x.k === k; })[0]; if (!o) return;
+      answered++; pts += o.r;
+      if (o.f) factors.push({ q: q, o: o });
     });
-    gaps.sort(function (a, b) {
-      return (b.q.fine.closure ? 1 : 0) - (a.q.fine.closure ? 1 : 0) || b.q.w - a.q.w || (b.q.fine.max || 0) - (a.q.fine.max || 0);
-    });
-    var score = max ? Math.round(100 * got / max) : 0;
-    var high = gaps.filter(function (g) { return g.q.w === 3; }).length;
-    return { answered: answered, score: score, gaps: gaps, high: high, done: answered === Q.length };
+    factors.sort(function (a, b) { return b.o.r - a.o.r; });
+    var risk = Math.round(100 * pts / MAX);
+    var heavy = factors.filter(function (f) { return f.o.r >= 4; }).length;
+    var level = risk >= 55 || heavy >= 3 ? 'high' : risk >= 30 || heavy >= 1 ? 'medium' : 'low';
+    return { answered: answered, done: answered === Q.length, risk: risk, level: level, factors: factors };
   }
 
-  function band(r) {
-    if (r.score >= 85 && r.high === 0) return { k: 'ok', t: 'Close to ready', d: 'An inspector would find little. Keep the records going every day, not just before a visit.' };
-    if (r.score >= 60 && r.high <= 1) return { k: 'mid', t: 'Gaps an inspector would find', d: 'You have the basics, but the gaps below are the kind that lead to fines on the day.' };
-    return { k: 'low', t: 'High risk', d: 'As things stand, an inspection would likely end in fines, and some gaps can close the venue.' };
-  }
+  var LEVELS = {
+    high: { t: 'High risk', d: 'Your situation is the kind where inspections end in fines. Not because you are doing something wrong, but because nothing is in place to catch it in time.' },
+    medium: { t: 'Medium risk', d: 'Some things are covered, but there are weak points an inspection is likely to find.' },
+    low: { t: 'Low risk', d: 'Your situation looks well covered. Keep it that way: most problems start when records fall behind.' }
+  };
 
-  var D = { SRC: SRC, SECTIONS: SECTIONS, Q: Q, LEVEL: { 3: 'High', 2: 'Medium', 1: 'Low' }, compute: compute, band: band };
+  var D = { Q: Q, STAKES: STAKES, LEVELS: LEVELS, compute: compute };
   if (typeof module !== 'undefined' && module.exports) module.exports = D; else root.IC_DATA = D;
 })(this);
