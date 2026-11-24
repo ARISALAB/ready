@@ -162,6 +162,19 @@
       en: { n: 'Server response time', r: 'The server is slow to respond, so the page stays blank before it even starts loading.' } }
   };
 
+  // How the AI score is built: three steps an AI assistant goes through before it can recommend a business.
+  var AI_STAGES = [
+    { id: 'read', ids: ['aibots', 'nojs'],
+      el: { t: 'Μπορούν να διαβάσουν το site;', h: 'Αν το robots.txt αφήνει τα bots των ChatGPT, Perplexity, Claude και Gemini να μπουν, και αν το κείμενο υπάρχει στη σελίδα χωρίς JavaScript.' },
+      en: { t: 'Can they read the site?', h: 'Whether robots.txt lets the bots of ChatGPT, Perplexity, Claude and Gemini in, and whether the text is on the page without JavaScript.' } },
+    { id: 'understand', ids: ['entity', 'clear', 'about'],
+      el: { t: 'Καταλαβαίνουν ποιοι είστε;', h: 'Αν η επιχείρηση περιγράφεται σε μορφή που διαβάζουν οι μηχανές (όνομα, διεύθυνση, τηλέφωνο), αν η αρχική λέει καθαρά τι κάνετε και αν υπάρχει σελίδα «Ποιοι είμαστε».' },
+      en: { t: 'Do they understand who you are?', h: 'Whether the business is described in a form machines read (name, address, phone), whether the home page clearly says what you do, and whether there is an About page.' } },
+    { id: 'trust', ids: ['faq', 'profiles', 'llms'],
+      el: { t: 'Έχουν λόγο να σας προτείνουν;', h: 'Αν το site απαντά σε ερωτήσεις πελατών, αν συνδέεται με τα προφίλ σας αλλού (Facebook, Instagram, LinkedIn, Google) και αν έχει οδηγό για AI (llms.txt).' },
+      en: { t: 'Do they have a reason to recommend you?', h: 'Whether the site answers customer questions, links to your profiles elsewhere (Facebook, Instagram, LinkedIn, Google) and has a guide for AI (llms.txt).' } }
+  ];
+
   var PTS = { pass: 1, warn: 0.5, fail: 0 };
   var STATUS = ['pass', 'warn', 'fail'];
 
@@ -174,6 +187,9 @@
     if (rep && rep.venue && rep.venue.isVenue) (rep.venue.items || []).forEach(function (i) { take(i, 'venue'); });
     return out;
   }
+
+  // 2.5 -> '2,5' (Greek) / '2.5'
+  function pts(v, lang) { var t = (Math.round(v * 10) / 10).toString(); return lang === 'el' ? t.replace('.', ',') : t; }
 
   function avg(ids, map) {
     var W = 0, V = 0;
@@ -188,7 +204,7 @@
     var ids = Object.keys(ITEMS).filter(function (id) { return map[id]; });
     var groups = GROUPS.map(function (g) {
       var its = ids.filter(function (id) { return ITEMS[id].g === g.id; });
-      return { id: g.id, head: g.head, score: avg(its, map), items: its.map(function (id) { return { id: id, status: map[id] }; }) };
+      return { id: g.id, head: g.head, score: avg(its, map), items: its.map(function (id) { return { id: id, status: map[id], got: ITEMS[id].w * PTS[map[id]], max: ITEMS[id].w }; }) };
     }).filter(function (g) { return g.items.length; });
     var heads = {};
     HEADS.forEach(function (h) {
@@ -199,8 +215,14 @@
     var problems = ids.filter(function (id) { return map[id] !== 'pass'; }).map(function (id) {
       return { id: id, status: map[id], loss: ITEMS[id].w * (1 - PTS[map[id]]) };
     }).sort(function (a, b) { return b.loss - a.loss || ITEMS[b.id].w - ITEMS[a.id].w; });
+    var aiStages = AI_STAGES.map(function (st) {
+      var its = st.ids.filter(function (id) { return map[id]; });
+      var max = 0, got = 0;
+      its.forEach(function (id) { max += ITEMS[id].w; got += ITEMS[id].w * PTS[map[id]]; });
+      return { id: st.id, score: max ? Math.round(100 * got / max) : null, got: got, max: max, items: its.map(function (id) { return { id: id, status: map[id], got: ITEMS[id].w * PTS[map[id]], max: ITEMS[id].w }; }) };
+    }).filter(function (st) { return st.items.length; });
     var band = score >= 80 ? 'good' : score >= 60 ? 'ok' : score >= 40 ? 'mid' : 'low';
-    return { n: ids.length, score: score, band: band, heads: heads, groups: groups, problems: problems, map: map };
+    return { aiStages: aiStages, n: ids.length, score: score, band: band, heads: heads, groups: groups, problems: problems, map: map };
   }
 
   var BANDS = {
@@ -214,6 +236,6 @@
            en: { t: 'Your site is not working for you', d: 'Right now the site probably costs you more than it brings. Google and AI tools rarely recommend you, and visitors find no reason or way to get in touch.' } }
   };
 
-  var D = { GROUPS: GROUPS, HEADS: HEADS, ITEMS: ITEMS, BANDS: BANDS, fromReport: fromReport, compute: compute, ENGINE: 'https://futurearis.netlify.app/.netlify/functions/analyze' };
+  var D = { AI_STAGES: AI_STAGES, pts: pts, GROUPS: GROUPS, HEADS: HEADS, ITEMS: ITEMS, BANDS: BANDS, fromReport: fromReport, compute: compute, ENGINE: 'https://futurearis.netlify.app/.netlify/functions/analyze' };
   if (typeof module !== 'undefined' && module.exports) module.exports = D; else root.SC_DATA = D;
 })(this);

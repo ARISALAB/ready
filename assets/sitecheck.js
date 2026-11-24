@@ -16,7 +16,9 @@
       busy: 'Πολλοί έλεγχοι αυτή τη στιγμή. Δοκιμάστε ξανά σε ένα λεπτό.',
       slow: 'Το site άργησε πολύ να απαντήσει. Δοκιμάστε ξανά.',
       checked: 'Ελέγχθηκε', pages: function (n) { return n === 1 ? '1 σελίδα' : n + ' σελίδες'; },
-      st: { pass: 'Εντάξει', warn: 'Μισό', fail: 'Λείπει' },
+      st: { pass: 'Εντάξει', warn: 'Μισό', fail: 'Λείπει' }, ptsL: 'πόντοι',
+      aiHow: '<b>Πώς το μετράμε.</b> Δεν ρωτάμε τα AI τι απαντούν, γιατί η απάντηση αλλάζει από ερώτηση σε ερώτηση και από άνθρωπο σε άνθρωπο. Μετράμε τα τρία πράγματα που χρειάζεται ένα AI για να προτείνει μια επιχείρηση. Το πρώτο βήμα έχει το μεγαλύτερο βάρος, γιατί ό,τι δεν μπορεί να διαβάσει ένα AI, δεν το προτείνει.',
+      step: function (n) { return 'Βήμα ' + n; },
       d: {
         platform: function (x) { return 'μέσω ' + x; }, phone: 'μόνο με τηλέφωνο', form: 'φόρμα στο site', bots: function (b) { return 'μπλοκάρει: ' + b; }, all: 'μπλοκάρει όλα τα bots', words: function (n) { return 'μόνο ' + n + ' λέξεις'; },
         pdf: 'μόνο σε PDF', photos: function (n) { return n === 1 ? '1 φωτογραφία' : n + ' φωτογραφίες'; }, nolink: 'υπάρχει, χωρίς σύνδεσμο', addr: 'μόνο διεύθυνση'
@@ -47,7 +49,9 @@
       busy: 'Too many checks right now. Try again in a minute.',
       slow: 'The site took too long to respond. Try again.',
       checked: 'Checked', pages: function (n) { return n === 1 ? '1 page' : n + ' pages'; },
-      st: { pass: 'OK', warn: 'Partly', fail: 'Missing' },
+      st: { pass: 'OK', warn: 'Partly', fail: 'Missing' }, ptsL: 'points',
+      aiHow: '<b>How we measure it.</b> We do not ask AI tools what they answer, because the answer changes from question to question and from person to person. We measure the three things an AI assistant needs before it can recommend a business. The first step carries the most weight, because what an AI cannot read, it cannot recommend.',
+      step: function (n) { return 'Step ' + n; },
       d: {
         platform: function (x) { return 'via ' + x; }, phone: 'by phone only', form: 'form on the site', bots: function (b) { return 'blocks: ' + b; }, all: 'blocks all bots', words: function (n) { return 'only ' + n + ' words'; },
         pdf: 'PDF only', photos: function (n) { return n === 1 ? '1 photo' : n + ' photos'; }, nolink: 'shown, not tappable', addr: 'address only'
@@ -178,15 +182,28 @@
     last = { url: (rep.meta && rep.meta.url) || '', host: host, list: list, r: r };
 
     $('sc-site').innerHTML = T.checked + ': <b>' + esc(host) + '</b> · ' + T.pages((rep.meta && rep.meta.pages) || 1);
+    function itemLi(it) {
+      var x = detail(it.id, it.status, vd[it.id]);
+      return '<li class="sc-i sc-' + it.status + '"><span class="sc-mk" aria-hidden="true"></span><span class="sc-in">' + esc(D.ITEMS[it.id][L].n) + '</span>' +
+        '<span class="sc-r"><b class="sc-p">' + D.pts(it.got, L) + '<small>/' + it.max + '</small></b><span class="sc-st">' + T.st[it.status] + (x ? '<em>' + esc(x) + '</em>' : '') + '</span></span></li>';
+    }
+    function head(gi, title, score) {
+      return '<div class="sc-g-h"><span class="sc-g-n">0' + (gi + 1) + '</span><h3>' + esc(title) + '</h3><b>' + score + '<small>/100</small></b></div>' +
+        '<div class="sc-g-bar" data-s="' + band(score) + '"><i style="width:' + score + '%"></i></div>';
+    }
     $('sc-groups').innerHTML = r.groups.map(function (g, gi) {
       var G = D.GROUPS.filter(function (x) { return x.id === g.id; })[0];
-      return '<div class="sc-g"><div class="sc-g-h"><span class="sc-g-n">0' + (gi + 1) + '</span><h3>' + esc(G[L]) + '</h3><b>' + g.score + '</b></div>' +
-        '<div class="sc-g-bar" data-s="' + band(g.score) + '"><i style="width:' + g.score + '%"></i></div>' +
-        '<ul class="sc-items">' + g.items.map(function (it) {
-          var x = detail(it.id, it.status, vd[it.id]);
-          return '<li class="sc-i sc-' + it.status + '"><span class="sc-mk" aria-hidden="true"></span><span class="sc-in">' + esc(D.ITEMS[it.id][L].n) + '</span>' +
-            '<span class="sc-st">' + T.st[it.status] + (x ? '<em>' + esc(x) + '</em>' : '') + '</span></li>';
-        }).join('') + '</ul></div>';
+      if (g.id === 'ai' && r.aiStages.length) {
+        var seg = r.aiStages.map(function (st) { return st.items.map(function (it) { return '<span class="sc-' + it.status + '" style="flex:' + it.max + '" title="' + esc(D.ITEMS[it.id][L].n) + '"></span>'; }).join(''); }).join('<span class="sc-seg-gap"></span>');
+        return '<div class="sc-g sc-aiblock">' + head(gi, G[L], g.score) + '<p class="sc-ai-how">' + T.aiHow + '</p><div class="sc-seg" aria-hidden="true">' + seg + '</div>' +
+          r.aiStages.map(function (st, si) {
+            var S = D.AI_STAGES.filter(function (x) { return x.id === st.id; })[0][L];
+            return '<div class="sc-stg"><div class="sc-stg-h"><span>' + T.step(si + 1) + '</span><h4>' + esc(S.t) + '</h4><b>' + st.score + '<small>/100</small></b></div>' +
+              '<div class="sc-g-bar sc-stg-bar" data-s="' + band(st.score) + '"><i style="width:' + st.score + '%"></i></div>' +
+              '<p class="sc-stg-d">' + esc(S.h) + '</p><ul class="sc-items">' + st.items.map(itemLi).join('') + '</ul></div>';
+          }).join('') + '</div>';
+      }
+      return '<div class="sc-g">' + head(gi, G[L], g.score) + '<ul class="sc-items">' + g.items.map(itemLi).join('') + '</ul></div>';
     }).join('');
 
     var res = $('sc-res'); res.setAttribute('data-band', r.band);

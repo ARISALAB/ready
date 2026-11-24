@@ -17,7 +17,7 @@ const C = {
     gaps: (n) => (n === 1 ? '1 κενό, με σειρά προτεραιότητας' : n + ' κενά, με σειρά προτεραιότητας'),
     noGaps: 'Δεν βρέθηκε κενό σε κανέναν από τους ελέγχους.',
     st: { warn: 'Μισό', fail: 'Λείπει' },
-    okH: 'Τι κάνει ήδη σωστά', groupsH: 'Ο βαθμός ανά ενότητα',
+    okH: 'Τι κάνει ήδη σωστά', groupsH: 'Ο βαθμός ανά ενότητα', aiH: 'Πώς βγήκε ο βαθμός AI', step: (n) => 'Βήμα ' + n,
     ctaH: 'Θέλετε να το φτιάξουμε μαζί;',
     ctaP: 'Φτιάχνουμε ιστοσελίδες που βρίσκονται στη Google, διαβάζονται από τα AI και φέρνουν πελάτες, και διορθώνουμε υπάρχουσες. Στην πρώτη κουβέντα, 30 λεπτά και δωρεάν, βλέπουμε μαζί το site σας και από πού να ξεκινήσετε.',
     ctaB: 'Κλείστε δωρεάν ραντεβού 30 λεπτών', ctaW: 'ή στείλτε μου μήνυμα στο WhatsApp',
@@ -32,7 +32,7 @@ const C = {
     gaps: (n) => (n === 1 ? '1 gap, in order of priority' : n + ' gaps, in order of priority'),
     noGaps: 'No gaps were found in any of the checks.',
     st: { warn: 'Partly', fail: 'Missing' },
-    okH: 'What it already does well', groupsH: 'Score by area',
+    okH: 'What it already does well', groupsH: 'Score by area', aiH: 'How the AI score was built', step: (n) => 'Step ' + n,
     ctaH: 'Want us to fix it with you?',
     ctaP: 'We build websites that show up on Google, are read by AI assistants and bring in customers, and we fix existing ones. In a free 30-minute call we look at your site together and where to start.',
     ctaB: 'Book a free 30-minute call', ctaW: 'or message me on WhatsApp',
@@ -81,7 +81,7 @@ function visitorEmail(r, L, host, venue) {
     return `<tr><td style="padding:14px 0;border-bottom:1px solid #e6e1d6;vertical-align:top;width:26px;color:#999;font-size:13px">${i + 1}</td>
 <td style="padding:14px 0;border-bottom:1px solid #e6e1d6;vertical-align:top">
 <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:${col};font-weight:600">${up(c.st[p.status])}</div>
-<div style="font-size:16px;color:#1a1a1a;margin-top:3px">${esc(it.n)}</div>
+<div style="font-size:16px;color:#1a1a1a;margin-top:3px">${esc(it.n)} <span style="font-family:Georgia,serif;color:${col};white-space:nowrap">${D.pts(D.ITEMS[p.id].w * (p.status === 'warn' ? 0.5 : 0), L)}/${D.ITEMS[p.id].w}</span></div>
 <div style="font-size:14px;color:#555;margin-top:4px;line-height:1.55">${esc(it.r)}</div></td></tr>`;
   }).join('');
   const groups = r.groups.map((g) => {
@@ -90,6 +90,11 @@ function visitorEmail(r, L, host, venue) {
 <td style="padding:8px 0;border-bottom:1px solid #e6e1d6;font-family:Georgia,serif;font-size:17px;color:#1a1a1a;text-align:right">${g.score}</td></tr>`;
   }).join('');
   const heads = D.HEADS.filter((x) => r.heads[x.id] !== null).map((x) => `<td style="padding:12px 0 0;vertical-align:top"><div style="font-size:11px;letter-spacing:.14em;color:#888;font-weight:600">${up(x[L])}</div><div style="font-family:Georgia,serif;font-size:26px;color:${r.heads[x.id] < 40 ? '#b4442f' : '#1a1a1a'}">${r.heads[x.id]}</div></td>`).join('');
+  const aiRows = r.aiStages.map((st, i) => {
+    const S = D.AI_STAGES.find((x) => x.id === st.id)[L];
+    return `<tr><td style="padding:10px 0;border-bottom:1px solid #e6e1d6;vertical-align:top"><div style="font-size:11px;letter-spacing:.12em;color:#9a7417;font-weight:600">${up(c.step(i + 1))}</div><div style="font-size:15px;color:#1a1a1a;margin-top:2px">${esc(S.t)}</div><div style="font-size:13px;color:#777;margin-top:3px">${st.items.map((it) => esc(D.ITEMS[it.id][L].n) + ' ' + D.pts(it.got, L) + '/' + it.max).join(' · ')}</div></td>
+<td style="padding:10px 0;border-bottom:1px solid #e6e1d6;font-family:Georgia,serif;font-size:20px;color:${st.score < 40 ? '#b4442f' : '#1a1a1a'};text-align:right;vertical-align:top;width:60px">${st.score}</td></tr>`;
+  }).join('');
   const ok = Object.keys(r.map).filter((id) => r.map[id] === 'pass').map((id) => esc(D.ITEMS[id][L].n)).join(' · ');
   return `<!DOCTYPE html><html><body style="margin:0;background:#f4f1ea;font-family:Helvetica,Arial,sans-serif">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f1ea"><tr><td align="center" style="padding:28px 12px">
@@ -106,6 +111,7 @@ function visitorEmail(r, L, host, venue) {
 </td></tr>
 <tr><td style="padding:18px 28px 0"><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#888;font-weight:600">${r.problems.length ? up(c.gaps(r.problems.length)) : ''}</div>
 ${r.problems.length ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">${gaps}</table>` : `<p style="font-size:15px;color:#555">${c.noGaps}</p>`}</td></tr>
+${aiRows ? `<tr><td style="padding:22px 28px 0"><div style="font-size:11px;letter-spacing:.16em;color:#888;font-weight:600">${up(c.aiH)}</div><table role="presentation" width="100%" cellpadding="0" cellspacing="0">${aiRows}</table></td></tr>` : ''}
 <tr><td style="padding:22px 28px 0"><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#888;font-weight:600">${up(c.groupsH)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${groups}</table></td></tr>
 ${ok ? `<tr><td style="padding:22px 28px 0"><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#888;font-weight:600">${up(c.okH)}</div>
